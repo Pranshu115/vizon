@@ -142,6 +142,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  // Disable static optimization for error pages
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 }
 
 module.exports = nextConfig
