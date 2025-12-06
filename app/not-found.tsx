@@ -1,15 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-export default function NotFound() {
-  useEffect(() => {
-    // Ensure this is treated as a client component
-  }, [])
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
+export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
