@@ -268,9 +268,9 @@ function BrowseTrucksContent() {
   }
 
 
-  const handleFilterChange = (newFilters: any) => {
+  const handleFilterChange = useCallback((newFilters: any) => {
     setFilters(newFilters)
-  }
+  }, [])
 
   return (
     <div className="browse-trucks-page">
