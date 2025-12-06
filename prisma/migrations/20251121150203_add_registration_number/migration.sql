@@ -1,0 +1,32 @@
+-- CreateTable
+CREATE TABLE "truck_submissions" (
+    "id" SERIAL NOT NULL,
+    "sellerName" TEXT NOT NULL,
+    "sellerEmail" TEXT NOT NULL,
+    "sellerPhone" TEXT NOT NULL,
+    "manufacturer" TEXT NOT NULL,
+    "model" TEXT NOT NULL,
+    "year" INTEGER NOT NULL,
+    "registrationNumber" TEXT,
+    "kilometers" INTEGER NOT NULL,
+    "fuelType" TEXT NOT NULL,
+    "transmission" TEXT NOT NULL,
+    "horsepower" INTEGER,
+    "engineCapacity" TEXT,
+    "condition" TEXT NOT NULL,
+    "ownerNumber" INTEGER NOT NULL,
+    "askingPrice" DECIMAL(10,2) NOT NULL,
+    "negotiable" BOOLEAN NOT NULL DEFAULT true,
+    "location" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "features" TEXT,
+    "description" TEXT,
+    "images" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'pending',
+    "certified" BOOLEAN NOT NULL DEFAULT false,
+    "submittedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "approvedAt" TIMESTAMP(3),
+
+    CONSTRAINT "truck_submissions_pkey" PRIMARY KEY ("id")
+);
