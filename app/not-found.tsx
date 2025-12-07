@@ -1,15 +1,10 @@
+'use client'
+
 import Link from 'next/link'
-import { unstable_noStore as noStore } from 'next/cache'
 
-// Force dynamic rendering - prevent any static generation
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
-export const revalidate = 0
-export const runtime = 'nodejs'
-
+// Client components can't have route segment config exports
+// But we can prevent static generation by making it a client component
 export default function NotFound() {
-  // Force dynamic rendering by using noStore
-  noStore()
   
   return (
     <div style={{

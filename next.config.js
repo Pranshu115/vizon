@@ -110,6 +110,11 @@ const nextConfig = {
   // Set the workspace root to silence the lockfile warning
   outputFileTracingRoot: path.join(__dirname),
   
+  // Prevent static generation of error pages
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
+  },
+  
   images: {
     remotePatterns: [
       {
