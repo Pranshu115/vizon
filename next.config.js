@@ -110,9 +110,6 @@ const nextConfig = {
   // Set the workspace root to silence the lockfile warning
   outputFileTracingRoot: path.join(__dirname),
   
-  // Use standalone output for better Render.com compatibility
-  output: 'standalone',
-  
   images: {
     remotePatterns: [
       {
