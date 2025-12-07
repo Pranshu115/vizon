@@ -110,6 +110,11 @@ const nextConfig = {
   // Set the workspace root to silence the lockfile warning
   outputFileTracingRoot: path.join(__dirname),
   
+  // Skip static generation of error pages
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  
   images: {
     remotePatterns: [
       {
