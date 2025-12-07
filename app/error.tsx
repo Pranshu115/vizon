@@ -4,9 +4,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 
 // Error boundaries must be client components
-// This will be rendered dynamically at runtime
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+// Client components can't have route segment config exports
 
 export default function Error({
   error,
