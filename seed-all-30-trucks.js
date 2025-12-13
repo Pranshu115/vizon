@@ -1,5 +1,5 @@
 // Script to seed Supabase database with ALL 30 trucks
-// Updated with actual truck information from the buy truck section
+// Updated with exact truck information from buy truck section
 const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config({ path: '.env.local' });
 
@@ -13,7 +13,7 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// All 30 trucks with actual information from the buy truck section
+// All 30 trucks with exact information from buy truck section
 const trucks = [
   {
     name: 'Eicher Pro 2110 LCV',

@@ -1,5 +1,5 @@
 // Seed data for trucks (fallback when database is unavailable)
-// Updated with actual truck information
+// Updated with exact truck information from buy truck section
 export const seedTrucks = [
   {
     id: 1,
