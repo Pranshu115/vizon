@@ -7446,11 +7446,11 @@ body:has(.contact-page) .search-icon,
 
 /* Product Section */
 .td-product {
-  max-width: 1320px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 2rem;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 400px);
   gap: 2.5rem;
   align-items: start;
 }

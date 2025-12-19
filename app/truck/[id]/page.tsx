@@ -225,9 +225,331 @@ export default function TruckDetailsPage() {
     return num.toLocaleString('en-IN')
   }
 
+  const isWhatsappHrTruck = truck?.name === 'HR 38 W 2162'
+
   const getGalleryImages = () => {
     if (!truck?.imageUrl) return []
-    
+
+    // WhatsApp gallery for HR 38 W 2162 - use all Supabase images for this truck
+    if (isWhatsappHrTruck) {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136466662-WhatsApp_Image_2025-12-17_at_6.33.50_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136467762-WhatsApp_Image_2025-12-17_at_6.33.51_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136467977-WhatsApp_Image_2025-12-17_at_6.33.51_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136468190-WhatsApp_Image_2025-12-17_at_6.33.51_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136468420-WhatsApp_Image_2025-12-17_at_6.33.52_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136468670-WhatsApp_Image_2025-12-17_at_6.33.52_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136468856-WhatsApp_Image_2025-12-17_at_6.33.54_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136469145-WhatsApp_Image_2025-12-17_at_6.33.55_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136469299-WhatsApp_Image_2025-12-17_at_6.34.06_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136469630-WhatsApp_Image_2025-12-17_at_6.34.06_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136469865-WhatsApp_Image_2025-12-17_at_6.34.13_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470020-WhatsApp_Image_2025-12-17_at_6.34.13_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470151-WhatsApp_Image_2025-12-17_at_6.34.13_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470346-WhatsApp_Image_2025-12-17_at_6.34.14_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470489-WhatsApp_Image_2025-12-17_at_6.34.14_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470627-WhatsApp_Image_2025-12-17_at_6.34.15_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136470833-WhatsApp_Image_2025-12-17_at_6.34.15_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471080-WhatsApp_Image_2025-12-17_at_6.34.15_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471277-WhatsApp_Image_2025-12-17_at_6.34.25_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471463-WhatsApp_Image_2025-12-17_at_6.34.26_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471610-WhatsApp_Image_2025-12-17_at_6.34.36_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471783-WhatsApp_Image_2025-12-17_at_6.34.36_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136471943-WhatsApp_Image_2025-12-17_at_6.34.37_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136472150-WhatsApp_Image_2025-12-17_at_6.34.38_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136472794-WhatsApp_Image_2025-12-17_at_6.34.38_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136472967-WhatsApp_Image_2025-12-17_at_6.34.38_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136473223-WhatsApp_Image_2025-12-17_at_6.34.38_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136474274-WhatsApp_Image_2025-12-17_at_6.34.39_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136474403-WhatsApp_Image_2025-12-17_at_6.34.39_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136474540-WhatsApp_Image_2025-12-17_at_6.34.39_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136474715-WhatsApp_Image_2025-12-17_at_6.34.39_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136475052-WhatsApp_Image_2025-12-17_at_6.34.40_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136475241-WhatsApp_Image_2025-12-17_at_6.34.40_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136475528-WhatsApp_Image_2025-12-17_at_6.34.40_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136475797-WhatsApp_Image_2025-12-17_at_6.34.41_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136476112-WhatsApp_Image_2025-12-17_at_6.34.41_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136476314-WhatsApp_Image_2025-12-17_at_6.34.41_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136476497-WhatsApp_Image_2025-12-17_at_6.34.41_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136476676-WhatsApp_Image_2025-12-17_at_6.34.42_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136476838-WhatsApp_Image_2025-12-17_at_6.34.42_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136477082-WhatsApp_Image_2025-12-17_at_6.34.42_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2162/1766136477301-WhatsApp_Image_2025-12-17_at_6.34.43_PM.jpeg'
+      ]
+    }
+
+    // WhatsApp gallery for HR 38 W 2263 - use all Supabase media for this truck
+    if (truck.name === 'HR 38 W 2263') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136482760-WhatsApp_Image_2025-12-17_at_6.44.37_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136483955-WhatsApp_Image_2025-12-17_at_6.44.38_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136484159-WhatsApp_Image_2025-12-17_at_6.44.38_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136484361-WhatsApp_Image_2025-12-17_at_6.44.38_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136484568-WhatsApp_Image_2025-12-17_at_6.44.39_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136484778-WhatsApp_Image_2025-12-17_at_6.44.39_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136484950-WhatsApp_Image_2025-12-17_at_6.44.39_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136485314-WhatsApp_Image_2025-12-17_at_6.44.40_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136485481-WhatsApp_Image_2025-12-17_at_6.44.40_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136485724-WhatsApp_Image_2025-12-17_at_6.44.40_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136485947-WhatsApp_Image_2025-12-17_at_6.44.40_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136486076-WhatsApp_Image_2025-12-17_at_6.44.41_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136486262-WhatsApp_Image_2025-12-17_at_6.44.41_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136486541-WhatsApp_Image_2025-12-17_at_6.44.41_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136486712-WhatsApp_Image_2025-12-17_at_6.44.42_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136486854-WhatsApp_Image_2025-12-17_at_6.44.42_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487033-WhatsApp_Image_2025-12-17_at_6.44.42_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487137-WhatsApp_Image_2025-12-17_at_6.44.43_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487286-WhatsApp_Image_2025-12-17_at_6.44.43_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487478-WhatsApp_Image_2025-12-17_at_6.44.43_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487634-WhatsApp_Image_2025-12-17_at_6.44.44_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136487847-WhatsApp_Image_2025-12-17_at_6.44.44_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136488078-WhatsApp_Image_2025-12-17_at_6.44.44_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136488284-WhatsApp_Image_2025-12-17_at_6.44.44_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136488427-WhatsApp_Image_2025-12-17_at_6.44.45_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136488555-WhatsApp_Image_2025-12-17_at_6.44.45_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136488691-WhatsApp_Image_2025-12-17_at_6.44.45_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136489077-WhatsApp_Image_2025-12-17_at_6.44.46_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136489268-WhatsApp_Image_2025-12-17_at_6.44.46_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136489450-WhatsApp_Video_2025-12-17_at_6.44.46_PM_(1).mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_2263/1766136492827-WhatsApp_Video_2025-12-17_at_6.44.46_PM.mp4'
+      ]
+    }
+
+    // WhatsApp gallery for HR 38 W 3426 - use all Supabase media for this truck
+    if (truck.name === 'HR 38 W 3426') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136495219-WhatsApp_Image_2025-12-17_at_6.29.11_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136495466-WhatsApp_Image_2025-12-17_at_6.29.12_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136495613-WhatsApp_Image_2025-12-17_at_6.29.12_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136495852-WhatsApp_Image_2025-12-17_at_6.29.12_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136496243-WhatsApp_Image_2025-12-17_at_6.29.13_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136496410-WhatsApp_Image_2025-12-17_at_6.29.15_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136496546-WhatsApp_Image_2025-12-17_at_6.29.15_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136496761-WhatsApp_Image_2025-12-17_at_6.29.16_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136497204-WhatsApp_Image_2025-12-17_at_6.29.16_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136497393-WhatsApp_Image_2025-12-17_at_6.29.42_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136497595-WhatsApp_Image_2025-12-17_at_6.29.43_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136497795-WhatsApp_Image_2025-12-17_at_6.29.44_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498019-WhatsApp_Image_2025-12-17_at_6.29.44_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498160-WhatsApp_Image_2025-12-17_at_6.29.44_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498291-WhatsApp_Image_2025-12-17_at_6.29.44_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498466-WhatsApp_Image_2025-12-17_at_6.29.45_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498600-WhatsApp_Image_2025-12-17_at_6.29.45_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498804-WhatsApp_Image_2025-12-17_at_6.29.45_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136498950-WhatsApp_Image_2025-12-17_at_6.29.46_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_38_W_3426/1766136499098-WhatsApp_Image_2025-12-17_at_6.29.46_PM_(2).jpeg'
+      ]
+    }
+
+    // WhatsApp gallery for HR 55 X 0025 - use all Supabase media for this truck
+    if (truck.name === 'HR 55 X 0025') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136509027-WhatsApp_Image_2025-12-17_at_6.39.46_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136509297-WhatsApp_Image_2025-12-17_at_6.39.46_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136509468-WhatsApp_Image_2025-12-17_at_6.39.47_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136509685-WhatsApp_Image_2025-12-17_at_6.39.48_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136509917-WhatsApp_Image_2025-12-17_at_6.39.48_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510078-WhatsApp_Image_2025-12-17_at_6.39.49_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510231-WhatsApp_Image_2025-12-17_at_6.39.49_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510390-WhatsApp_Image_2025-12-17_at_6.39.49_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510534-WhatsApp_Image_2025-12-17_at_6.39.49_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510781-WhatsApp_Image_2025-12-17_at_6.39.55_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136510941-WhatsApp_Image_2025-12-17_at_6.40.04_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511079-WhatsApp_Image_2025-12-17_at_6.40.04_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511268-WhatsApp_Image_2025-12-17_at_6.40.05_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511398-WhatsApp_Image_2025-12-17_at_6.40.05_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511595-WhatsApp_Image_2025-12-17_at_6.40.05_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511802-WhatsApp_Image_2025-12-17_at_6.40.05_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136511961-WhatsApp_Image_2025-12-17_at_6.40.10_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512136-WhatsApp_Image_2025-12-17_at_6.40.11_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512269-WhatsApp_Image_2025-12-17_at_6.40.11_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512431-WhatsApp_Image_2025-12-17_at_6.40.11_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512596-WhatsApp_Image_2025-12-17_at_6.40.11_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512726-WhatsApp_Image_2025-12-17_at_6.40.12_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136512909-WhatsApp_Image_2025-12-17_at_6.40.12_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136513060-WhatsApp_Image_2025-12-17_at_6.40.12_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136513221-WhatsApp_Image_2025-12-17_at_6.40.12_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136513817-WhatsApp_Image_2025-12-17_at_6.40.14_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136513976-WhatsApp_Image_2025-12-17_at_6.40.14_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136514116-WhatsApp_Image_2025-12-17_at_6.40.14_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136514469-WhatsApp_Image_2025-12-17_at_6.40.14_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136514647-WhatsApp_Image_2025-12-17_at_6.40.15_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136514798-WhatsApp_Image_2025-12-17_at_6.40.15_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136514957-WhatsApp_Image_2025-12-17_at_6.40.15_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136515143-WhatsApp_Video_2025-12-17_at_6.39.59_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0025/1766136517077-WhatsApp_Video_2025-12-17_at_6.40.10_PM.mp4'
+      ]
+    }
+
+    // WhatsApp gallery for HR 55 X 0253 - use all Supabase media for this truck
+    if (truck.name === 'HR 55 X 0253') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136519386-WhatsApp_Image_2025-12-17_at_6.51.02_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136519820-WhatsApp_Image_2025-12-17_at_6.51.10_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136520046-WhatsApp_Image_2025-12-17_at_6.51.19_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136520268-WhatsApp_Image_2025-12-17_at_6.51.27_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136520515-WhatsApp_Image_2025-12-17_at_6.51.33_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136520669-WhatsApp_Image_2025-12-17_at_6.51.35_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136520941-WhatsApp_Image_2025-12-17_at_6.51.40_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136521128-WhatsApp_Image_2025-12-17_at_6.51.41_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136521340-WhatsApp_Image_2025-12-17_at_6.51.42_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136521584-WhatsApp_Image_2025-12-17_at_6.51.51_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136521763-WhatsApp_Image_2025-12-17_at_6.51.52_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136521981-WhatsApp_Image_2025-12-17_at_6.51.52_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136522165-WhatsApp_Image_2025-12-17_at_6.51.53_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136522323-WhatsApp_Image_2025-12-17_at_6.51.54_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136522640-WhatsApp_Image_2025-12-17_at_6.51.54_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136522818-WhatsApp_Image_2025-12-17_at_6.52.01_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136523026-WhatsApp_Video_2025-12-17_at_6.52.12_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136523437-WhatsApp_Video_2025-12-17_at_6.52.17_PM_(1).mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136525095-WhatsApp_Video_2025-12-17_at_6.52.17_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136525445-WhatsApp_Video_2025-12-17_at_6.52.22_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136527304-WhatsApp_Video_2025-12-17_at_6.52.28_PM_(1).mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_0253/1766136530160-WhatsApp_Video_2025-12-17_at_6.52.28_PM.mp4'
+      ]
+    }
+
+    // WhatsApp gallery for HR 55 X 1147 - use all Supabase media for this truck
+    if (truck.name === 'HR 55 X 1147') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136532086-WhatsApp_Image_2025-12-17_at_6.15.12_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136532228-WhatsApp_Image_2025-12-17_at_6.15.12_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136532497-WhatsApp_Image_2025-12-17_at_6.15.12_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136532777-WhatsApp_Image_2025-12-17_at_6.15.13_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136533032-WhatsApp_Image_2025-12-17_at_6.15.13_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136533268-WhatsApp_Image_2025-12-17_at_6.15.13_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136534238-WhatsApp_Image_2025-12-17_at_6.15.14_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136534427-WhatsApp_Image_2025-12-17_at_6.15.15_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136534655-WhatsApp_Image_2025-12-17_at_6.15.15_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136534834-WhatsApp_Image_2025-12-17_at_6.15.16_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535075-WhatsApp_Image_2025-12-17_at_6.15.16_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535229-WhatsApp_Image_2025-12-17_at_6.15.16_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535417-WhatsApp_Image_2025-12-17_at_6.15.22_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535578-WhatsApp_Image_2025-12-17_at_6.15.23_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535706-WhatsApp_Image_2025-12-17_at_6.15.23_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535842-WhatsApp_Image_2025-12-17_at_6.15.23_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136535997-WhatsApp_Image_2025-12-17_at_6.15.24_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536135-WhatsApp_Image_2025-12-17_at_6.15.24_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536268-WhatsApp_Image_2025-12-17_at_6.15.24_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536468-WhatsApp_Image_2025-12-17_at_6.15.24_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536605-WhatsApp_Image_2025-12-17_at_6.15.25_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536775-WhatsApp_Image_2025-12-17_at_6.15.45_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136536908-WhatsApp_Image_2025-12-17_at_6.15.45_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537041-WhatsApp_Image_2025-12-17_at_6.15.45_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537262-WhatsApp_Image_2025-12-17_at_6.15.45_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537406-WhatsApp_Image_2025-12-17_at_6.15.46_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537558-WhatsApp_Image_2025-12-17_at_6.15.46_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537718-WhatsApp_Image_2025-12-17_at_6.15.47_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136537912-WhatsApp_Image_2025-12-17_at_6.15.47_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538052-WhatsApp_Image_2025-12-17_at_6.15.47_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538204-WhatsApp_Image_2025-12-17_at_6.15.47_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538338-WhatsApp_Image_2025-12-17_at_6.15.49_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538517-WhatsApp_Image_2025-12-17_at_6.15.49_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538720-WhatsApp_Image_2025-12-17_at_6.15.49_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136538860-WhatsApp_Image_2025-12-17_at_6.15.50_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539048-WhatsApp_Image_2025-12-17_at_6.15.52_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539184-WhatsApp_Image_2025-12-17_at_6.15.52_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539331-WhatsApp_Image_2025-12-17_at_6.16.22_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539483-WhatsApp_Image_2025-12-17_at_6.16.22_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539624-WhatsApp_Image_2025-12-17_at_6.16.22_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539806-WhatsApp_Image_2025-12-17_at_6.16.23_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136539806-WhatsApp_Image_2025-12-17_at_6.16.23_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136549048-WhatsApp_Video_2025-12-17_at_6.15.22_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136552048-WhatsApp_Video_2025-12-17_at_6.15.37_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136557048-WhatsApp_Video_2025-12-17_at_6.15.46_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_1147/1766136562048-WhatsApp_Video_2025-12-17_at_6.16.22_PM.mp4'
+      ]
+    }
+
+    // WhatsApp gallery for HR 55 X 2071 - use all Supabase media for this truck
+    if (truck.name === 'HR 55 X 2071') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136554735-WhatsApp_Image_2025-12-17_at_6.01.40_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136554945-WhatsApp_Image_2025-12-17_at_6.01.40_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136555111-WhatsApp_Image_2025-12-17_at_6.01.41_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136555321-WhatsApp_Image_2025-12-17_at_6.01.41_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136555497-WhatsApp_Image_2025-12-17_at_6.01.42_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136555687-WhatsApp_Image_2025-12-17_at_6.01.42_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136555915-WhatsApp_Image_2025-12-17_at_6.01.43_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556075-WhatsApp_Image_2025-12-17_at_6.01.43_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556219-WhatsApp_Image_2025-12-17_at_6.02.01_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556433-WhatsApp_Image_2025-12-17_at_6.02.01_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556652-WhatsApp_Image_2025-12-17_at_6.02.02_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556826-WhatsApp_Image_2025-12-17_at_6.02.02_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136556981-WhatsApp_Image_2025-12-17_at_6.02.02_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136557156-WhatsApp_Image_2025-12-17_at_6.02.03_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136557357-WhatsApp_Image_2025-12-17_at_6.02.06_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136557566-WhatsApp_Image_2025-12-17_at_6.02.06_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136557813-WhatsApp_Image_2025-12-17_at_6.02.06_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558030-WhatsApp_Image_2025-12-17_at_6.02.06_PM_(4).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558275-WhatsApp_Image_2025-12-17_at_6.02.06_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558412-WhatsApp_Image_2025-12-17_at_6.02.07_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558574-WhatsApp_Image_2025-12-17_at_6.02.07_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558747-WhatsApp_Image_2025-12-17_at_6.02.08_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136558956-WhatsApp_Image_2025-12-17_at_6.02.08_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136559088-WhatsApp_Image_2025-12-17_at_6.02.16_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136559327-WhatsApp_Image_2025-12-17_at_6.02.16_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136559559-WhatsApp_Image_2025-12-17_at_6.03.12_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136559765-WhatsApp_Image_2025-12-17_at_6.03.12_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136559964-WhatsApp_Image_2025-12-17_at_6.03.20_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136560102-WhatsApp_Video_2025-12-17_at_6.02.01_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136562399-WhatsApp_Video_2025-12-17_at_6.02.05_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136565382-WhatsApp_Video_2025-12-17_at_6.03.11_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_2071/1766136571544-WhatsApp_Video_2025-12-17_at_6.03.16_PM.mp4'
+      ]
+    }
+
+    // WhatsApp gallery for HR 55 X 4498 - use all Supabase media for this truck
+    if (truck.name === 'HR 55 X 4498') {
+      return [
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136582714-WhatsApp_Image_2025-12-17_at_6.22.57_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136582936-WhatsApp_Image_2025-12-17_at_6.22.58_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136583164-WhatsApp_Image_2025-12-17_at_6.22.58_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136583409-WhatsApp_Image_2025-12-17_at_6.22.58_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136583580-WhatsApp_Image_2025-12-17_at_6.22.59_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584035-WhatsApp_Image_2025-12-17_at_6.22.59_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584237-WhatsApp_Image_2025-12-17_at_6.22.59_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584466-WhatsApp_Image_2025-12-17_at_6.23.00_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584630-WhatsApp_Image_2025-12-17_at_6.23.00_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584852-WhatsApp_Image_2025-12-17_at_6.23.06_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136584999-WhatsApp_Image_2025-12-17_at_6.23.06_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136585210-WhatsApp_Image_2025-12-17_at_6.23.07_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136585422-WhatsApp_Image_2025-12-17_at_6.23.07_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136585551-WhatsApp_Image_2025-12-17_at_6.23.13_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136585713-WhatsApp_Image_2025-12-17_at_6.23.21_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136585961-WhatsApp_Image_2025-12-17_at_6.23.21_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136586163-WhatsApp_Image_2025-12-17_at_6.23.21_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136586290-WhatsApp_Image_2025-12-17_at_6.23.22_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136586521-WhatsApp_Image_2025-12-17_at_6.23.22_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136586711-WhatsApp_Image_2025-12-17_at_6.23.22_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136586856-WhatsApp_Image_2025-12-17_at_6.23.28_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587032-WhatsApp_Image_2025-12-17_at_6.23.28_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587211-WhatsApp_Image_2025-12-17_at_6.23.29_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587330-WhatsApp_Image_2025-12-17_at_6.23.29_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587474-WhatsApp_Image_2025-12-17_at_6.23.29_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587629-WhatsApp_Image_2025-12-17_at_6.23.29_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587844-WhatsApp_Image_2025-12-17_at_6.23.30_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136587985-WhatsApp_Image_2025-12-17_at_6.23.30_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588274-WhatsApp_Image_2025-12-17_at_6.23.30_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588398-WhatsApp_Image_2025-12-17_at_6.23.30_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588536-WhatsApp_Image_2025-12-17_at_6.23.31_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588697-WhatsApp_Image_2025-12-17_at_6.23.31_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588880-WhatsApp_Image_2025-12-17_at_6.23.31_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136588996-WhatsApp_Image_2025-12-17_at_6.23.32_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136589149-WhatsApp_Image_2025-12-17_at_6.23.32_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136589304-WhatsApp_Image_2025-12-17_at_6.23.32_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136589496-WhatsApp_Image_2025-12-17_at_6.23.32_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136589836-WhatsApp_Image_2025-12-17_at_6.23.33_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136590247-WhatsApp_Image_2025-12-17_at_6.23.33_PM_(2).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136590457-WhatsApp_Image_2025-12-17_at_6.23.33_PM_(3).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136590583-WhatsApp_Image_2025-12-17_at_6.23.33_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136590703-WhatsApp_Image_2025-12-17_at_6.23.34_PM_(1).jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136590863-WhatsApp_Image_2025-12-17_at_6.23.34_PM.jpeg',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136591010-WhatsApp_Video_2025-12-17_at_6.23.20_PM.mp4',
+        'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/HR_55_X_4498/1766136594452-WhatsApp_Video_2025-12-17_at_6.23.25_PM.mp4'
+      ]
+    }
+
     // Special handling for Eicher PRO 2110 - use all 4 images
     if (truck.manufacturer === 'Eicher Motors' && truck.model?.includes('PRO 2110')) {
       return [
@@ -698,6 +1020,15 @@ export default function TruckDetailsPage() {
   }
 
   const gallery = getGalleryImages()
+  const VISIBLE_THUMBS = 10
+  const totalThumbs = gallery.length
+  let thumbStartIndex = Math.max(0, selectedImageIndex - Math.floor(VISIBLE_THUMBS / 2))
+  let thumbEndIndex = thumbStartIndex + VISIBLE_THUMBS
+  if (thumbEndIndex > totalThumbs) {
+    thumbEndIndex = totalThumbs
+    thumbStartIndex = Math.max(0, thumbEndIndex - VISIBLE_THUMBS)
+  }
+  const visibleThumbs = gallery.slice(thumbStartIndex, thumbEndIndex)
   const overallScore = (Object.values(inspectionData).reduce((acc, cat) => acc + cat.score, 0) / Object.keys(inspectionData).length).toFixed(1)
 
   return (
@@ -769,15 +1100,24 @@ export default function TruckDetailsPage() {
             </div>
           </div>
           <div className="td-thumbs">
-            {gallery.map((img, idx) => (
-              <button
-                key={idx}
-                className={`td-thumb ${idx === selectedImageIndex ? 'active' : ''}`}
-                onClick={() => setSelectedImageIndex(idx)}
-              >
-                <Image src={img} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
-              </button>
-            ))}
+            {visibleThumbs.map((img, idx) => {
+              const realIndex = thumbStartIndex + idx
+              return (
+                <button
+                  key={realIndex}
+                  className={`td-thumb ${realIndex === selectedImageIndex ? 'active' : ''}`}
+                  onClick={() => setSelectedImageIndex(realIndex)}
+                >
+                  <Image
+                    src={img}
+                    alt=""
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    unoptimized
+                  />
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -886,53 +1226,9 @@ export default function TruckDetailsPage() {
             </div>
           </div>
 
-          {/* Location */}
-          <div className="td-location">
-            <div className="td-location-left">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-              <div>
-                <span className="td-loc-name">Axlerator Yard, Bhosari</span>
-                <span className="td-loc-address">Industrial Area, Pune</span>
-              </div>
-            </div>
-            <button className="td-directions">
-              Get Directions
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
-          </div>
+          {/* Location section removed as per request */}
 
-          {/* Share */}
-          <div className="td-share">
-            <span>Share:</span>
-            <div className="td-share-btns">
-              <button onClick={() => shareVia('whatsapp')} className="td-share-btn whatsapp">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-              </button>
-              <button onClick={() => shareVia('facebook')} className="td-share-btn facebook">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </button>
-              <button onClick={() => shareVia('twitter')} className="td-share-btn twitter">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </button>
-              <button onClick={() => shareVia('copy')} className="td-share-btn copy">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+          {/* Share buttons removed as per request */}
         </div>
       </div>
 
