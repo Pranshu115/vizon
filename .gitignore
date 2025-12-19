@@ -37,3 +37,13 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/generated/prisma
+
+# Local WhatsApp image folders (already uploaded to Supabase)
+HR 38 W 2162/
+HR 38 W 2263/
+HR 38 W 3426/
+HR 55 X 0025/
+HR 55 X 0253/
+HR 55 X 1147/
+HR 55 X 2071/
+HR 55 X 4498/
