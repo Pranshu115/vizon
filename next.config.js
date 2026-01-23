@@ -10,11 +10,11 @@ class FileChangeLoggerPlugin {
 
   formatTime() {
     const now = new Date()
-    return now.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
-      minute: '2-digit', 
+    return now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
       second: '2-digit',
-      hour12: true 
+      hour12: true
     })
   }
 
@@ -23,7 +23,7 @@ class FileChangeLoggerPlugin {
 
     const timeStr = this.formatTime()
     const files = Array.from(this.pendingFiles)
-    
+
     // Track and count file changes
     files.forEach(file => {
       const count = this.changedFiles.get(file) || 0
@@ -56,12 +56,12 @@ class FileChangeLoggerPlugin {
     compiler.hooks.invalid.tap('FileChangeLoggerPlugin', (fileName, changeTime) => {
       if (fileName) {
         this.pendingFiles.add(fileName)
-        
+
         // Batch log changes (similar to Vite)
         if (this.batchTimeout) {
           clearTimeout(this.batchTimeout)
         }
-        
+
         this.batchTimeout = setTimeout(() => {
           this.logChanges()
           this.batchTimeout = null
@@ -76,11 +76,11 @@ class FileChangeLoggerPlugin {
         changedFiles.forEach((file) => {
           this.pendingFiles.add(file)
         })
-        
+
         if (this.batchTimeout) {
           clearTimeout(this.batchTimeout)
         }
-        
+
         this.batchTimeout = setTimeout(() => {
           this.logChanges()
           this.batchTimeout = null
@@ -109,12 +109,12 @@ class FileChangeLoggerPlugin {
 const nextConfig = {
   // Set the workspace root to silence the lockfile warning
   outputFileTracingRoot: path.join(__dirname),
-  
+
   // Skip static generation of error pages
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
-  
+
   images: {
     remotePatterns: [
       {
@@ -134,13 +134,20 @@ const nextConfig = {
     if (dev) {
       config.plugins.push(new FileChangeLoggerPlugin())
     }
-    
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
     config.watchOptions = {
       ...config.watchOptions,
       ignored: ['**/node_modules/**', '**/drive-again-motors-main 2/**'],
       // Enable polling for better file change detection
       poll: 1000,
       aggregateTimeout: 300,
+
     };
     return config;
   },
@@ -152,6 +159,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+
 }
 
 module.exports = nextConfig
