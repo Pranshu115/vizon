@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
+
+
 export default function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
@@ -213,157 +215,243 @@ export default function Navbar() {
     }
   }, [pathname])
 
+  const mobileTabs = [
+    {
+      key: 'home',
+      label: 'Home',
+      href: '/',
+      isActive: (p: string) => p === '/',
+      icon: (
+        <img
+          src="/assets/home.svg"
+          alt="Home"
+          width={24}
+          height={24}
+          style={{ display: 'block' }}
+        />
+
+      ),
+    },
+    {
+      key: 'buy',
+      label: 'Buy',
+      href: '/browse-trucks',
+      isActive: (p: string) => p === '/browse-trucks' || p.startsWith('/truck/'),
+      icon: (
+        <img
+          src="/assets/buy.svg"
+          alt="Home"
+          width={24}
+          height={24}
+          style={{ display: 'block' }}
+        />
+      ),
+    },
+    {
+      key: 'sell',
+      label: 'Sell',
+      href: '/sell-truck',
+      isActive: (p: string) => p === '/sell-truck',
+      icon: (
+        <img
+          src="/assets/sell.svg"
+          alt="Home"
+          width={24}
+          height={24}
+          style={{ display: 'block' }}
+        />
+      ),
+    },
+    {
+      key: 'services',
+      label: 'Services',
+      href: '/services',
+      isActive: (p: string) => p === '/services',
+      icon: (
+        <img
+          src="/assets/services.svg"
+          alt="Home"
+          width={24}
+          height={24}
+          style={{ display: 'block' }}
+        />
+      ),
+    },
+  ] as const
+
   return (
-    <nav className="navbar" style={{ padding: navbarPadding }}>
-      <div className="nav-container">
-        <Link href="/" className="nav-logo">
-          <Image src="/logo.png" alt="Axlerator Logo" width={180} height={45} priority />
-        </Link>
+    <>
+      <nav className="navbar" style={{ padding: navbarPadding }}>
+        <div className="nav-container">
+          <Link href="/" className="nav-logo">
+            <Image src="/logo.png" alt="Axlerator Logo" width={180} height={45} priority />
+          </Link>
 
-        {/* Search Bar */}
-        <form className="nav-search" ref={searchRef} onSubmit={handleSearchSubmit}>
-          <input
-            type="text"
-            placeholder="Search trucks, services..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onFocus={() => setShowSuggestions(true)}
-            className="search-input"
-          />
-          <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}>
-            <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </button>
+          {/* Search Bar */}
+          <form className="nav-search" ref={searchRef} onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              placeholder="Search trucks, services..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={() => setShowSuggestions(true)}
+              className="search-input"
+            />
+            <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}>
+              <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
 
-          {showSuggestions && searchQuery && filteredSuggestions.length > 0 && (
-            <ul className="search-suggestions">
-              {filteredSuggestions.map((suggestion, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  className="search-suggestion-item"
+            {showSuggestions && searchQuery && filteredSuggestions.length > 0 && (
+              <ul className="search-suggestions">
+                {filteredSuggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="search-suggestion-item"
+                  >
+                    <svg className="suggestion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </form>
+
+          <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+            {/* Buy Trucks - with dropdown */}
+            <li
+              className="nav-item dropdown"
+              onMouseEnter={() => handleMouseEnter('buy-trucks')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/browse-trucks"
+                className={`nav-link ${activeSection === 'buy-trucks' ? 'active' : ''} ${openDropdown === 'buy-trucks' ? 'dropdown-open' : ''}`}
+                onClick={(e) => handleDropdownClick(e, 'buy-trucks')}
+              >
+                Buy Trucks
+                <span className="dropdown-arrow">▼</span>
+              </Link>
+              {(openDropdown === 'buy-trucks' || !isMobile) && (
+                <div
+                  className={`dropdown-menu dropdown-two-column ${openDropdown === 'buy-trucks' ? 'show' : ''}`}
                 >
-                  <svg className="suggestion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                  {suggestion}
-                </li>
-              ))}
-            </ul>
-          )}
-        </form>
+                  <ul className="dropdown-column">
+                    <li><Link href="/browse-trucks" className="dropdown-highlight">View all trucks <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=mumbai">Used trucks in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=delhi">Used trucks in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=delhi-ncr">Used trucks in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=gurugram">Used trucks in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=kanpur">Used trucks in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
+                  </ul>
+                  <ul className="dropdown-column">
+                    <li><Link href="/browse-trucks?location=lucknow">Used trucks in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=chandigarh">Used trucks in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=pune">Used trucks in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=kolkata">Used trucks in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/browse-trucks?location=ahmedabad">Used trucks in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
+                  </ul>
+                </div>
+              )}
+            </li>
 
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          {/* Buy Trucks - with dropdown */}
-          <li
-            className="nav-item dropdown"
-            onMouseEnter={() => handleMouseEnter('buy-trucks')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link
-              href="/browse-trucks"
-              className={`nav-link ${activeSection === 'buy-trucks' ? 'active' : ''} ${openDropdown === 'buy-trucks' ? 'dropdown-open' : ''}`}
-              onClick={(e) => handleDropdownClick(e, 'buy-trucks')}
+            {/* Sell Your Truck - with dropdown (only if SHOW_SELL_LOCATION_LINKS is true) */}
+            <li
+              className="nav-item dropdown"
+              onMouseEnter={() => handleMouseEnter('sell-truck')}
+              onMouseLeave={handleMouseLeave}
             >
-              Buy Trucks
-              <span className="dropdown-arrow">▼</span>
-            </Link>
-            {(openDropdown === 'buy-trucks' || !isMobile) && (
-              <div
-                className={`dropdown-menu dropdown-two-column ${openDropdown === 'buy-trucks' ? 'show' : ''}`}
+              <Link
+                href="/sell-truck"
+                className={`nav-link ${activeSection === 'sell-truck' ? 'active' : ''} ${openDropdown === 'sell-truck' ? 'dropdown-open' : ''}`}
+                onClick={(e) => handleDropdownClick(e, 'sell-truck', SHOW_SELL_LOCATION_LINKS)}
               >
-                <ul className="dropdown-column">
-                  <li><Link href="/browse-trucks" className="dropdown-highlight">View all trucks <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=mumbai">Used trucks in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=delhi">Used trucks in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=delhi-ncr">Used trucks in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=gurugram">Used trucks in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=kanpur">Used trucks in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
-                </ul>
-                <ul className="dropdown-column">
-                  <li><Link href="/browse-trucks?location=lucknow">Used trucks in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=chandigarh">Used trucks in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=pune">Used trucks in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=kolkata">Used trucks in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/browse-trucks?location=ahmedabad">Used trucks in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
-                </ul>
-              </div>
-            )}
-          </li>
+                Sell Your Truck
+                <span className="dropdown-arrow">▼</span>
+              </Link>
+              {SHOW_SELL_LOCATION_LINKS && (openDropdown === 'sell-truck' || !isMobile) && (
+                <div
+                  className={`dropdown-menu dropdown-two-column ${openDropdown === 'sell-truck' ? 'show' : ''}`}
+                >
+                  <ul className="dropdown-column">
+                    <li><Link href="/sell-truck" className="dropdown-highlight">View all locations <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=mumbai">Sell truck in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=delhi">Sell truck in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=delhi-ncr">Sell truck in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=gurugram">Sell truck in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=kanpur">Sell truck in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
+                  </ul>
+                  <ul className="dropdown-column">
+                    <li><Link href="/sell-truck?location=lucknow">Sell truck in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=chandigarh">Sell truck in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=pune">Sell truck in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=kolkata">Sell truck in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
+                    <li><Link href="/sell-truck?location=ahmedabad">Sell truck in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
+                  </ul>
+                </div>
+              )}
+            </li>
 
-          {/* Sell Your Truck - with dropdown (only if SHOW_SELL_LOCATION_LINKS is true) */}
-          <li
-            className="nav-item dropdown"
-            onMouseEnter={() => handleMouseEnter('sell-truck')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link
-              href="/sell-truck"
-              className={`nav-link ${activeSection === 'sell-truck' ? 'active' : ''} ${openDropdown === 'sell-truck' ? 'dropdown-open' : ''}`}
-              onClick={(e) => handleDropdownClick(e, 'sell-truck', SHOW_SELL_LOCATION_LINKS)}
-            >
-              Sell Your Truck
-              <span className="dropdown-arrow">▼</span>
-            </Link>
-            {SHOW_SELL_LOCATION_LINKS && (openDropdown === 'sell-truck' || !isMobile) && (
-              <div
-                className={`dropdown-menu dropdown-two-column ${openDropdown === 'sell-truck' ? 'show' : ''}`}
+            {/* Our Services - simple link */}
+            <li className="nav-item">
+              <Link
+                href="/services"
+                className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
               >
-                <ul className="dropdown-column">
-                  <li><Link href="/sell-truck" className="dropdown-highlight">View all locations <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=mumbai">Sell truck in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=delhi">Sell truck in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=delhi-ncr">Sell truck in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=gurugram">Sell truck in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=kanpur">Sell truck in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
-                </ul>
-                <ul className="dropdown-column">
-                  <li><Link href="/sell-truck?location=lucknow">Sell truck in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=chandigarh">Sell truck in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=pune">Sell truck in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=kolkata">Sell truck in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
-                  <li><Link href="/sell-truck?location=ahmedabad">Sell truck in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
-                </ul>
-              </div>
-            )}
-          </li>
+                Our Services
+              </Link>
+            </li>
 
-          {/* Our Services - simple link */}
-          <li className="nav-item">
-            <Link
-              href="/services"
-              className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
-            >
-              Our Services
-            </Link>
-          </li>
+            {/* Get Started - CTA button */}
+            <li className="nav-item">
+              <Link
+                href="/sell-truck"
+                className="nav-link contact-btn"
+              >
+                Get Started
+              </Link>
+            </li>
+          </ul>
+          <div
+            className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+            onClick={() => {
+              setIsMenuOpen(!isMenuOpen)
+              // Close all dropdowns when toggling hamburger menu
+              setOpenDropdown(null)
+            }}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
+        </div>
+      </nav>
 
-          {/* Get Started - CTA button */}
-          <li className="nav-item">
-            <Link
-              href="/sell-truck"
-              className="nav-link contact-btn"
-            >
-              Get Started
-            </Link>
-          </li>
-        </ul>
-        <div
-          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
-          onClick={() => {
-            setIsMenuOpen(!isMenuOpen)
-            // Close all dropdowns when toggling hamburger menu
-            setOpenDropdown(null)
-          }}
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+      {/* Mobile bottom tabs (replaces hamburger navigation) */}
+      <div className="mobile-bottom-tabs" role="navigation" aria-label="Primary">
+        <div className="mobile-bottom-tabs-inner">
+          {mobileTabs.map((tab) => {
+            const isActive = tab.isActive(pathname)
+            return (
+              <Link
+                key={tab.key}
+                href={tab.href}
+                className={`mobile-tab-link ${isActive ? 'active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                <span className="mobile-tab-icon">{tab.icon}</span>
+                <span className="mobile-tab-label">{tab.label}</span>
+              </Link>
+            )
+          })}
         </div>
       </div>
-    </nav>
+    </>
   )
 }
