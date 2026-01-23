@@ -64,6 +64,13 @@ body {
   gap: 1rem;
 }
 
+@media screen and (max-width: 40rem) {
+  .nav-container {
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+}
+
 .nav-logo {
   text-decoration: none;
   display: flex;
@@ -90,6 +97,26 @@ body {
   margin-left: 1rem;
   flex: 0 1 300px;
   display: flex;
+}
+
+@media screen and (max-width: 64rem) {
+  .nav-search {
+    flex: 0 1 250px;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .nav-search {
+    flex: 1;
+    max-width: 200px;
+    margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .nav-search {
+    max-width: 150px;
+  }
 }
 
 .search-input {
@@ -254,6 +281,14 @@ body {
   min-width: 500px;
   padding: 1.25rem 0;
   gap: 2rem;
+}
+
+@media screen and (max-width: 48rem) {
+  .dropdown-menu.dropdown-two-column {
+    min-width: auto;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .dropdown-column {
@@ -428,6 +463,12 @@ body {
   padding: 2rem;
 }
 
+@media screen and (max-width: 40rem) {
+  .hero-content {
+    padding: 1rem;
+  }
+}
+
 .hero-title {
   font-size: 5rem;
   font-weight: 300;
@@ -437,6 +478,24 @@ body {
   letter-spacing: -1px;
   display: block;
   color: #ffffff;
+}
+
+@media screen and (max-width: 64rem) {
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .hero-title {
+    font-size: 2rem;
+  }
 }
 
 .hero-brand {
@@ -457,6 +516,20 @@ body {
   color: #ffffff;
 }
 
+@media screen and (max-width: 48rem) {
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
@@ -464,6 +537,14 @@ body {
   flex-wrap: wrap;
   animation: fadeInUp 1s ease 0.4s;
   animation-fill-mode: both;
+}
+
+@media screen and (max-width: 48rem) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .btn {
@@ -476,6 +557,24 @@ body {
   cursor: pointer;
   display: inline-block;
   border: none;
+}
+
+@media screen and (max-width: 48rem) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .btn {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .btn-primary {
@@ -516,7 +615,7 @@ body {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .hamburger {
     display: flex;
     z-index: 1001;
@@ -657,7 +756,9 @@ body {
     color: #1e293b !important;
     font-weight: 400;
     text-shadow: none;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -766,7 +867,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 40rem) {
   .hero-title {
     font-size: 2rem;
     line-height: 1.25;
@@ -805,6 +906,12 @@ body {
   padding: 0 2rem;
 }
 
+@media screen and (max-width: 40rem) {
+  .trust-bar-container {
+    padding: 0 1rem;
+  }
+}
+
 .trust-bar-heading {
   text-align: center;
   font-size: 2rem;
@@ -819,7 +926,7 @@ body {
   margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .trust-bar-section {
     padding: 3rem 0;
   }
@@ -830,7 +937,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 40rem) {
   .trust-bar-section {
     padding: 2rem 0;
   }
@@ -853,6 +960,12 @@ body {
   padding: 0 2rem;
 }
 
+@media screen and (max-width: 40rem) {
+  .certified-trucks-container {
+    padding: 0 1rem;
+  }
+}
+
 .certified-trucks-heading {
   font-size: 2rem;
   font-weight: 600;
@@ -868,6 +981,20 @@ body {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 64rem) {
+  .truck-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .truck-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* Browse All Button */
@@ -913,11 +1040,30 @@ body {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 40rem) {
+  .about-us-section {
+    padding: 4rem 1rem;
+  }
+}
+
 .about-us-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+}
+
+@media screen and (max-width: 64rem) {
+  .about-us-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .about-us-content {
+    gap: 2rem;
+  }
 }
 
 /* Image Side */
@@ -967,6 +1113,18 @@ body {
   letter-spacing: -0.5px;
 }
 
+@media screen and (max-width: 64rem) {
+  .about-us-heading {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .about-us-heading {
+    font-size: 1.5rem;
+  }
+}
+
 .about-us-description {
   font-size: 15px;
   line-height: 1.8;
@@ -999,7 +1157,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 968px) {
+@media (max-width: 64rem) {
   .about-us-content {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -1014,7 +1172,7 @@ body {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .about-us-section {
     padding: 4rem 1.5rem;
   }
@@ -1190,7 +1348,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .certified-trucks-heading {
     font-size: 1.5rem;
   }
@@ -1230,7 +1388,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .certified-trucks-heading {
     font-size: 1.25rem;
   }
@@ -1292,6 +1450,21 @@ body {
   grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
   padding: 2rem;
+}
+
+@media screen and (max-width: 64rem) {
+  .modal-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .modal-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
 }
 
 /* Modal Left Side */
@@ -2063,7 +2236,7 @@ body {
   background: #111827;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 64rem) {
   .modal-content {
     grid-template-columns: 1fr;
   }
@@ -2190,6 +2363,18 @@ body {
   padding: 1.5rem 6rem;
 }
 
+@media screen and (max-width: 64rem) {
+  .breadcrumb-container {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .breadcrumb-container {
+    padding: 1rem;
+  }
+}
+
 .breadcrumbs {
   display: flex;
   align-items: center;
@@ -2226,6 +2411,20 @@ body {
   grid-template-columns: 1.5fr 1fr;
   gap: 2.5rem;
   padding: 0 6rem 4rem 6rem;
+}
+
+@media screen and (max-width: 64rem) {
+  .truck-details-container {
+    padding: 0 2rem 4rem 2rem;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .truck-details-container {
+    padding: 0 1rem 2rem 1rem;
+    gap: 1.5rem;
+  }
 }
 
 /* Left Side */
@@ -2482,7 +2681,7 @@ body {
   margin: 0 0 1rem 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .truck-details-container {
     grid-template-columns: 1fr;
   }
@@ -2504,7 +2703,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .truck-details-page {
     padding: 0;
   }
@@ -2558,6 +2757,12 @@ body {
 .final-cta-container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 40rem) {
+  .final-cta-container {
+    padding: 0 1rem;
+  }
 }
 
 .final-cta-content {
@@ -2644,7 +2849,7 @@ body {
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .final-cta-section {
     padding: 4rem 1.5rem;
   }
@@ -2670,7 +2875,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .final-cta-section {
     padding: 3rem 1rem;
   }
@@ -2698,6 +2903,12 @@ body {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 40rem) {
+  .footer-container {
+    padding: 0 1rem;
+  }
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2705,6 +2916,22 @@ body {
   margin-bottom: 3rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+}
+
+@media screen and (max-width: 64rem) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
 }
 
 .footer-column {
@@ -2824,14 +3051,14 @@ body {
   margin: 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .footer-section {
     padding: 3rem 1.5rem 1.5rem 1.5rem;
   }
@@ -2867,7 +3094,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .footer-section {
     padding: 2.5rem 1rem 1rem 1rem;
   }
@@ -3008,6 +3235,12 @@ body {
   grid-template-columns: 320px 1fr;
   gap: 2rem;
   align-items: start;
+}
+
+@media screen and (max-width: 40rem) {
+  .browse-trucks-container {
+    padding: 1rem;
+  }
 }
 
 /* Left Sidebar - Filters */
@@ -3392,6 +3625,25 @@ body {
   gap: 1.25rem;
 }
 
+@media screen and (max-width: 64rem) {
+  .browse-trucks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .browse-trucks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .browse-trucks-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .browse-trucks-loading {
   display: flex;
   flex-direction: column;
@@ -3502,7 +3754,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 80rem) {
   .browse-trucks-container {
     grid-template-columns: 260px 1fr;
     gap: 1.5rem;
@@ -3513,7 +3765,7 @@ body {
   }
 }
 
-@media (max-width: 968px) {
+@media (max-width: 64rem) {
   .browse-trucks-container {
     grid-template-columns: 1fr;
   }
@@ -3528,7 +3780,7 @@ body {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .browse-trucks-page {
     padding-top: 70px;
   }
@@ -3645,6 +3897,18 @@ body:has(.contact-page) .search-icon,
   overflow: hidden;
 }
 
+@media screen and (max-width: 48rem) {
+  .sell-truck-hero {
+    padding: 100px 1.5rem 50px;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .sell-truck-hero {
+    padding: 90px 1rem 40px;
+  }
+}
+
 .sell-truck-hero::before {
   content: '';
   position: absolute;
@@ -3670,6 +3934,18 @@ body:has(.contact-page) .search-icon,
   margin-bottom: 1rem;
   line-height: 1.2;
   letter-spacing: -0.01em;
+}
+
+@media screen and (max-width: 48rem) {
+  .sell-truck-hero-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .sell-truck-hero-title {
+    font-size: 1.5rem;
+  }
 }
 
 .sell-truck-hero-subtitle {
@@ -3730,6 +4006,12 @@ body:has(.contact-page) .search-icon,
   overflow: visible;
 }
 
+@media screen and (max-width: 40rem) {
+  .sell-truck-container {
+    padding: 0 1rem 2rem;
+  }
+}
+
 .sell-truck-process {
   background: white;
   border-radius: 16px;
@@ -3752,6 +4034,19 @@ body:has(.contact-page) .search-icon,
   justify-content: space-between;
   gap: 2rem;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 64rem) {
+  .process-steps {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .process-steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 
 .process-step {
@@ -3802,6 +4097,20 @@ body:has(.contact-page) .search-icon,
   padding: 2.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   border: 1px solid #e5e7eb;
+}
+
+@media screen and (max-width: 48rem) {
+  .sell-truck-form {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .sell-truck-form {
+    padding: 1rem;
+    border-radius: 12px;
+  }
 }
 
 .form-section {
@@ -3858,6 +4167,19 @@ body:has(.contact-page) .search-icon,
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 64rem) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .form-row:last-child {
@@ -3985,7 +4307,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Desktop: Better dropdown positioning */
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .form-group select {
     position: relative;
   }
@@ -4182,7 +4504,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .custom-select-dropdown {
     max-height: 250px;
   }
@@ -4233,6 +4555,20 @@ body:has(.contact-page) .search-icon,
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 0.875rem;
+}
+
+@media screen and (max-width: 48rem) {
+  .features-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
 }
 
 .feature-item label {
@@ -4343,6 +4679,20 @@ body:has(.contact-page) .search-icon,
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1.25rem;
+}
+
+@media screen and (max-width: 48rem) {
+  .image-preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  .image-preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
 }
 
 .image-preview-card {
@@ -4639,13 +4989,13 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive Design for Sell Truck Page */
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .form-row {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .sell-truck-hero {
     padding: 120px 1.5rem 60px;
   }
@@ -4756,7 +5106,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .sell-truck-hero-title {
     font-size: 1.875rem;
   }
@@ -4932,7 +5282,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .contact-us-section {
     padding: 4rem 1.5rem;
   }
@@ -4960,7 +5310,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .contact-us-section {
     padding: 3rem 1rem;
   }
@@ -5641,7 +5991,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive Stepper - Enhanced Mobile Experience */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .stepper-wrapper {
     padding: 1rem 0.5rem;
   }
@@ -5743,7 +6093,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .price-value {
     font-size: 1.75rem;
   }
@@ -7204,7 +7554,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 80rem) {
   .td-main-container {
     grid-template-columns: 1fr 350px;
     gap: 1.5rem;
@@ -7223,7 +7573,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .td-main-container {
     grid-template-columns: 1fr;
   }
@@ -7246,7 +7596,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .td-breadcrumb-container,
   .td-main-container,
   .td-similar-container,
@@ -7306,7 +7656,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .td-truck-title {
     font-size: 1.1rem;
   }
@@ -9254,7 +9604,7 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive */
-@media (max-width: 1100px) {
+@media (max-width: 64rem) {
   .td-product {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -9273,7 +9623,7 @@ body:has(.contact-page) .search-icon,
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .td-product,
   .td-tabs-section,
   .td-advantages,
@@ -9348,7 +9698,7 @@ body:has(.contact-page) .search-icon,
   .td-report-modal-image { width: 180px; height: 120px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 40rem) {
   .td-info-header h1 { font-size: 1.375rem; }
   .td-price-current { font-size: 1.625rem; }
   .td-features-grid { grid-template-columns: 1fr; }
@@ -9588,7 +9938,7 @@ body:has(.contact-page) .search-icon,
   pointer-events: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .process-pie-chart {
     width: 360px;
     height: 360px;
@@ -9997,14 +10347,14 @@ body:has(.contact-page) .search-icon,
 }
 
 /* Responsive Design */
-@media screen and (max-width: 968px) {
+@media screen and (max-width: 64rem) {
   .pillars-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .hero-statement-section {
     padding: 3rem 1.5rem 1.5rem;
     margin-bottom: 1.5rem;

@@ -14,11 +14,12 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const searchRef = useRef<HTMLFormElement>(null)
 
-const SHOW_SELL_LOCATION_LINKS = false
+  const SHOW_SELL_LOCATION_LINKS = false
 
-const searchSuggestions = [
+  const searchSuggestions = [
     'Heavy Duty Trucks',
     'Medium Duty Trucks',
     'Light Duty Trucks',
@@ -36,6 +37,13 @@ const searchSuggestions = [
   )
 
   useEffect(() => {
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     const handleScroll = () => {
       const sections = document.querySelectorAll('section[id]')
       const scrollY = window.pageYOffset
@@ -44,7 +52,7 @@ const searchSuggestions = [
         const sectionHeight = section.clientHeight
         const sectionTop = (section as HTMLElement).offsetTop - 100
         const sectionId = section.getAttribute('id')
-        
+
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
           if (sectionId) {
             setActiveSection(sectionId)
@@ -69,16 +77,17 @@ const searchSuggestions = [
     window.addEventListener('scroll', handleScroll)
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
+      window.removeEventListener('resize', checkMobile)
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault()
     setIsMenuOpen(false)
-    setOpenDropdown(null)
-    
+    setOpenDropdown(null) // Close all dropdowns when navigating
+
     const target = document.querySelector(targetId)
     if (target) {
       target.scrollIntoView({
@@ -88,54 +97,74 @@ const searchSuggestions = [
     }
   }
 
+  // Close dropdowns when mobile menu closes
+  useEffect(() => {
+    if (!isMenuOpen && isMobile) {
+      setOpenDropdown(null)
+    }
+  }, [isMenuOpen, isMobile])
+
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown)
   }
 
   const handleMouseEnter = (dropdown: string) => {
-    if (window.innerWidth > 768) {
+    if (!isMobile) {
       setOpenDropdown(dropdown)
     }
   }
 
   const handleMouseLeave = () => {
-    if (window.innerWidth > 768) {
+    if (!isMobile) {
       setOpenDropdown(null)
     }
   }
 
-  const handleDropdownClick = (e: React.MouseEvent<HTMLAnchorElement>, dropdown: string) => {
+  const handleDropdownClick = (e: React.MouseEvent<HTMLElement>, dropdown: string, hasDropdown: boolean = true) => {
+    // If there's no dropdown menu, allow navigation
+    if (!hasDropdown) {
+      setIsMenuOpen(false)
+      setOpenDropdown(null)
+      return // Let Link handle navigation normally
+    }
+
     // On mobile, toggle dropdown instead of navigating
-    if (window.innerWidth <= 768) {
+    if (isMobile) {
       e.preventDefault()
       e.stopPropagation()
-      toggleDropdown(dropdown)
+      // Close all other dropdowns first, then toggle the clicked one
+      if (openDropdown !== dropdown) {
+        setOpenDropdown(dropdown)
+      } else {
+        setOpenDropdown(null)
+      }
     }
-    // On desktop, let the link work normally (navigation handled by href)
+    // On desktop, let the link work normally (navigation handled by Link)
   }
 
   // Close dropdown when clicking outside on mobile
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (window.innerWidth <= 768) {
+      if (isMobile) {
         const target = event.target as HTMLElement
-        if (!target.closest('.dropdown')) {
+        // Close dropdown if clicking outside the dropdown menu and nav link
+        if (!target.closest('.dropdown-menu') && !target.closest('.nav-link')) {
           setOpenDropdown(null)
         }
       }
     }
 
-    if (isMenuOpen) {
+    if (isMenuOpen && isMobile) {
       document.addEventListener('click', handleClickOutside)
       return () => document.removeEventListener('click', handleClickOutside)
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, openDropdown, isMobile])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value
     setSearchQuery(query)
     setShowSuggestions(true)
-    
+
     // If on browse-trucks page, update URL with search query
     if (pathname === '/browse-trucks') {
       const url = new URL(window.location.href)
@@ -190,7 +219,7 @@ const searchSuggestions = [
         <Link href="/" className="nav-logo">
           <Image src="/logo.png" alt="Axlerator Logo" width={180} height={45} priority />
         </Link>
-        
+
         {/* Search Bar */}
         <form className="nav-search" ref={searchRef} onSubmit={handleSearchSubmit}>
           <input
@@ -207,7 +236,7 @@ const searchSuggestions = [
               <path d="m21 21-4.35-4.35"></path>
             </svg>
           </button>
-          
+
           {showSuggestions && searchQuery && filteredSuggestions.length > 0 && (
             <ul className="search-suggestions">
               {filteredSuggestions.map((suggestion, index) => (
@@ -229,68 +258,74 @@ const searchSuggestions = [
 
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           {/* Buy Trucks - with dropdown */}
-          <li 
+          <li
             className="nav-item dropdown"
             onMouseEnter={() => handleMouseEnter('buy-trucks')}
             onMouseLeave={handleMouseLeave}
           >
-            <a 
-              href="/browse-trucks" 
+            <Link
+              href="/browse-trucks"
               className={`nav-link ${activeSection === 'buy-trucks' ? 'active' : ''} ${openDropdown === 'buy-trucks' ? 'dropdown-open' : ''}`}
               onClick={(e) => handleDropdownClick(e, 'buy-trucks')}
             >
               Buy Trucks
               <span className="dropdown-arrow">▼</span>
-            </a>
-            <div className={`dropdown-menu dropdown-two-column ${openDropdown === 'buy-trucks' ? 'show' : ''}`}>
-              <ul className="dropdown-column">
-                <li><a href="/browse-trucks" className="dropdown-highlight">View all trucks <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=mumbai">Used trucks in Mumbai <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=delhi">Used trucks in Delhi <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=delhi-ncr">Used trucks in Delhi NCR <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=gurugram">Used trucks in Gurugram <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=kanpur">Used trucks in Kanpur <span className="dropdown-arrow-icon">→</span></a></li>
-              </ul>
-              <ul className="dropdown-column">
-                <li><a href="/browse-trucks?location=lucknow">Used trucks in Lucknow <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=chandigarh">Used trucks in Chandigarh <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=pune">Used trucks in Pune <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=kolkata">Used trucks in Kolkata <span className="dropdown-arrow-icon">→</span></a></li>
-                <li><a href="/browse-trucks?location=ahmedabad">Used trucks in Ahmedabad <span className="dropdown-arrow-icon">→</span></a></li>
-              </ul>
-            </div>
+            </Link>
+            {(openDropdown === 'buy-trucks' || !isMobile) && (
+              <div
+                className={`dropdown-menu dropdown-two-column ${openDropdown === 'buy-trucks' ? 'show' : ''}`}
+              >
+                <ul className="dropdown-column">
+                  <li><Link href="/browse-trucks" className="dropdown-highlight">View all trucks <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=mumbai">Used trucks in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=delhi">Used trucks in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=delhi-ncr">Used trucks in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=gurugram">Used trucks in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=kanpur">Used trucks in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
+                </ul>
+                <ul className="dropdown-column">
+                  <li><Link href="/browse-trucks?location=lucknow">Used trucks in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=chandigarh">Used trucks in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=pune">Used trucks in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=kolkata">Used trucks in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/browse-trucks?location=ahmedabad">Used trucks in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
+                </ul>
+              </div>
+            )}
           </li>
 
-          {/* Sell Your Truck - with dropdown */}
-          <li 
+          {/* Sell Your Truck - with dropdown (only if SHOW_SELL_LOCATION_LINKS is true) */}
+          <li
             className="nav-item dropdown"
             onMouseEnter={() => handleMouseEnter('sell-truck')}
             onMouseLeave={handleMouseLeave}
           >
-            <a 
-              href="/sell-truck" 
+            <Link
+              href="/sell-truck"
               className={`nav-link ${activeSection === 'sell-truck' ? 'active' : ''} ${openDropdown === 'sell-truck' ? 'dropdown-open' : ''}`}
-              onClick={(e) => handleDropdownClick(e, 'sell-truck')}
+              onClick={(e) => handleDropdownClick(e, 'sell-truck', SHOW_SELL_LOCATION_LINKS)}
             >
               Sell Your Truck
               <span className="dropdown-arrow">▼</span>
-            </a>
-            {SHOW_SELL_LOCATION_LINKS && (
-              <div className={`dropdown-menu dropdown-two-column ${openDropdown === 'sell-truck' ? 'show' : ''}`}>
+            </Link>
+            {SHOW_SELL_LOCATION_LINKS && (openDropdown === 'sell-truck' || !isMobile) && (
+              <div
+                className={`dropdown-menu dropdown-two-column ${openDropdown === 'sell-truck' ? 'show' : ''}`}
+              >
                 <ul className="dropdown-column">
-                  <li><a href="/sell-truck" className="dropdown-highlight">View all locations <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=mumbai">Sell truck in Mumbai <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=delhi">Sell truck in Delhi <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=delhi-ncr">Sell truck in Delhi NCR <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=gurugram">Sell truck in Gurugram <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=kanpur">Sell truck in Kanpur <span className="dropdown-arrow-icon">→</span></a></li>
+                  <li><Link href="/sell-truck" className="dropdown-highlight">View all locations <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=mumbai">Sell truck in Mumbai <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=delhi">Sell truck in Delhi <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=delhi-ncr">Sell truck in Delhi NCR <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=gurugram">Sell truck in Gurugram <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=kanpur">Sell truck in Kanpur <span className="dropdown-arrow-icon">→</span></Link></li>
                 </ul>
                 <ul className="dropdown-column">
-                  <li><a href="/sell-truck?location=lucknow">Sell truck in Lucknow <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=chandigarh">Sell truck in Chandigarh <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=pune">Sell truck in Pune <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=kolkata">Sell truck in Kolkata <span className="dropdown-arrow-icon">→</span></a></li>
-                  <li><a href="/sell-truck?location=ahmedabad">Sell truck in Ahmedabad <span className="dropdown-arrow-icon">→</span></a></li>
+                  <li><Link href="/sell-truck?location=lucknow">Sell truck in Lucknow <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=chandigarh">Sell truck in Chandigarh <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=pune">Sell truck in Pune <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=kolkata">Sell truck in Kolkata <span className="dropdown-arrow-icon">→</span></Link></li>
+                  <li><Link href="/sell-truck?location=ahmedabad">Sell truck in Ahmedabad <span className="dropdown-arrow-icon">→</span></Link></li>
                 </ul>
               </div>
             )}
@@ -298,27 +333,31 @@ const searchSuggestions = [
 
           {/* Our Services - simple link */}
           <li className="nav-item">
-            <a 
-              href="/services" 
+            <Link
+              href="/services"
               className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
             >
               Our Services
-            </a>
+            </Link>
           </li>
 
           {/* Get Started - CTA button */}
           <li className="nav-item">
-            <a 
-              href="/sell-truck" 
+            <Link
+              href="/sell-truck"
               className="nav-link contact-btn"
             >
               Get Started
-            </a>
+            </Link>
           </li>
         </ul>
-        <div 
+        <div
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => {
+            setIsMenuOpen(!isMenuOpen)
+            // Close all dropdowns when toggling hamburger menu
+            setOpenDropdown(null)
+          }}
         >
           <span className="bar"></span>
           <span className="bar"></span>
