@@ -358,9 +358,9 @@ const trucks = [
     image_url: '/trucks/truck21-image-1.png',
     subtitle: 'Extended power variant.',
     certified: true,
-    location: 'Chandigarh (CH-01)',
-    city: 'Chandigarh',
-    state: 'Chandigarh'
+    location: 'Pune (MH-12)',
+    city: 'Pune',
+    state: 'Maharashtra'
   },
   {
     name: 'Tata 709 LPT',

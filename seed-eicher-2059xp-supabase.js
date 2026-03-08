@@ -34,6 +34,9 @@ const eicher2059xpTrucks = [
     image_url: '/trucks/truck21-image-1.png',
     subtitle: 'Extended power variant.',
     certified: true,
+    location: 'Pune (MH-12)',
+    city: 'Pune',
+    state: 'Maharashtra',
   },
 ];
 

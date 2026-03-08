@@ -470,67 +470,132 @@ const getInspectionData = (truckName: string | null | undefined) => {
       },
     }
   }
+
+  // TATA MOTORS 709G LPT – custom Quality Report ratings
+  const is709gLPTInspection = truckName && (truckName.toLowerCase().includes('709g') || truckName.toLowerCase().includes('709 g')) && truckName.toLowerCase().includes('lpt') && truckName.toLowerCase().includes('tata')
+  if (is709gLPTInspection) {
+    return {
+      coreSystems: {
+        score: 8,
+        label: 'Core Systems',
+        parts: 278,
+        assemblies: 3,
+        status: 'Very Good',
+        items: [
+          { name: 'Engine', score: 8, status: 'Good condition', passed: true },
+          { name: 'Transmission', score: 8, status: 'Good condition', passed: true },
+          { name: 'Drivetrain', score: 8, status: 'Good condition', passed: true },
+        ]
+      },
+      loadingSystems: {
+        score: 8,
+        label: 'Loading Systems',
+        parts: 156,
+        assemblies: 3,
+        status: 'Very Good',
+        items: [
+          { name: 'Hydraulics', score: 7, status: 'Functional, some wear', passed: true },
+          { name: 'Cargo Bed', score: 8, status: 'Good condition', passed: true },
+          { name: 'Tipping Mechanism', score: 7, status: 'Functional, some wear', passed: true },
+        ]
+      },
+      cabinInteriors: {
+        score: 8,
+        label: 'Cabin & Interiors',
+        parts: 124,
+        assemblies: 4,
+        status: 'Very Good',
+        items: [
+          { name: 'Seats & Upholstering', score: 7, status: 'Functional, some wear', passed: true },
+          { name: 'Dashboard & Controls', score: 7, status: 'Functional, some wear', passed: true },
+        ]
+      },
+      exteriorBody: {
+        score: 8,
+        label: 'Exterior & Body',
+        parts: 89,
+        assemblies: 2,
+        status: 'Very Good',
+        items: [
+          { name: 'Body Panels', score: 8, status: 'Good condition', passed: true },
+          { name: 'Paint & Finish', score: 8, status: 'Good condition', passed: true },
+          { name: 'Light & Mirrors', score: 7, status: 'Functional, some wear', passed: true },
+        ]
+      },
+      safetyBrakes: {
+        score: 9,
+        label: 'Safety & Brakes',
+        parts: 67,
+        assemblies: 2,
+        status: 'Excellent',
+        items: [
+          { name: 'Brake System', score: 9, status: 'Excellent condition', passed: true },
+          { name: 'ABS Module', score: 9, status: 'Fully functional', passed: true },
+          { name: 'Safety Features', score: 8, status: 'Good condition', passed: true },
+        ]
+      },
+    }
+  }
   
-  // Default inspection data for other trucks
+  // Default inspection data for other trucks (Quality Report ratings)
   return {
   coreSystems: {
-    score: 9.7,
+    score: 8,
     label: 'Core Systems',
     parts: 278,
     assemblies: 3,
-    status: 'Excellent',
+    status: 'Very Good',
     items: [
-      { name: 'Engine', status: 'Flawless, no imperfections', passed: true },
-      { name: 'Transmission', status: 'Minor wear, fully functional', passed: true },
-      { name: 'Drivetrain', status: 'Excellent condition', passed: true },
+      { name: 'Engine', score: 8, status: 'Good condition', passed: true },
+      { name: 'Transmission', score: 8, status: 'Good condition', passed: true },
+      { name: 'Drivetrain', score: 9, status: 'Excellent condition', passed: true },
     ]
   },
   loadingSystems: {
-    score: 9.5,
+    score: 8,
     label: 'Loading Systems',
     parts: 156,
-    assemblies: 2,
-    status: 'Excellent',
+    assemblies: 3,
+    status: 'Very Good',
     items: [
-      { name: 'Hydraulics', status: 'Fully operational', passed: true },
-      { name: 'Cargo Bed', status: 'No structural damage', passed: true },
-      { name: 'Tipping Mechanism', status: 'Smooth operation', passed: true },
+      { name: 'Hydraulics', score: 8, status: 'Good condition', passed: true },
+      { name: 'Cargo Bed', score: 7, status: 'Functional, some wear', passed: true },
+      { name: 'Tipping Mechanism', score: 7, status: 'Functional, some wear', passed: true },
     ]
   },
   cabinInteriors: {
-    score: 8.8,
+    score: 8,
     label: 'Cabin & Interiors',
     parts: 124,
     assemblies: 4,
     status: 'Very Good',
     items: [
-      { name: 'Seats & Upholstery', status: 'Minor wear, good condition', passed: true },
-      { name: 'Dashboard & Controls', status: 'All functional', passed: true },
-      { name: 'AC System', status: 'Optimal cooling', passed: true },
+      { name: 'Seats & Upholstering', score: 9, status: 'Excellent condition', passed: true },
+      { name: 'Dashboard & Controls', score: 8, status: 'Good condition', passed: true },
     ]
   },
   exteriorBody: {
-    score: 9.2,
+    score: 9,
     label: 'Exterior & Body',
     parts: 89,
     assemblies: 2,
     status: 'Excellent',
     items: [
-      { name: 'Body Panels', status: 'No major dents or rust', passed: true },
-      { name: 'Paint & Finish', status: 'Good shine, minor scratches', passed: true },
-      { name: 'Lights & Mirrors', status: 'All working', passed: true },
+      { name: 'Body Panels', score: 9, status: 'Excellent condition', passed: true },
+      { name: 'Paint & Finish', score: 9, status: 'Excellent condition', passed: true },
+      { name: 'Light & Mirrors', score: 9, status: 'Excellent condition', passed: true },
     ]
   },
   safetyBrakes: {
-    score: 9.8,
+    score: 9,
     label: 'Safety & Brakes',
     parts: 67,
     assemblies: 2,
     status: 'Excellent',
     items: [
-      { name: 'Brake System', status: 'Excellent stopping power', passed: true },
-      { name: 'ABS Module', status: 'Fully functional', passed: true },
-      { name: 'Safety Features', status: 'All systems operational', passed: true },
+      { name: 'Brake System', score: 9, status: 'Excellent condition', passed: true },
+      { name: 'ABS Module', score: 9, status: 'Fully functional', passed: true },
+      { name: 'Safety Features', score: 8, status: 'Good condition', passed: true },
     ]
   },
   }
@@ -664,7 +729,12 @@ export default function TruckDetailsPage() {
       const isAceGold7908 = truck.name === 'Tata Ace Gold (7908)' || (truck.name?.includes?.('Tata Ace Gold') && truck.name?.includes?.('7908'))
       const isAceGoldPlain = truck.name === 'Tata Ace Gold' && !truck.name?.includes?.('7908')
       const is1512GLPT = truck.name === 'TATA 1512G LPT' || truck.name === 'Tata 1512G LPT' || (truck.name?.includes?.('1512') && truck.name?.includes?.('LPT') && truck.name?.toLowerCase().includes?.('tata'))
-      setFinanceAmount(isAceGold7908 ? 250000 : isAceGoldPlain ? 240000 : is1512GLPT ? 1530000 : parseFloat(truck.price))
+      const is1212LPT = (truck.name || '').toLowerCase().includes('1212') && (truck.name || '').toLowerCase().includes('lpt') && (truck.name || '').toLowerCase().includes('tata')
+      const isEicher2110L = (truck.name || '').toLowerCase().includes('2110') && ((truck.name || '').toLowerCase().includes('2110l') || (truck.model || '').toUpperCase().includes('2110L'))
+      const isBajajMaximaCNGFinance = (truck.name || '').toLowerCase().includes('bajaj') && (truck.name || '').toLowerCase().includes('maxima') && (truck.name || '').toLowerCase().includes('cng')
+      const is609G = (truck.name || '').toLowerCase().includes('609') && ((truck.name || '').toLowerCase().includes('609g') || (truck.name || '').toLowerCase().includes('609 g')) && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+      const is709gLPTFinance = (truck.name || '').toLowerCase().includes('709') && ((truck.name || '').toLowerCase().includes('709g') || (truck.name || '').toLowerCase().includes('709 g')) && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+      setFinanceAmount(isAceGold7908 ? 250000 : isAceGoldPlain ? 240000 : is1512GLPT ? 1530000 : is1212LPT ? 1420000 : is609G ? 1000000 : is709gLPTFinance ? 1025000 : isEicher2110L ? 1475000 : isBajajMaximaCNGFinance ? 260000 : parseFloat(truck.price))
       loadSimilarTrucks()
       
       // Fetch images from API for ALL trucks
@@ -789,16 +859,32 @@ export default function TruckDetailsPage() {
   const isAshokLeyland1615Truck = truck?.name === 'ASHOK LEYLAND ECOMET STAR 1615 HE'
   const isMahindraBoleroTruck = truck?.name === 'Mahindra Bolero Maxitruck Plus'
   const isSmlIsuzuTruck = truck?.name === 'SML Isuzu Samrat 4760gs'
+  const isSmlIsuzuZT54 = (truck?.name || '').toLowerCase().includes('zt54') && (truck?.name || '').toLowerCase().includes('sml')
   const isTata1412Truck = truck?.name === 'Tata 1412 LPT'
   const isTataAceGold7908 = truck?.name === 'Tata Ace Gold (7908)' || (truck?.name?.includes?.('Tata Ace Gold') && truck?.name?.includes?.('7908'))
   const isTataAceGoldPlain = truck?.name === 'Tata Ace Gold' && !truck?.name?.includes?.('7908')
   const isTata1512GLPT = truck?.name === 'TATA 1512G LPT' || truck?.name === 'Tata 1512G LPT' || (truck?.name?.includes?.('1512') && truck?.name?.includes?.('LPT') && truck?.name?.toLowerCase().includes?.('tata'))
+  const isTata1212LPT = (truck?.name || '').toLowerCase().includes('1212') && (truck?.name || '').toLowerCase().includes('lpt') && (truck?.name || '').toLowerCase().includes('tata')
+  const isTata609G = (truck?.name || '').toLowerCase().includes('609') && ((truck?.name || '').toLowerCase().includes('609g') || (truck?.name || '').toLowerCase().includes('609 g')) && ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')
+  const isTata709gLPT = (truck?.name || '').toLowerCase().includes('709') && ((truck?.name || '').toLowerCase().includes('709g') || (truck?.name || '').toLowerCase().includes('709 g')) && (truck?.name || '').toLowerCase().includes('lpt') && ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')
+  const isEicherPro2110L = (truck?.name || '').toLowerCase().includes('2110') && ((truck?.name || '').toLowerCase().includes('2110l') || (truck?.model || '').toUpperCase().includes('2110L'))
+  const isBajajMaximaCNG = (truck?.name || '').toLowerCase().includes('bajaj') && (truck?.name || '').toLowerCase().includes('maxima') && (truck?.name || '').toLowerCase().includes('cng')
   // Tata Ace Gold (7908) – display values from Web Report UP14HT7908
   const tataAceGoldDisplay = isTataAceGold7908 ? { price: 250000, year: 2019, yearMonth: '04/2019', kms: 116509, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '14.12.2023', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '1st Owner' } : null
+  // Eicher Pro 2110L – display values from provided specs
+  const eicherPro2110LDisplay = isEicherPro2110L ? { price: 1475000, yearMonth: '11/2022', kms: 240551, hp: 160, model: 'PRO 2110L', rto: 'Bahadurgarh, Haryana', insurance: '12.02.2026', gearbox: '5 forward, 1 reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7317, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  // Bajaj Maxima CNG – display values from provided specs (Net/Gross Payload: –)
+  const bajajMaximaCNGDisplay = isBajajMaximaCNG ? { price: 260000, yearMonth: '–', kms: 7136, hp: 10, model: 'BAJAJ MAXIMA CARGO CNG', rto: 'RAJPUR ROAD', insurance: '09/06/2026', gearbox: '4 forward, 1 reverse', fuel: 'CNG', grossPayloadKg: null as number | null, netPayloadKg: null as number | null, bodyFt: 6, tyres: 3, ownership: '1st Owner' } : null
   // Tata Ace Gold (no 7908) – folder Tata Ace Gold-20260307T052504Z-1-001
   const tataAceGoldPlainDisplay = isTataAceGoldPlain ? { price: 240000, yearMonth: '12/2018', kms: 82185, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '17.03.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '2nd Owner' } : null
   // TATA 1512G LPT – display values from inspection/legal report
   const tata1512GLPTDisplay = isTata1512GLPT ? { price: 1530000, yearMonth: '10/2021', kms: 209311, hp: 123.28, model: '1512G LPT DCR48CBC 125B6M5', rto: 'Rajpur Road', insurance: '24.09.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 16020, netPayloadKg: 8620, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  // Tata 1212 LPT – display values from provided specs
+  const tata1212LPTDisplay = isTata1212LPT ? { price: 1420000, yearMonth: '11/2022', kms: 152804, hp: 123.28, model: '1212 LPT DCR48CBC 125B6M5', rto: 'Faridabad', insurance: '30.12.2025', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7930, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  // TATA MOTORS 609G – display values from provided specs
+  const tata609GDisplay = isTata609G ? { price: 1000000, yearMonth: '07/2022', kms: 78699, hp: 83.08, model: 'SFC DCR33CBC 85B6M5', rto: 'Rajpur Road', insurance: '02.08.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 5950, netPayloadKg: 3480, bodyFt: 10, tyres: 4, ownership: '1st Owner' } : null
+  // TATA MOTORS 709G LPT – display values from provided specs
+  const tata709gLPTDisplay = isTata709gLPT ? { price: 1025000, yearMonth: '11/2021', kms: 129420, hp: 83.08, model: '709G LPT DCR38CBC 85B6M5 TT', rto: 'Rajpur Road', insurance: '20.02.2027', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 7490, netPayloadKg: 4500, bodyFt: 17, tyres: 6, ownership: '2nd Owner' } : null
 
   const getGalleryImages = () => {
     if (!truck?.imageUrl) return []
@@ -1711,7 +1797,7 @@ export default function TruckDetailsPage() {
     return [truck.imageUrl, truck.imageUrl, truck.imageUrl, truck.imageUrl]
   }
 
-  const effectivePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : parseFloat(truck.price)) : 0
+  const effectivePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : parseFloat(truck.price)) : 0
   const listPrice = truck ? effectivePrice * 1.08 : 0
   const savings = truck ? Math.round(effectivePrice * 0.08) : 0
 
@@ -1723,7 +1809,7 @@ export default function TruckDetailsPage() {
 
   const shareVia = (method: string) => {
     const pageUrl = window.location.href
-    const sharePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : truck.price) : truck?.price
+    const sharePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : truck.price) : truck?.price
     const shareText = `Check out this ${truck?.name} - ${displayPrice(sharePrice)} on Axlerator`
     
     const urls: Record<string, string> = {
@@ -2060,6 +2146,24 @@ export default function TruckDetailsPage() {
                   <span style={{ whiteSpace: 'nowrap' }}>{tataAceGoldPlainDisplay.model}</span>
                   <span>{tataAceGoldPlainDisplay.hp} HP • Diesel • Manual</span>
                 </div>
+              ) : isTata709gLPT && tata709gLPTDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{tata709gLPTDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{tata709gLPTDisplay.model}</span>
+                  <span>{tata709gLPTDisplay.hp} HP • CNG • Manual</span>
+                </div>
+              ) : isTata609G && tata609GDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{tata609GDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{tata609GDisplay.model}</span>
+                  <span>{tata609GDisplay.hp} HP • CNG • Manual</span>
+                </div>
+              ) : isTata1212LPT && tata1212LPTDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{tata1212LPTDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{tata1212LPTDisplay.model}</span>
+                  <span>{tata1212LPTDisplay.hp} HP • Diesel • Manual</span>
+                </div>
               ) : isTata1512GLPT && tata1512GLPTDisplay ? (
                 <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                   <span>{tata1512GLPTDisplay.yearMonth} (YOM)</span>
@@ -2080,12 +2184,12 @@ export default function TruckDetailsPage() {
           {/* Quick Stats */}
           <div className="td-quick-stats">
             <div className="td-stat">
-              <span className="td-stat-value">{(tataAceGoldDisplay ? tataAceGoldDisplay.kms : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.kms : tata1512GLPTDisplay ? tata1512GLPTDisplay.kms : truck.kilometers)?.toLocaleString('en-IN') || '0'} km</span>
+              <span className="td-stat-value">{(tataAceGoldDisplay ? tataAceGoldDisplay.kms : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.kms : tata1512GLPTDisplay ? tata1512GLPTDisplay.kms : tata1212LPTDisplay ? tata1212LPTDisplay.kms : tata609GDisplay ? tata609GDisplay.kms : tata709gLPTDisplay ? tata709gLPTDisplay.kms : eicherPro2110LDisplay ? eicherPro2110LDisplay.kms : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.kms : truck.kilometers)?.toLocaleString('en-IN') || '0'} km</span>
               <span className="td-stat-label">Odometer</span>
             </div>
             <div className="td-stat-divider"></div>
             <div className="td-stat">
-              <span className="td-stat-value">{isTataAceGold7908 || isTataAceGoldPlain ? 'Diesel' : isTata1512GLPT || isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck ? 'CNG' : 'Diesel'}</span>
+              <span className="td-stat-value">{isTataAceGold7908 || isTataAceGoldPlain || isTata1212LPT ? 'Diesel' : isTata1512GLPT || isTata609G || isTata709gLPT || isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck ? 'CNG' : 'Diesel'}</span>
               <span className="td-stat-label">Fuel Type</span>
             </div>
             <div className="td-stat-divider"></div>
@@ -2104,10 +2208,10 @@ export default function TruckDetailsPage() {
           <div className="td-price-card">
             <div className="td-price-top">
               <div className="td-price-main">
-                <span className="td-price-current">{displayPrice(tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : truck.price)}</span>
-                <span className="td-price-original">{displayPrice(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 1.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 1.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 1.08) : listPrice)}</span>
+                <span className="td-price-current">{displayPrice(tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : truck.price)}</span>
+                <span className="td-price-original">{displayPrice(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 1.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 1.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 1.08) : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 1.08) : tata609GDisplay ? Math.round(tata609GDisplay.price * 1.08) : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 1.08) : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 1.08) : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 1.08) : listPrice)}</span>
               </div>
-              <span className="td-savings-badge">Save ₹{(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 0.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 0.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 0.08) : savings).toLocaleString()}</span>
+              <span className="td-savings-badge">Save ₹{(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 0.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 0.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 0.08) : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 0.08) : tata609GDisplay ? Math.round(tata609GDisplay.price * 0.08) : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 0.08) : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 0.08) : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 0.08) : savings).toLocaleString()}</span>
             </div>
             <div className="td-emi-bar">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -2213,25 +2317,37 @@ export default function TruckDetailsPage() {
                     }
                   }
                   
-                  // Special handling for ASHOK LEYLAND ECOMET STAR, Tata Ace Gold (7908), TATA 1512G LPT
-                  const rtoValue = isAshokLeylandTruck ? 'GHAZIABAD' : isAshokLeyland1615Truck ? 'GHAZIABAD' : isTata1412Truck ? 'SONIPAT' : isSmlIsuzuTruck ? 'RAJPUR ROAD' : isMahindraBoleroTruck ? 'RAJPUR ROAD' : isTataAceGold7908 || isTataAceGoldPlain ? 'Ghaziabad' : isTata1512GLPT ? 'Rajpur Road' : 'MH-14 (Pune)'
-                  const insuranceValue = isAshokLeylandTruck ? '01/01/27' : isAshokLeyland1615Truck ? '11/01/27' : isTata1412Truck ? '05/05/26' : isSmlIsuzuTruck ? '24/04/26' : isMahindraBoleroTruck ? '01/09/26' : isTataAceGold7908 ? '14.12.2023' : isTataAceGoldPlain ? '17.03.2026' : isTata1512GLPT ? '24.09.2026' : 'Valid till Dec 2025'
-                  const modelValue = isAshokLeyland1615Truck ? 'ASHOK LEYLAND ECOMET STAR 1615 HE' : isTataAceGold7908 ? (tataAceGoldDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTataAceGoldPlain ? (tataAceGoldPlainDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTata1512GLPT ? (tata1512GLPTDisplay?.model ?? '1512G LPT DCR48CBC 125B6M5') : truck.model
+                  // Special handling for ASHOK LEYLAND ECOMET STAR, Tata Ace Gold (7908), TATA 1512G LPT, Eicher Pro 2059 XP
+                  const isEicher2059XP = (truck.name || '').toLowerCase().includes('2059') && ((truck.name || '').toLowerCase().includes('eicher') || (truck.manufacturer === 'Eicher Motors' && truck.model?.toLowerCase().includes('2059')))
+                  const rtoValue = isAshokLeylandTruck ? 'GHAZIABAD' : isAshokLeyland1615Truck ? 'GHAZIABAD' : isTata1412Truck ? 'SONIPAT' : isSmlIsuzuTruck ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Pune' : isMahindraBoleroTruck ? 'RAJPUR ROAD' : isTataAceGold7908 || isTataAceGoldPlain ? 'Ghaziabad' : isTata1512GLPT ? 'Rajpur Road' : isTata1212LPT ? (tata1212LPTDisplay?.rto ?? 'Faridabad') : isTata609G ? (tata609GDisplay?.rto ?? 'Rajpur Road') : isTata709gLPT ? (tata709gLPTDisplay?.rto ?? 'Rajpur Road') : isEicher2059XP ? 'Pune' : isEicherPro2110L ? (eicherPro2110LDisplay?.rto ?? 'Bahadurgarh, Haryana') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.rto ?? 'RAJPUR ROAD') : (truck as any).rto || truck.location || truck.city || 'MH-14 (Pune)'
+                  const insuranceValue = isAshokLeylandTruck ? '01/01/27' : isAshokLeyland1615Truck ? '11/01/27' : isTata1412Truck ? '05/05/26' : isSmlIsuzuTruck ? '24/04/26' : isMahindraBoleroTruck ? '01/09/26' : isTataAceGold7908 ? '14.12.2023' : isTataAceGoldPlain ? '17.03.2026' : isTata1512GLPT ? '24.09.2026' : isTata1212LPT ? (tata1212LPTDisplay?.insurance ?? '30.12.2025') : isTata609G ? (tata609GDisplay?.insurance ?? '02.08.2026') : isTata709gLPT ? (tata709gLPTDisplay?.insurance ?? '20.02.2027') : isEicherPro2110L ? (eicherPro2110LDisplay?.insurance ?? '12.02.2026') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.insurance ?? '09/06/2026') : (truck as any).insurance_date || 'Valid till Dec 2025'
+                  const modelValue = isAshokLeyland1615Truck ? 'ASHOK LEYLAND ECOMET STAR 1615 HE' : isTataAceGold7908 ? (tataAceGoldDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTataAceGoldPlain ? (tataAceGoldPlainDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTata1512GLPT ? (tata1512GLPTDisplay?.model ?? '1512G LPT DCR48CBC 125B6M5') : isTata1212LPT ? (tata1212LPTDisplay?.model ?? '1212 LPT DCR48CBC 125B6M5') : isTata609G ? (tata609GDisplay?.model ?? 'SFC DCR33CBC 85B6M5') : isTata709gLPT ? (tata709gLPTDisplay?.model ?? '709G LPT DCR38CBC 85B6M5 TT') : isEicherPro2110L ? (eicherPro2110LDisplay?.model ?? 'PRO 2110L') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.model ?? 'BAJAJ MAXIMA CARGO CNG') : truck.model
                   
-                  // Check for CNG fuel type for Tata 1412, SML Isuzu, TATA 1512G LPT
-                  if ((isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT) && !emissionStandard.includes('CNG')) {
+                  // Check for CNG fuel type for Tata 1412, SML Isuzu, TATA 1512G LPT, TATA 609G
+                  if ((isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT) && !emissionStandard.includes('CNG')) {
                     emissionStandard = 'CNG'
                   }
                   // Tata Ace Gold (both variants) – diesel BS-IV
                   if (isTataAceGold7908 || isTataAceGoldPlain) {
                     emissionStandard = 'Diesel (BS-IV)'
                   }
+                  if (isEicherPro2110L || isTata1212LPT) {
+                    emissionStandard = 'Diesel'
+                  }
+                  if (isBajajMaximaCNG) {
+                    emissionStandard = 'CNG'
+                  }
+                  // Use fuel_type from API/database for trucks without special-case overrides (e.g. Tata 609g)
+                  const hasSpecialFuel = isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT || isTataAceGold7908 || isTataAceGoldPlain || isEicherPro2110L || isTata1212LPT || isBajajMaximaCNG
+                  if (!hasSpecialFuel && (truck as any).fuel_type && typeof (truck as any).fuel_type === 'string') {
+                    emissionStandard = (truck as any).fuel_type
+                  }
                   
-                  const gearboxValue = isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT ? '5-Forward, 1-Reverse' : '6-Speed Manual'
-                  const yearValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.yearMonth : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.yearMonth : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.yearMonth : truck.year
-                  const odometerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.kms.toLocaleString('en-IN')} km` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.kms.toLocaleString('en-IN')} km` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.kms.toLocaleString('en-IN')} km` : `${truck.kilometers?.toLocaleString() || '0'} km`
-                  const powerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.hp} HP` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.hp} HP` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.hp} HP` : `${truck.horsepower} HP`
-                  const ownershipValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.ownership : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.ownership : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.ownership : 'First Owner'
+                  const gearboxValue = isEicherPro2110L ? (eicherPro2110LDisplay?.gearbox ?? '5 forward, 1 reverse') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.gearbox ?? '4 forward, 1 reverse') : (isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT ? '5-Forward, 1-Reverse' : (truck as any).gearbox || '6-Speed Manual')
+                  const yearValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.yearMonth : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.yearMonth : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.yearMonth : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.yearMonth : isTata609G && tata609GDisplay ? tata609GDisplay.yearMonth : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.yearMonth : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.yearMonth : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.yearMonth : truck.year
+                  const odometerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.kms.toLocaleString('en-IN')} km` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.kms.toLocaleString('en-IN')} km` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.kms.toLocaleString('en-IN')} km` : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.kms.toLocaleString('en-IN')} km` : isTata609G && tata609GDisplay ? `${tata609GDisplay.kms.toLocaleString('en-IN')} km` : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.kms.toLocaleString('en-IN')} km` : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.kms.toLocaleString('en-IN')} km` : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.kms.toLocaleString('en-IN')} km` : `${truck.kilometers?.toLocaleString() || '0'} km`
+                  const powerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.hp} HP` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.hp} HP` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.hp} HP` : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.hp} HP` : isTata609G && tata609GDisplay ? `${tata609GDisplay.hp} HP` : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.hp} HP` : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.hp} HP` : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.hp} HP` : `${truck.horsepower} HP`
+                  const ownershipValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.ownership : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.ownership : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.ownership : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.ownership : isTata609G && tata609GDisplay ? tata609GDisplay.ownership : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.ownership : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.ownership : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.ownership : ((truck as any).ownership_number != null && (truck as any).ownership_number !== undefined) ? `${(truck as any).ownership_number}${(truck as any).ownership_number === 1 ? 'st' : (truck as any).ownership_number === 2 ? 'nd' : (truck as any).ownership_number === 3 ? 'rd' : 'th'} Owner` : 'First Owner'
                   const specRows = [
                     { label: 'Year', value: yearValue },
                     { label: 'Brand', value: truck.manufacturer },
@@ -2246,6 +2362,12 @@ export default function TruckDetailsPage() {
                     ...(isTataAceGold7908 && tataAceGoldDisplay ? [{ label: 'Tyres', value: String(tataAceGoldDisplay.tyres) }] : []),
                     ...(isTataAceGoldPlain && tataAceGoldPlainDisplay ? [{ label: 'Tyres', value: String(tataAceGoldPlainDisplay.tyres) }] : []),
                     ...(isTata1512GLPT && tata1512GLPTDisplay ? [{ label: 'Tyres', value: String(tata1512GLPTDisplay.tyres) }] : []),
+                    ...(isTata1212LPT && tata1212LPTDisplay ? [{ label: 'Tyres', value: String(tata1212LPTDisplay.tyres) }] : []),
+                    ...(isTata609G && tata609GDisplay ? [{ label: 'Tyres', value: String(tata609GDisplay.tyres) }] : []),
+                    ...(isTata709gLPT && tata709gLPTDisplay ? [{ label: 'Tyres', value: String(tata709gLPTDisplay.tyres) }] : []),
+                    ...(isEicherPro2110L && eicherPro2110LDisplay ? [{ label: 'Tyres', value: String(eicherPro2110LDisplay.tyres) }] : []),
+                    ...(isBajajMaximaCNG && bajajMaximaCNGDisplay ? [{ label: 'Tyres', value: String(bajajMaximaCNGDisplay.tyres) }] : []),
+                    ...(((truck as any).tyres != null && (truck as any).tyres !== undefined) && !isTataAceGold7908 && !isTataAceGoldPlain && !isTata1512GLPT && !isTata1212LPT && !isTata609G && !isTata709gLPT && !isEicherPro2110L && !isBajajMaximaCNG ? [{ label: 'Tyres', value: String((truck as any).tyres) }] : []),
                   ]
                   return specRows.map((spec, idx) => (
                     <div key={idx} className="td-spec-row">
@@ -2260,19 +2382,19 @@ export default function TruckDetailsPage() {
               <div className="td-load-cards">
                 <div className="td-load-card">
                   <span className="td-load-value">
-                    {isAshokLeylandTruck ? '14.25' : isAshokLeyland1615Truck ? '12' : isTata1412Truck ? '14.25' : isSmlIsuzuTruck ? '16.37' : isMahindraBoleroTruck ? '2.75' : isTataAceGold7908 || isTataAceGoldPlain ? '1.55' : isTata1512GLPT ? '16.02' : '16.2'}<small>T</small>
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.grossPayloadKg == null ? '–' : isTata709gLPT && tata709gLPTDisplay ? (tata709gLPTDisplay.grossPayloadKg / 1000).toFixed(2) : isTata1212LPT && tata1212LPTDisplay ? (tata1212LPTDisplay.grossPayloadKg / 1000).toFixed(2) : isEicherPro2110L && eicherPro2110LDisplay ? (eicherPro2110LDisplay.grossPayloadKg / 1000).toFixed(2) : isAshokLeylandTruck ? '14.25' : isAshokLeyland1615Truck ? '12' : isTata1412Truck ? '14.25' : isSmlIsuzuTruck ? '16.37' : isMahindraBoleroTruck ? '2.75' : isTataAceGold7908 || isTataAceGoldPlain ? '1.55' : isTata1512GLPT ? '16.02' : isTata609G && tata609GDisplay ? (tata609GDisplay.grossPayloadKg / 1000).toFixed(2) : '16.2'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.grossPayloadKg == null ? '' : <small>T</small>}
                   </span>
-                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT ? 'Gross Payload' : 'Gross Weight'}</span>
+                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isEicherPro2110L || isBajajMaximaCNG ? 'Gross Payload' : 'Gross Weight'}</span>
                 </div>
                 <div className="td-load-card highlight">
                   <span className="td-load-value">
-                    {isAshokLeylandTruck ? '8.5' : isAshokLeyland1615Truck ? '6' : isTata1412Truck ? '8.5' : isSmlIsuzuTruck ? '12' : isMahindraBoleroTruck ? '1.6' : isTataAceGold7908 || isTataAceGoldPlain ? '0.71' : isTata1512GLPT ? '8.62' : '10'}<small>T</small>
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.netPayloadKg == null ? '–' : isTata709gLPT && tata709gLPTDisplay ? (tata709gLPTDisplay.netPayloadKg / 1000).toFixed(3) : isTata1212LPT && tata1212LPTDisplay ? (tata1212LPTDisplay.netPayloadKg / 1000).toFixed(3) : isEicherPro2110L && eicherPro2110LDisplay ? (eicherPro2110LDisplay.netPayloadKg / 1000).toFixed(3) : isAshokLeylandTruck ? '8.5' : isAshokLeyland1615Truck ? '6' : isTata1412Truck ? '8.5' : isSmlIsuzuTruck ? '12' : isMahindraBoleroTruck ? '1.6' : isTataAceGold7908 || isTataAceGoldPlain ? '0.71' : isTata1512GLPT ? '8.62' : isTata609G && tata609GDisplay ? (tata609GDisplay.netPayloadKg / 1000).toFixed(3) : '10'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.netPayloadKg == null ? '' : <small>T</small>}
                   </span>
-                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT ? 'Net Payload' : 'Payload'}</span>
+                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isEicherPro2110L || isBajajMaximaCNG ? 'Net Payload' : 'Payload'}</span>
                 </div>
                 <div className="td-load-card">
                   <span className="td-load-value">
-                    {isAshokLeylandTruck ? '24' : isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT ? '22' : isMahindraBoleroTruck ? '08' : isTataAceGold7908 || isTataAceGoldPlain ? '7.2' : '20'}<small>ft</small>
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay ? String(bajajMaximaCNGDisplay.bodyFt) : isEicherPro2110L && eicherPro2110LDisplay ? String(eicherPro2110LDisplay.bodyFt) : isTata1212LPT && tata1212LPTDisplay ? String(tata1212LPTDisplay.bodyFt) : isTata709gLPT && tata709gLPTDisplay ? String(tata709gLPTDisplay.bodyFt) : isTata609G && tata609GDisplay ? String(tata609GDisplay.bodyFt) : isAshokLeylandTruck ? '24' : isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT ? '22' : isMahindraBoleroTruck ? '08' : isTataAceGold7908 || isTataAceGoldPlain ? '7.2' : '20'}<small>ft</small>
                   </span>
                   <span className="td-load-label">Body Length</span>
                 </div>
@@ -3527,7 +3649,7 @@ export default function TruckDetailsPage() {
                     <input
                       type="range"
                       min="100000"
-                      max={tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : parseFloat(truck.price)}
+                      max={tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : parseFloat(truck.price)}
                       step="50000"
                       value={financeAmount}
                       onChange={(e) => setFinanceAmount(parseInt(e.target.value))}

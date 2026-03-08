@@ -64,7 +64,7 @@ export async function GET(request: Request) {
         }
 
         // Convert Supabase format to API format
-        const trucksWithNumberPrice: TruckWithNumberPrice[] = (trucks || []).map((truck: Truck) => ({
+        let trucksWithNumberPrice: TruckWithNumberPrice[] = (trucks || []).map((truck: Truck) => ({
           id: truck.id,
           name: truck.name,
           manufacturer: truck.manufacturer,
@@ -83,8 +83,43 @@ export async function GET(request: Request) {
           updatedAt: new Date(truck.updated_at),
         }))
 
+        // Include Tata 709g LPT if it exists in DB but was missing (e.g. certified = false)
+        const has709gLPT = trucksWithNumberPrice.some(
+          (t) => t.name && t.name.toLowerCase().includes('709') && t.name.toLowerCase().includes('lpt')
+        )
+        if (!has709gLPT) {
+          const { data: extraTrucks } = await supabase
+            .from('trucks')
+            .select('*')
+            .ilike('name', '%709%lpt%')
+            .limit(1)
+          const extra = extraTrucks && extraTrucks[0] ? extraTrucks[0] : null
+          if (extra && extra.id) {
+            const mapped = {
+              id: extra.id,
+              name: extra.name,
+              manufacturer: extra.manufacturer,
+              model: extra.model,
+              year: extra.year,
+              kilometers: extra.kilometers,
+              horsepower: extra.horsepower,
+              price: Number(extra.price),
+              imageUrl: extra.image_url,
+              subtitle: extra.subtitle ?? null,
+              certified: true,
+              state: extra.state ?? null,
+              location: extra.location ?? null,
+              city: extra.city ?? null,
+              createdAt: new Date(extra.created_at),
+              updatedAt: new Date(extra.updated_at),
+            } as TruckWithNumberPrice
+            trucksWithNumberPrice = [mapped, ...trucksWithNumberPrice]
+          }
+        }
+
         const total = count || 0
-        return { trucks: trucksWithNumberPrice, total, page, limit, totalPages: Math.ceil(total / limit) }
+        const totalAdjusted = trucksWithNumberPrice.length > (trucks?.length ?? 0) ? total + 1 : total
+        return { trucks: trucksWithNumberPrice, total: totalAdjusted, page, limit, totalPages: Math.ceil(totalAdjusted / limit) }
       },
       // Fallback to seed data when database is unavailable
       (() => {
