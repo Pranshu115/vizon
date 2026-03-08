@@ -1,0 +1,772 @@
+[
+  {
+    "originalName": "Eicher_PRO_2110_WB_3900-5252-250807115200267.webp",
+    "supabaseFileName": "1765093748367-Eicher_PRO_2110_WB_3900-5252-250807115200267.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093748367-Eicher_PRO_2110_WB_3900-5252-250807115200267.webp"
+  },
+  {
+    "originalName": "Eicher_PRO_2110_WB_3900-5252-250807115201377.webp",
+    "supabaseFileName": "1765093749221-Eicher_PRO_2110_WB_3900-5252-250807115201377.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093749221-Eicher_PRO_2110_WB_3900-5252-250807115201377.webp"
+  },
+  {
+    "originalName": "Eicher_PRO_2110_WB_3900-5252-250807115201424.webp",
+    "supabaseFileName": "1765093749589-Eicher_PRO_2110_WB_3900-5252-250807115201424.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093749589-Eicher_PRO_2110_WB_3900-5252-250807115201424.webp"
+  },
+  {
+    "originalName": "Eicher_PRO_2110_WB_3900-5252-250807115201439.webp",
+    "supabaseFileName": "1765093749735-Eicher_PRO_2110_WB_3900-5252-250807115201439.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093749735-Eicher_PRO_2110_WB_3900-5252-250807115201439.webp"
+  },
+  {
+    "originalName": "Screenshot 2025-12-05 172427.png",
+    "supabaseFileName": "1765093749883-Screenshot 2025-12-05 172427.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093749883-Screenshot%202025-12-05%20172427.png"
+  },
+  {
+    "originalName": "eicher-truck-1.webp",
+    "supabaseFileName": "1765093750007-eicher-truck-1.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750007-eicher-truck-1.webp"
+  },
+  {
+    "originalName": "eicher-truck-2.webp",
+    "supabaseFileName": "1765093750205-eicher-truck-2.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750205-eicher-truck-2.webp"
+  },
+  {
+    "originalName": "eicher-truck-3.webp",
+    "supabaseFileName": "1765093750343-eicher-truck-3.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750343-eicher-truck-3.webp"
+  },
+  {
+    "originalName": "eicher-truck-4.webp",
+    "supabaseFileName": "1765093750463-eicher-truck-4.webp",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750463-eicher-truck-4.webp"
+  },
+  {
+    "originalName": "truck1.jpg",
+    "supabaseFileName": "1765093750618-truck1.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750618-truck1.jpg"
+  },
+  {
+    "originalName": "truck10-image-1.jpg",
+    "supabaseFileName": "1765093750770-truck10-image-1.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750770-truck10-image-1.jpg"
+  },
+  {
+    "originalName": "truck10-image-2.jpg",
+    "supabaseFileName": "1765093750972-truck10-image-2.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093750972-truck10-image-2.jpg"
+  },
+  {
+    "originalName": "truck10-image-3.jpg",
+    "supabaseFileName": "1765093751135-truck10-image-3.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751135-truck10-image-3.jpg"
+  },
+  {
+    "originalName": "truck10.jpg",
+    "supabaseFileName": "1765093751344-truck10.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751344-truck10.jpg"
+  },
+  {
+    "originalName": "truck11-image-1.png",
+    "supabaseFileName": "1765093751473-truck11-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751473-truck11-image-1.png"
+  },
+  {
+    "originalName": "truck11-image-2.png",
+    "supabaseFileName": "1765093751644-truck11-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751644-truck11-image-2.png"
+  },
+  {
+    "originalName": "truck11-image-3.png",
+    "supabaseFileName": "1765093751761-truck11-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751761-truck11-image-3.png"
+  },
+  {
+    "originalName": "truck11.jpg",
+    "supabaseFileName": "1765093751927-truck11.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093751927-truck11.jpg"
+  },
+  {
+    "originalName": "truck12-image-1.png",
+    "supabaseFileName": "1765093752097-truck12-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752097-truck12-image-1.png"
+  },
+  {
+    "originalName": "truck12-image-2.png",
+    "supabaseFileName": "1765093752206-truck12-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752206-truck12-image-2.png"
+  },
+  {
+    "originalName": "truck12-image-3.png",
+    "supabaseFileName": "1765093752313-truck12-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752313-truck12-image-3.png"
+  },
+  {
+    "originalName": "truck12-image-4.png",
+    "supabaseFileName": "1765093752423-truck12-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752423-truck12-image-4.png"
+  },
+  {
+    "originalName": "truck12.jpg",
+    "supabaseFileName": "1765093752538-truck12.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752538-truck12.jpg"
+  },
+  {
+    "originalName": "truck13-image-1.png",
+    "supabaseFileName": "1765093752677-truck13-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752677-truck13-image-1.png"
+  },
+  {
+    "originalName": "truck13-image-2.png",
+    "supabaseFileName": "1765093752910-truck13-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093752910-truck13-image-2.png"
+  },
+  {
+    "originalName": "truck13-image-3.png",
+    "supabaseFileName": "1765093753092-truck13-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093753092-truck13-image-3.png"
+  },
+  {
+    "originalName": "truck13-image-4.png",
+    "supabaseFileName": "1765093753280-truck13-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093753280-truck13-image-4.png"
+  },
+  {
+    "originalName": "truck13-image-5.png",
+    "supabaseFileName": "1765093753510-truck13-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093753510-truck13-image-5.png"
+  },
+  {
+    "originalName": "truck14-image-1.png",
+    "supabaseFileName": "1765093753639-truck14-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093753639-truck14-image-1.png"
+  },
+  {
+    "originalName": "truck14-image-2.png",
+    "supabaseFileName": "1765093753852-truck14-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093753852-truck14-image-2.png"
+  },
+  {
+    "originalName": "truck14-image-3.png",
+    "supabaseFileName": "1765093754150-truck14-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093754150-truck14-image-3.png"
+  },
+  {
+    "originalName": "truck14-image-4.png",
+    "supabaseFileName": "1765093754381-truck14-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093754381-truck14-image-4.png"
+  },
+  {
+    "originalName": "truck14-image-5.png",
+    "supabaseFileName": "1765093754626-truck14-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093754626-truck14-image-5.png"
+  },
+  {
+    "originalName": "truck15-image-1.png",
+    "supabaseFileName": "1765093754854-truck15-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093754854-truck15-image-1.png"
+  },
+  {
+    "originalName": "truck15-image-2.png",
+    "supabaseFileName": "1765093755044-truck15-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093755044-truck15-image-2.png"
+  },
+  {
+    "originalName": "truck15-image-3.png",
+    "supabaseFileName": "1765093755316-truck15-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093755316-truck15-image-3.png"
+  },
+  {
+    "originalName": "truck15-image-4.png",
+    "supabaseFileName": "1765093755496-truck15-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093755496-truck15-image-4.png"
+  },
+  {
+    "originalName": "truck15-image-5.png",
+    "supabaseFileName": "1765093755989-truck15-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093755989-truck15-image-5.png"
+  },
+  {
+    "originalName": "truck15-image-6.png",
+    "supabaseFileName": "1765093756569-truck15-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093756569-truck15-image-6.png"
+  },
+  {
+    "originalName": "truck16-image-1.png",
+    "supabaseFileName": "1765093757173-truck16-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093757173-truck16-image-1.png"
+  },
+  {
+    "originalName": "truck16-image-2.png",
+    "supabaseFileName": "1765093757379-truck16-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093757379-truck16-image-2.png"
+  },
+  {
+    "originalName": "truck16-image-3.png",
+    "supabaseFileName": "1765093757606-truck16-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093757606-truck16-image-3.png"
+  },
+  {
+    "originalName": "truck16-image-4.png",
+    "supabaseFileName": "1765093757842-truck16-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093757842-truck16-image-4.png"
+  },
+  {
+    "originalName": "truck16-image-5.png",
+    "supabaseFileName": "1765093758011-truck16-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093758011-truck16-image-5.png"
+  },
+  {
+    "originalName": "truck17-image-1.png",
+    "supabaseFileName": "1765093758194-truck17-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093758194-truck17-image-1.png"
+  },
+  {
+    "originalName": "truck17-image-2.png",
+    "supabaseFileName": "1765093758554-truck17-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093758554-truck17-image-2.png"
+  },
+  {
+    "originalName": "truck17-image-3.png",
+    "supabaseFileName": "1765093758767-truck17-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093758767-truck17-image-3.png"
+  },
+  {
+    "originalName": "truck17-image-4.png",
+    "supabaseFileName": "1765093758970-truck17-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093758970-truck17-image-4.png"
+  },
+  {
+    "originalName": "truck18-image-1.png",
+    "supabaseFileName": "1765093759174-truck18-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093759174-truck18-image-1.png"
+  },
+  {
+    "originalName": "truck18-image-2.png",
+    "supabaseFileName": "1765093759416-truck18-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093759416-truck18-image-2.png"
+  },
+  {
+    "originalName": "truck18-image-3.png",
+    "supabaseFileName": "1765093759542-truck18-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093759542-truck18-image-3.png"
+  },
+  {
+    "originalName": "truck18-image-4.png",
+    "supabaseFileName": "1765093759734-truck18-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093759734-truck18-image-4.png"
+  },
+  {
+    "originalName": "truck18-image-5.png",
+    "supabaseFileName": "1765093759861-truck18-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093759861-truck18-image-5.png"
+  },
+  {
+    "originalName": "truck19-image-1.png",
+    "supabaseFileName": "1765093760118-truck19-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093760118-truck19-image-1.png"
+  },
+  {
+    "originalName": "truck19-image-2.png",
+    "supabaseFileName": "1765093760392-truck19-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093760392-truck19-image-2.png"
+  },
+  {
+    "originalName": "truck19-image-3.png",
+    "supabaseFileName": "1765093760715-truck19-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093760715-truck19-image-3.png"
+  },
+  {
+    "originalName": "truck19-image-4.png",
+    "supabaseFileName": "1765093760906-truck19-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093760906-truck19-image-4.png"
+  },
+  {
+    "originalName": "truck19-image-5.png",
+    "supabaseFileName": "1765093761115-truck19-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093761115-truck19-image-5.png"
+  },
+  {
+    "originalName": "truck19-image-6.png",
+    "supabaseFileName": "1765093761439-truck19-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093761439-truck19-image-6.png"
+  },
+  {
+    "originalName": "truck19-image-7.png",
+    "supabaseFileName": "1765093761654-truck19-image-7.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093761654-truck19-image-7.png"
+  },
+  {
+    "originalName": "truck19-image-8.png",
+    "supabaseFileName": "1765093761872-truck19-image-8.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093761872-truck19-image-8.png"
+  },
+  {
+    "originalName": "truck2.jpg",
+    "supabaseFileName": "1765093762085-truck2.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093762085-truck2.jpg"
+  },
+  {
+    "originalName": "truck20-image-1.png",
+    "supabaseFileName": "1765093762289-truck20-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093762289-truck20-image-1.png"
+  },
+  {
+    "originalName": "truck20-image-2.png",
+    "supabaseFileName": "1765093762551-truck20-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093762551-truck20-image-2.png"
+  },
+  {
+    "originalName": "truck20-image-3.png",
+    "supabaseFileName": "1765093762861-truck20-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093762861-truck20-image-3.png"
+  },
+  {
+    "originalName": "truck20-image-4.png",
+    "supabaseFileName": "1765093763104-truck20-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093763104-truck20-image-4.png"
+  },
+  {
+    "originalName": "truck21-image-1.png",
+    "supabaseFileName": "1765093763436-truck21-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093763436-truck21-image-1.png"
+  },
+  {
+    "originalName": "truck21-image-2.png",
+    "supabaseFileName": "1765093763700-truck21-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093763700-truck21-image-2.png"
+  },
+  {
+    "originalName": "truck21-image-3.png",
+    "supabaseFileName": "1765093764004-truck21-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093764004-truck21-image-3.png"
+  },
+  {
+    "originalName": "truck21-image-4.png",
+    "supabaseFileName": "1765093764217-truck21-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093764217-truck21-image-4.png"
+  },
+  {
+    "originalName": "truck21-image-5.png",
+    "supabaseFileName": "1765093764442-truck21-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093764442-truck21-image-5.png"
+  },
+  {
+    "originalName": "truck22-image-1.png",
+    "supabaseFileName": "1765093764618-truck22-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093764618-truck22-image-1.png"
+  },
+  {
+    "originalName": "truck22-image-2.png",
+    "supabaseFileName": "1765093764797-truck22-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093764797-truck22-image-2.png"
+  },
+  {
+    "originalName": "truck22-image-3.png",
+    "supabaseFileName": "1765093765058-truck22-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093765058-truck22-image-3.png"
+  },
+  {
+    "originalName": "truck22-image-4.png",
+    "supabaseFileName": "1765093765281-truck22-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093765281-truck22-image-4.png"
+  },
+  {
+    "originalName": "truck23-image-1.png",
+    "supabaseFileName": "1765093765630-truck23-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093765630-truck23-image-1.png"
+  },
+  {
+    "originalName": "truck23-image-2.png",
+    "supabaseFileName": "1765093765829-truck23-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093765829-truck23-image-2.png"
+  },
+  {
+    "originalName": "truck23-image-3.png",
+    "supabaseFileName": "1765093766157-truck23-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093766157-truck23-image-3.png"
+  },
+  {
+    "originalName": "truck23-image-4.png",
+    "supabaseFileName": "1765093766482-truck23-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093766482-truck23-image-4.png"
+  },
+  {
+    "originalName": "truck23-image-5.png",
+    "supabaseFileName": "1765093766655-truck23-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093766655-truck23-image-5.png"
+  },
+  {
+    "originalName": "truck23-image-6.png",
+    "supabaseFileName": "1765093766896-truck23-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093766896-truck23-image-6.png"
+  },
+  {
+    "originalName": "truck24-image-1.png",
+    "supabaseFileName": "1765093767112-truck24-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093767112-truck24-image-1.png"
+  },
+  {
+    "originalName": "truck24-image-2.png",
+    "supabaseFileName": "1765093767398-truck24-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093767398-truck24-image-2.png"
+  },
+  {
+    "originalName": "truck24-image-3.png",
+    "supabaseFileName": "1765093767566-truck24-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093767566-truck24-image-3.png"
+  },
+  {
+    "originalName": "truck24-image-4.png",
+    "supabaseFileName": "1765093767780-truck24-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093767780-truck24-image-4.png"
+  },
+  {
+    "originalName": "truck24-image-5.png",
+    "supabaseFileName": "1765093767953-truck24-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093767953-truck24-image-5.png"
+  },
+  {
+    "originalName": "truck24-image-6.png",
+    "supabaseFileName": "1765093768088-truck24-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093768088-truck24-image-6.png"
+  },
+  {
+    "originalName": "truck25-image-1.png",
+    "supabaseFileName": "1765093768201-truck25-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093768201-truck25-image-1.png"
+  },
+  {
+    "originalName": "truck25-image-2.png",
+    "supabaseFileName": "1765093768427-truck25-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093768427-truck25-image-2.png"
+  },
+  {
+    "originalName": "truck25-image-3.png",
+    "supabaseFileName": "1765093768702-truck25-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093768702-truck25-image-3.png"
+  },
+  {
+    "originalName": "truck25-image-4.png",
+    "supabaseFileName": "1765093768999-truck25-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093768999-truck25-image-4.png"
+  },
+  {
+    "originalName": "truck25-image-5.png",
+    "supabaseFileName": "1765093769208-truck25-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093769208-truck25-image-5.png"
+  },
+  {
+    "originalName": "truck26-image-1.png",
+    "supabaseFileName": "1765093769385-truck26-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093769385-truck26-image-1.png"
+  },
+  {
+    "originalName": "truck26-image-2.png",
+    "supabaseFileName": "1765093769723-truck26-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093769723-truck26-image-2.png"
+  },
+  {
+    "originalName": "truck26-image-3.png",
+    "supabaseFileName": "1765093770057-truck26-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093770057-truck26-image-3.png"
+  },
+  {
+    "originalName": "truck26-image-4.png",
+    "supabaseFileName": "1765093770266-truck26-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093770266-truck26-image-4.png"
+  },
+  {
+    "originalName": "truck27-image-1.png",
+    "supabaseFileName": "1765093770645-truck27-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093770645-truck27-image-1.png"
+  },
+  {
+    "originalName": "truck27-image-2.png",
+    "supabaseFileName": "1765093770863-truck27-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093770863-truck27-image-2.png"
+  },
+  {
+    "originalName": "truck27-image-3.png",
+    "supabaseFileName": "1765093771211-truck27-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093771211-truck27-image-3.png"
+  },
+  {
+    "originalName": "truck27-image-4.png",
+    "supabaseFileName": "1765093771417-truck27-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093771417-truck27-image-4.png"
+  },
+  {
+    "originalName": "truck28-image-1.png",
+    "supabaseFileName": "1765093771709-truck28-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093771709-truck28-image-1.png"
+  },
+  {
+    "originalName": "truck28-image-2.png",
+    "supabaseFileName": "1765093771900-truck28-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093771900-truck28-image-2.png"
+  },
+  {
+    "originalName": "truck28-image-3.png",
+    "supabaseFileName": "1765093772129-truck28-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093772129-truck28-image-3.png"
+  },
+  {
+    "originalName": "truck29-image-1.png",
+    "supabaseFileName": "1765093772379-truck29-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093772379-truck29-image-1.png"
+  },
+  {
+    "originalName": "truck29-image-2.png",
+    "supabaseFileName": "1765093772649-truck29-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093772649-truck29-image-2.png"
+  },
+  {
+    "originalName": "truck29-image-3.png",
+    "supabaseFileName": "1765093772887-truck29-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093772887-truck29-image-3.png"
+  },
+  {
+    "originalName": "truck29-image-4.png",
+    "supabaseFileName": "1765093773094-truck29-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093773094-truck29-image-4.png"
+  },
+  {
+    "originalName": "truck3-image-2.png",
+    "supabaseFileName": "1765093773267-truck3-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093773267-truck3-image-2.png"
+  },
+  {
+    "originalName": "truck3-image-3.png",
+    "supabaseFileName": "1765093773429-truck3-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093773429-truck3-image-3.png"
+  },
+  {
+    "originalName": "truck3-image-4.png",
+    "supabaseFileName": "1765093773711-truck3-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093773711-truck3-image-4.png"
+  },
+  {
+    "originalName": "truck3-image-5.png",
+    "supabaseFileName": "1765093773961-truck3-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093773961-truck3-image-5.png"
+  },
+  {
+    "originalName": "truck3.jpg",
+    "supabaseFileName": "1765093774175-truck3.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093774175-truck3.jpg"
+  },
+  {
+    "originalName": "truck30-image-1.png",
+    "supabaseFileName": "1765093774295-truck30-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093774295-truck30-image-1.png"
+  },
+  {
+    "originalName": "truck30-image-2.png",
+    "supabaseFileName": "1765093774586-truck30-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093774586-truck30-image-2.png"
+  },
+  {
+    "originalName": "truck30-image-3.png",
+    "supabaseFileName": "1765093774823-truck30-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093774823-truck30-image-3.png"
+  },
+  {
+    "originalName": "truck31-image-1.png",
+    "supabaseFileName": "1765093775027-truck31-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093775027-truck31-image-1.png"
+  },
+  {
+    "originalName": "truck31-image-2.png",
+    "supabaseFileName": "1765093775252-truck31-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093775252-truck31-image-2.png"
+  },
+  {
+    "originalName": "truck31-image-3.png",
+    "supabaseFileName": "1765093775457-truck31-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093775457-truck31-image-3.png"
+  },
+  {
+    "originalName": "truck31-image-4.png",
+    "supabaseFileName": "1765093775703-truck31-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093775703-truck31-image-4.png"
+  },
+  {
+    "originalName": "truck31-image-5.png",
+    "supabaseFileName": "1765093775883-truck31-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093775883-truck31-image-5.png"
+  },
+  {
+    "originalName": "truck31-image-6.png",
+    "supabaseFileName": "1765093776082-truck31-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093776082-truck31-image-6.png"
+  },
+  {
+    "originalName": "truck4-image-1.png",
+    "supabaseFileName": "1765093776400-truck4-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093776400-truck4-image-1.png"
+  },
+  {
+    "originalName": "truck4-image-3.jpeg",
+    "supabaseFileName": "1765093776846-truck4-image-3.jpeg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093776846-truck4-image-3.jpeg"
+  },
+  {
+    "originalName": "truck4-image-4.jpeg",
+    "supabaseFileName": "1765093776962-truck4-image-4.jpeg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093776962-truck4-image-4.jpeg"
+  },
+  {
+    "originalName": "truck4.jpg",
+    "supabaseFileName": "1765093777082-truck4.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093777082-truck4.jpg"
+  },
+  {
+    "originalName": "truck5-image-2.png",
+    "supabaseFileName": "1765093777212-truck5-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093777212-truck5-image-2.png"
+  },
+  {
+    "originalName": "truck5-image-3.png",
+    "supabaseFileName": "1765093777432-truck5-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093777432-truck5-image-3.png"
+  },
+  {
+    "originalName": "truck5-image-4.png",
+    "supabaseFileName": "1765093777639-truck5-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093777639-truck5-image-4.png"
+  },
+  {
+    "originalName": "truck5-image-5.png",
+    "supabaseFileName": "1765093777849-truck5-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093777849-truck5-image-5.png"
+  },
+  {
+    "originalName": "truck5-image-6.png",
+    "supabaseFileName": "1765093778050-truck5-image-6.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093778050-truck5-image-6.png"
+  },
+  {
+    "originalName": "truck5-image-7.png",
+    "supabaseFileName": "1765093778310-truck5-image-7.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093778310-truck5-image-7.png"
+  },
+  {
+    "originalName": "truck5.jpg",
+    "supabaseFileName": "1765093778503-truck5.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093778503-truck5.jpg"
+  },
+  {
+    "originalName": "truck6-image-2.jpg",
+    "supabaseFileName": "1765093778643-truck6-image-2.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093778643-truck6-image-2.jpg"
+  },
+  {
+    "originalName": "truck6-image-3.jpg",
+    "supabaseFileName": "1765093778871-truck6-image-3.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093778871-truck6-image-3.jpg"
+  },
+  {
+    "originalName": "truck6-image-4.jpg",
+    "supabaseFileName": "1765093779093-truck6-image-4.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779093-truck6-image-4.jpg"
+  },
+  {
+    "originalName": "truck6-image-5.jpg",
+    "supabaseFileName": "1765093779281-truck6-image-5.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779281-truck6-image-5.jpg"
+  },
+  {
+    "originalName": "truck6.jpg",
+    "supabaseFileName": "1765093779547-truck6.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779547-truck6.jpg"
+  },
+  {
+    "originalName": "truck7-image-2.png",
+    "supabaseFileName": "1765093779684-truck7-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779684-truck7-image-2.png"
+  },
+  {
+    "originalName": "truck7-image-3.png",
+    "supabaseFileName": "1765093779788-truck7-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779788-truck7-image-3.png"
+  },
+  {
+    "originalName": "truck7-image-4.png",
+    "supabaseFileName": "1765093779894-truck7-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779894-truck7-image-4.png"
+  },
+  {
+    "originalName": "truck7-image-5.png",
+    "supabaseFileName": "1765093779999-truck7-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093779999-truck7-image-5.png"
+  },
+  {
+    "originalName": "truck7.jpg",
+    "supabaseFileName": "1765093780116-truck7.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093780116-truck7.jpg"
+  },
+  {
+    "originalName": "truck8-image-1.png",
+    "supabaseFileName": "1765093780243-truck8-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093780243-truck8-image-1.png"
+  },
+  {
+    "originalName": "truck8-image-2.png",
+    "supabaseFileName": "1765093780467-truck8-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093780467-truck8-image-2.png"
+  },
+  {
+    "originalName": "truck8-image-3.png",
+    "supabaseFileName": "1765093781450-truck8-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093781450-truck8-image-3.png"
+  },
+  {
+    "originalName": "truck8-image-4.png",
+    "supabaseFileName": "1765093782246-truck8-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093782246-truck8-image-4.png"
+  },
+  {
+    "originalName": "truck8-image-5.png",
+    "supabaseFileName": "1765093782469-truck8-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093782469-truck8-image-5.png"
+  },
+  {
+    "originalName": "truck8.jpg",
+    "supabaseFileName": "1765093782659-truck8.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093782659-truck8.jpg"
+  },
+  {
+    "originalName": "truck9-image-1.png",
+    "supabaseFileName": "1765093782848-truck9-image-1.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093782848-truck9-image-1.png"
+  },
+  {
+    "originalName": "truck9-image-2.png",
+    "supabaseFileName": "1765093783100-truck9-image-2.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093783100-truck9-image-2.png"
+  },
+  {
+    "originalName": "truck9-image-3.png",
+    "supabaseFileName": "1765093783294-truck9-image-3.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093783294-truck9-image-3.png"
+  },
+  {
+    "originalName": "truck9-image-4.png",
+    "supabaseFileName": "1765093783485-truck9-image-4.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093783485-truck9-image-4.png"
+  },
+  {
+    "originalName": "truck9-image-5.png",
+    "supabaseFileName": "1765093783695-truck9-image-5.png",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093783695-truck9-image-5.png"
+  },
+  {
+    "originalName": "truck9.jpg",
+    "supabaseFileName": "1765093783899-truck9.jpg",
+    "supabaseUrl": "https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/1765093783899-truck9.jpg"
+  }
+]

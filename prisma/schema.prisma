@@ -1,0 +1,150 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Truck {
+  id           Int      @id @default(autoincrement())
+  name         String
+  manufacturer String
+  model        String
+  year         Int
+  kilometers   Int
+  horsepower   Int
+  price        Decimal  @db.Decimal(10, 2)
+  imageUrl     String
+  subtitle     String?
+  certified    Boolean  @default(true)
+  state        String?
+  location     String?
+  city         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  inquiries    TruckInquiry[]
+
+  @@map("trucks")
+}
+
+model ContactSubmission {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  phone       String?
+  message     String
+  submittedAt DateTime @default(now())
+
+  @@map("contact_submissions")
+}
+
+model ValuationRequest {
+  id                Int      @id @default(autoincrement())
+  name              String
+  email             String
+  phone             String
+  truckManufacturer String
+  truckModel        String
+  year              Int
+  kilometers        Int
+  condition         String
+  additionalInfo    String?
+  requestedAt       DateTime @default(now())
+
+  @@map("valuation_requests")
+}
+
+model TruckInquiry {
+  id         Int      @id @default(autoincrement())
+  truckId    Int
+  truckName  String
+  name       String
+  email      String
+  phone      String
+  message    String?
+  inquiredAt DateTime @default(now())
+  
+  truck      Truck    @relation(fields: [truckId], references: [id], onDelete: Cascade)
+
+  @@map("truck_inquiries")
+}
+
+model SearchQuery {
+  id         Int      @id @default(autoincrement())
+  query      String
+  searchedAt DateTime @default(now())
+
+  @@map("search_queries")
+}
+
+model TruckSubmission {
+  id              Int      @id @default(autoincrement())
+  // Seller Information
+  sellerName      String
+  sellerEmail     String
+  sellerPhone     String
+  
+  // Truck Basic Information
+  manufacturer    String
+  model           String
+  year            Int
+  registrationNumber String?
+  
+  // Truck Specifications
+  kilometers      Int
+  fuelType        String   // Diesel, Petrol, CNG, Electric
+  transmission    String   // Manual, Automatic
+  horsepower      Int?
+  engineCapacity  String?  // e.g., "5.9L"
+  
+  // Condition & Ownership
+  condition       String   // Excellent, Good, Fair
+  ownerNumber     Int      // 1st owner, 2nd owner, etc.
+  
+  // Pricing
+  askingPrice     Decimal  @db.Decimal(10, 2)
+  negotiable      Boolean  @default(true)
+  
+  // Location
+  location        String
+  state           String
+  city            String
+  
+  // Additional Details
+  features        String?  // JSON string of features
+  description     String?
+  
+  // Images
+  images          String   // JSON array of image URLs
+  
+  // Status & Timestamps
+  status          String   @default("pending") // pending, approved, rejected
+  certified       Boolean  @default(false)
+  submittedAt     DateTime @default(now())
+  approvedAt      DateTime?
+  
+  @@map("truck_submissions")
+}
+
+model OtpVerification {
+  id          Int      @id @default(autoincrement())
+  phone       String
+  otp         String   // Hashed OTP
+  purpose     String   // "inquiry", "booking", "test_drive"
+  verified    Boolean  @default(false)
+  attempts    Int      @default(0)
+  maxAttempts Int      @default(5)
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  verifiedAt  DateTime?
+  
+  @@index([phone, purpose, verified])
+  @@index([expiresAt])
+  @@map("otp_verifications")
+}
