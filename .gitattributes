@@ -1,0 +1,5 @@
+# Cross-platform line endings: Windows (CRLF), Mac/Linux (LF)
+# Auto normalize on commit; checkout as-is so Windows gets CRLF when desired
+* text=auto eol=lf
+*.{cmd,bat,ps1} text eol=crlf
+*.sh text eol=lf

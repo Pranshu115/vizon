@@ -15,7 +15,8 @@
     "seed:supabase": "node seed-all-30-trucks.js",
     "seed:eicher-2059xp": "node seed-eicher-2059xp-supabase.js",
     "remove-extra-eicher-2059xp": "node remove-extra-eicher-2059xp.js",
-    "update-prices": "node scripts/update-truck-prices.js"
+    "update-prices": "node scripts/update-truck-prices.js",
+    "setup:env:win": "powershell -ExecutionPolicy Bypass -File setup-supabase-env.ps1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -46,6 +47,7 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "@types/leaflet": "^1.9.21",
     "@types/node": "^20",
     "@types/react": "^18",
