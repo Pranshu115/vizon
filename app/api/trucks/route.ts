@@ -117,8 +117,81 @@ export async function GET(request: Request) {
           }
         }
 
+        // Include Tata 1109g LPT if it exists in DB but was missing (e.g. certified = false)
+        const has1109gLPT = trucksWithNumberPrice.some(
+          (t) => t.name && t.name.toLowerCase().includes('1109') && t.name.toLowerCase().includes('lpt')
+        )
+        if (!has1109gLPT) {
+          // Try multiple patterns: "1109...lpt", "lpt...1109", or model contains 1109
+          const { data: extra1109ByName } = await supabase
+            .from('trucks')
+            .select('*')
+            .or('name.ilike.%1109%lpt%,name.ilike.%lpt%1109%')
+            .limit(1)
+          let extra = extra1109ByName && extra1109ByName[0] ? extra1109ByName[0] : null
+          if (!extra) {
+            const { data: byModel } = await supabase
+              .from('trucks')
+              .select('*')
+              .ilike('model', '%1109%')
+              .limit(5)
+            const withLpt = (byModel || []).find((r: { name?: string }) =>
+              (r.name || '').toLowerCase().includes('lpt')
+            )
+            extra = withLpt || null
+          }
+          if (extra && extra.id) {
+            const mapped = {
+              id: extra.id,
+              name: extra.name,
+              manufacturer: extra.manufacturer,
+              model: extra.model,
+              year: extra.year,
+              kilometers: extra.kilometers,
+              horsepower: extra.horsepower,
+              price: Number(extra.price),
+              imageUrl: extra.image_url,
+              subtitle: extra.subtitle ?? null,
+              certified: true,
+              state: extra.state ?? null,
+              location: extra.location ?? null,
+              city: extra.city ?? null,
+              createdAt: new Date(extra.created_at),
+              updatedAt: new Date(extra.updated_at),
+            } as TruckWithNumberPrice
+            trucksWithNumberPrice = [mapped, ...trucksWithNumberPrice]
+          } else {
+            // No row in DB: always show Tata 1109g LPT from seed so it's visible (images from Storage)
+            const seed1109 = seedTrucks.find(
+              (t) => t.name && t.name.toLowerCase().includes('1109') && t.name.toLowerCase().includes('lpt')
+            )
+            if (seed1109) {
+              const mapped = {
+                id: seed1109.id,
+                name: seed1109.name,
+                manufacturer: seed1109.manufacturer,
+                model: seed1109.model,
+                year: seed1109.year,
+                kilometers: seed1109.kilometers,
+                horsepower: seed1109.horsepower,
+                price: Number(seed1109.price),
+                imageUrl: seed1109.imageUrl,
+                subtitle: seed1109.subtitle ?? null,
+                certified: true,
+                state: null,
+                location: null,
+                city: null,
+                createdAt: seed1109.createdAt,
+                updatedAt: seed1109.updatedAt,
+              } as TruckWithNumberPrice
+              trucksWithNumberPrice = [mapped, ...trucksWithNumberPrice]
+            }
+          }
+        }
+
         const total = count || 0
-        const totalAdjusted = trucksWithNumberPrice.length > (trucks?.length ?? 0) ? total + 1 : total
+        const addedCount = trucksWithNumberPrice.length - (trucks?.length ?? 0)
+        const totalAdjusted = total + addedCount
         return { trucks: trucksWithNumberPrice, total: totalAdjusted, page, limit, totalPages: Math.ceil(totalAdjusted / limit) }
       },
       // Fallback to seed data when database is unavailable

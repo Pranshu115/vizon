@@ -49,7 +49,7 @@ export async function GET(
       )
     }
 
-    const truck = await safeSupabaseQuery<TruckWithNumberPrice | null>(
+    let truck = await safeSupabaseQuery<TruckWithNumberPrice | null>(
       async (supabase) => {
         const { data: result, error } = await supabase
           .from('trucks')
@@ -94,19 +94,33 @@ export async function GET(
           updatedAt: new Date(result.updated_at),
         }
       },
-      // Fallback to seed data when database is unavailable
-      (() => {
-        const seedTruck = seedTrucks.find(t => t.id === truckId)
-        if (!seedTruck) return null
-        return {
-          ...seedTruck,
+      null
+    )
+
+    // When DB has no row (e.g. Tata 1109g LPT from seed list), use seed so detail page works
+    if (!truck) {
+      const seedTruck = seedTrucks.find(t => t.id === truckId)
+      if (seedTruck) {
+        truck = {
+          id: seedTruck.id,
+          name: seedTruck.name,
+          manufacturer: seedTruck.manufacturer,
+          model: seedTruck.model,
+          year: seedTruck.year,
+          kilometers: seedTruck.kilometers,
+          horsepower: seedTruck.horsepower,
+          price: Number(seedTruck.price),
+          imageUrl: seedTruck.imageUrl,
           subtitle: seedTruck.subtitle ?? null,
+          certified: seedTruck.certified,
           state: null,
           location: null,
           city: null,
+          createdAt: seedTruck.createdAt,
+          updatedAt: seedTruck.updatedAt,
         } as TruckWithNumberPrice
-      })()
-    )
+      }
+    }
 
     if (!truck) {
       return NextResponse.json(

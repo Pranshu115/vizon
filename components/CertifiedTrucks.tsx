@@ -82,15 +82,78 @@ export default function CertifiedTrucks() {
     try {
       const response = await fetch('/api/trucks')
       const data = await response.json()
-      
+
+      const formatTrucks = (rawTrucks: any[]) => {
+        return (rawTrucks || []).map((truck: any) => {
+          const isAshokLeyland1415 =
+            (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1415 HE'
+          const isAshokLeyland1615 =
+            (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1615 HE'
+          const isEicher2059XP =
+            (truck.name || '').toLowerCase().includes('2059') && (truck.name || '').toLowerCase().includes('eicher')
+          const isEicher1075HSD =
+            (truck.name || '').toLowerCase().includes('1075') && (truck.name || '').toLowerCase().includes('eicher')
+          const isMahindraBolero = truck.name === 'Mahindra Bolero Maxitruck Plus'
+          const isSmlIsuzu = truck.name === 'SML Isuzu Samrat 4760gs'
+          const isSmlIsuzuZT54 = (truck.name || '').toLowerCase().includes('zt54') && (truck.name || '').toLowerCase().includes('sml')
+          const isTata1109gLPT = (truck.name || '').toLowerCase().includes('1109') && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+
+          const price =
+            isAshokLeyland1415
+              ? '₹14,30,000'
+              : isAshokLeyland1615
+                ? '₹15,40,000'
+                : isEicher2059XP
+                  ? '₹9,20,000'
+                  : isEicher1075HSD
+                    ? '₹9,50,000'
+                    : isTata1109gLPT
+                      ? '₹13,50,000'
+                    : isMahindraBolero || isSmlIsuzuZT54
+                      ? '₹6,30,000'
+              : `₹${parseFloat(truck.price?.toString() || '0').toLocaleString('en-IN')}`
+
+          const mileage =
+            isAshokLeyland1415
+              ? '2,36,133 km'
+              : isEicher2059XP
+                ? '1,83,889 km'
+                : isEicher1075HSD || isSmlIsuzuZT54
+                  ? '2,29,537 km'
+                  : isTata1109gLPT
+                    ? '1,62,134 km'
+              : `${truck.kilometers?.toLocaleString('en-IN') || '0'} km`
+
+          const engine =
+            isAshokLeyland1415 || isAshokLeyland1615 || isEicher2059XP || isMahindraBolero || isSmlIsuzu || isTata1109gLPT
+              ? 'CNG'
+              : isEicher1075HSD || isSmlIsuzuZT54
+                ? 'Diesel'
+              : (truck.fuel_type as string) || 'Diesel'
+
+          return {
+            id: truck.id,
+            name: truck.name || `${truck.year} ${truck.manufacturer} ${truck.model}`,
+            year: truck.year,
+            price,
+            mileage,
+            engine,
+            transmission: 'Manual',
+            location: isAshokLeyland1415 || isAshokLeyland1615 ? 'GHAZIABAD' : isEicher2059XP ? 'Dwarka, Delhi' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : isTata1109gLPT ? 'Gurugram' : (truck.location || truck.city || 'Unknown'),
+            image: truck.imageUrl,
+            certified: truck.certified ?? true,
+            manufacturer: truck.manufacturer,
+            model: truck.model,
+          }
+        })
+      }
+
       // Handle new paginated response format
       if (response.ok) {
         if (data.trucks && Array.isArray(data.trucks)) {
-          // New paginated format
-          setTrucks(data.trucks)
+          setTrucks(formatTrucks(data.trucks))
         } else if (Array.isArray(data)) {
-          // Legacy format (backward compatibility)
-          setTrucks(data)
+          setTrucks(formatTrucks(data))
         } else {
           console.error('Error fetching trucks: Invalid response format')
           setTrucks([])
@@ -139,9 +202,9 @@ export default function CertifiedTrucks() {
                 name={truck.manufacturer && truck.model ? `${truck.manufacturer} ${truck.model}` : truck.name}
                 subtitle={truck.year?.toString() || truck.subtitle || 'Premium quality truck'}
                 specs={{
-                  year: truck.year.toString(),
+                  year: truck.year?.toString() ?? '–',
                   km: truck.kilometers?.toLocaleString() || '0',
-                  hp: truck.horsepower.toString()
+                  hp: truck.horsepower != null ? String(truck.horsepower) : '–'
                 }}
                 price={`₹ ${truck.price ? parseFloat(truck.price).toLocaleString('en-IN') : '0'}`}
                 image={truck.imageUrl}

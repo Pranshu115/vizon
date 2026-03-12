@@ -734,7 +734,29 @@ export default function TruckDetailsPage() {
       const isBajajMaximaCNGFinance = (truck.name || '').toLowerCase().includes('bajaj') && (truck.name || '').toLowerCase().includes('maxima') && (truck.name || '').toLowerCase().includes('cng')
       const is609G = (truck.name || '').toLowerCase().includes('609') && ((truck.name || '').toLowerCase().includes('609g') || (truck.name || '').toLowerCase().includes('609 g')) && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
       const is709gLPTFinance = (truck.name || '').toLowerCase().includes('709') && ((truck.name || '').toLowerCase().includes('709g') || (truck.name || '').toLowerCase().includes('709 g')) && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
-      setFinanceAmount(isAceGold7908 ? 250000 : isAceGoldPlain ? 240000 : is1512GLPT ? 1530000 : is1212LPT ? 1420000 : is609G ? 1000000 : is709gLPTFinance ? 1025000 : isEicher2110L ? 1475000 : isBajajMaximaCNGFinance ? 260000 : parseFloat(truck.price))
+      const is1109gLPTFinance = (truck.name || '').toLowerCase().includes('1109') && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+      const isAshokLeyland1415Finance = truck.name === 'ASHOK LEYLAND ECOMET STAR 1415 HE'
+      const isEicher2059XPFinance = (truck.name || '').toLowerCase().includes('2059') && ((truck.name || '').toLowerCase().includes('eicher') || (truck.manufacturer === 'Eicher Motors' && (truck.model || '').toLowerCase().includes('2059')))
+      const isEicher1075HSDFinance = (truck.name || '').toLowerCase().includes('1075') && ((truck.name || '').toLowerCase().includes('eicher') || (truck.manufacturer === 'Eicher Motors' && (truck.model || '').toLowerCase().includes('1075')))
+      const isMahindraBoleroFinance = truck.name === 'Mahindra Bolero Maxitruck Plus'
+      const isSmlIsuzuZT54Finance = (truck.name || '').toLowerCase().includes('zt54') && (truck.name || '').toLowerCase().includes('sml')
+      setFinanceAmount(
+        isAceGold7908 ? 250000
+        : isAceGoldPlain ? 240000
+        : is1512GLPT ? 1530000
+        : is1212LPT ? 1420000
+        : is609G ? 1000000
+        : is709gLPTFinance ? 1025000
+        : is1109gLPTFinance ? 1350000
+        : isAshokLeyland1415Finance ? 1430000
+        : isEicher2059XPFinance ? 920000
+        : isEicher1075HSDFinance ? 950000
+        : isEicher2110L ? 1475000
+        : isBajajMaximaCNGFinance ? 260000
+        : isMahindraBoleroFinance ? 630000
+        : isSmlIsuzuZT54Finance ? 630000
+        : parseFloat(truck.price)
+      )
       loadSimilarTrucks()
       
       // Fetch images from API for ALL trucks
@@ -867,7 +889,12 @@ export default function TruckDetailsPage() {
   const isTata1212LPT = (truck?.name || '').toLowerCase().includes('1212') && (truck?.name || '').toLowerCase().includes('lpt') && (truck?.name || '').toLowerCase().includes('tata')
   const isTata609G = (truck?.name || '').toLowerCase().includes('609') && ((truck?.name || '').toLowerCase().includes('609g') || (truck?.name || '').toLowerCase().includes('609 g')) && ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')
   const isTata709gLPT = (truck?.name || '').toLowerCase().includes('709') && ((truck?.name || '').toLowerCase().includes('709g') || (truck?.name || '').toLowerCase().includes('709 g')) && (truck?.name || '').toLowerCase().includes('lpt') && ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')
+  const isTata1109gLPT = (truck?.name || '').toLowerCase().includes('1109') && (truck?.name || '').toLowerCase().includes('lpt') && ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')
   const isEicherPro2110L = (truck?.name || '').toLowerCase().includes('2110') && ((truck?.name || '').toLowerCase().includes('2110l') || (truck?.model || '').toUpperCase().includes('2110L'))
+  const isEicher2059XPTruck = (truck?.name || '').toLowerCase().includes('2059') &&
+    ((truck?.name || '').toLowerCase().includes('eicher') || (truck?.manufacturer === 'Eicher Motors' && (truck?.model || '').toLowerCase().includes('2059')))
+  const isEicher1075HSDTruck = (truck?.name || '').toLowerCase().includes('1075') &&
+    ((truck?.name || '').toLowerCase().includes('eicher') || (truck?.manufacturer === 'Eicher Motors' && (truck?.model || '').toLowerCase().includes('1075')))
   const isBajajMaximaCNG = (truck?.name || '').toLowerCase().includes('bajaj') && (truck?.name || '').toLowerCase().includes('maxima') && (truck?.name || '').toLowerCase().includes('cng')
   // Tata Ace Gold (7908) – display values from Web Report UP14HT7908
   const tataAceGoldDisplay = isTataAceGold7908 ? { price: 250000, year: 2019, yearMonth: '04/2019', kms: 116509, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '14.12.2023', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '1st Owner' } : null
@@ -875,6 +902,76 @@ export default function TruckDetailsPage() {
   const eicherPro2110LDisplay = isEicherPro2110L ? { price: 1475000, yearMonth: '11/2022', kms: 240551, hp: 160, model: 'PRO 2110L', rto: 'Bahadurgarh, Haryana', insurance: '12.02.2026', gearbox: '5 forward, 1 reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7317, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
   // Bajaj Maxima CNG – display values from provided specs (Net/Gross Payload: –)
   const bajajMaximaCNGDisplay = isBajajMaximaCNG ? { price: 260000, yearMonth: '–', kms: 7136, hp: 10, model: 'BAJAJ MAXIMA CARGO CNG', rto: 'RAJPUR ROAD', insurance: '09/06/2026', gearbox: '4 forward, 1 reverse', fuel: 'CNG', grossPayloadKg: null as number | null, netPayloadKg: null as number | null, bodyFt: 6, tyres: 3, ownership: '1st Owner' } : null
+  // ASHOK LEYLAND ECOMET STAR 1415 HE – display values from provided specs
+  const ashokLeyland1415Display = isAshokLeylandTruck ? {
+    price: 1430000,
+    yearMonth: '03/2022',
+    kms: 236133,
+    hp: 142.71,
+    model: 'CA1415/52 H CC G',
+    rto: 'GHAZIABAD',
+    insurance: '01/01/27',
+    gearbox: '5 forward, 1 reverse',
+    fuel: 'CNG',
+    grossPayloadKg: 14250,
+    netPayloadKg: 7980,
+    bodyFt: 24,
+    tyres: 6,
+    ownership: '1st Owner',
+  } : null
+  // Eicher 2059XP – display values from provided specs
+  const eicher2059XPDisplay = isEicher2059XPTruck ? {
+    price: 920000,
+    yearMonth: '09/2020',
+    kms: 183889,
+    hp: 85,
+    model: 'CNG F HSD VE',
+    rto: 'RAJPUR ROAD',
+    insurance: '30/10/2025',
+    gearbox: '5 forward, 1 reverse',
+    fuel: 'CNG',
+    grossPayloadKg: 7490,
+    netPayloadKg: 3800,
+    bodyFt: 14,
+    tyres: 4,
+    ownership: '1st Owner',
+  } : null
+  // Eicher Pro 1075 F HSD – display values from provided specs
+  const eicher1075HSDDisplay = isEicher1075HSDTruck ? {
+    price: 950000,
+    yearMonth: '11/2018',
+    kms: 229537,
+    hp: 110,
+    model: 'DCR38CBC 85B6M5 TT',
+    rto: 'RAJPUR ROAD',
+    insurance: '23/01/27',
+    gearbox: '5 forward, 1 reverse',
+    fuel: 'Diesel',
+    grossPayloadKg: 7450,
+    netPayloadKg: 4600,
+    bodyFt: 17,
+    tyres: 6,
+    ownership: '1st Owner',
+  } : null
+  // Mahindra Bolero Maxitruck Plus – display price
+  const mahindraBoleroDisplay = isMahindraBoleroTruck ? { price: 630000 } : null
+  // SML Isuzu ZT54 – display values from provided specs
+  const smlIsuzuZT54Display = isSmlIsuzuZT54 ? {
+    price: 630000,
+    yearMonth: '04/2017',
+    kms: 229537,
+    powerDisplay: '3544 cc',
+    model: 'ZT 54 SM B EL WB SML ISUZU LTD',
+    rto: 'GHAZIABAD, UP',
+    insurance: '20/05/26',
+    gearbox: '5 forward, 1 reverse',
+    fuel: 'Diesel',
+    grossPayloadKg: 10250,
+    netPayloadKg: 5890,
+    bodyFt: 22,
+    tyres: 6,
+    ownership: '1st Owner',
+  } : null
   // Tata Ace Gold (no 7908) – folder Tata Ace Gold-20260307T052504Z-1-001
   const tataAceGoldPlainDisplay = isTataAceGoldPlain ? { price: 240000, yearMonth: '12/2018', kms: 82185, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '17.03.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '2nd Owner' } : null
   // TATA 1512G LPT – display values from inspection/legal report
@@ -885,6 +982,8 @@ export default function TruckDetailsPage() {
   const tata609GDisplay = isTata609G ? { price: 1000000, yearMonth: '07/2022', kms: 78699, hp: 83.08, model: 'SFC DCR33CBC 85B6M5', rto: 'Rajpur Road', insurance: '02.08.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 5950, netPayloadKg: 3480, bodyFt: 10, tyres: 4, ownership: '1st Owner' } : null
   // TATA MOTORS 709G LPT – display values from provided specs
   const tata709gLPTDisplay = isTata709gLPT ? { price: 1025000, yearMonth: '11/2021', kms: 129420, hp: 83.08, model: '709G LPT DCR38CBC 85B6M5 TT', rto: 'Rajpur Road', insurance: '20.02.2027', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 7490, netPayloadKg: 4500, bodyFt: 17, tyres: 6, ownership: '2nd Owner' } : null
+  // Tata 1109g LPT – display values from provided specs
+  const tata1109gLPTDisplay = isTata1109gLPT ? { price: 1350000, yearMonth: '03/2023', kms: 162134, hp: 85, model: '1109G LPT DCR49CBC 85B6M5XD', rto: 'Gurugram', insurance: '06.04.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 11250, netPayloadKg: 7500, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
 
   const getGalleryImages = () => {
     if (!truck?.imageUrl) return []
@@ -1797,7 +1896,23 @@ export default function TruckDetailsPage() {
     return [truck.imageUrl, truck.imageUrl, truck.imageUrl, truck.imageUrl]
   }
 
-  const effectivePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : parseFloat(truck.price)) : 0
+  const effectivePrice = truck ? (
+    tataAceGoldDisplay ? tataAceGoldDisplay.price
+    : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price
+    : tata1512GLPTDisplay ? tata1512GLPTDisplay.price
+    : tata1212LPTDisplay ? tata1212LPTDisplay.price
+    : tata609GDisplay ? tata609GDisplay.price
+    : tata709gLPTDisplay ? tata709gLPTDisplay.price
+    : tata1109gLPTDisplay ? tata1109gLPTDisplay.price
+    : eicherPro2110LDisplay ? eicherPro2110LDisplay.price
+    : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price
+    : eicher2059XPDisplay ? eicher2059XPDisplay.price
+    : eicher1075HSDDisplay ? eicher1075HSDDisplay.price
+    : ashokLeyland1415Display ? ashokLeyland1415Display.price
+    : mahindraBoleroDisplay ? mahindraBoleroDisplay.price
+    : smlIsuzuZT54Display ? smlIsuzuZT54Display.price
+    : parseFloat(truck.price)
+  ) : 0
   const listPrice = truck ? effectivePrice * 1.08 : 0
   const savings = truck ? Math.round(effectivePrice * 0.08) : 0
 
@@ -1809,7 +1924,23 @@ export default function TruckDetailsPage() {
 
   const shareVia = (method: string) => {
     const pageUrl = window.location.href
-    const sharePrice = truck ? (tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : truck.price) : truck?.price
+    const sharePrice = truck ? (
+      tataAceGoldDisplay ? tataAceGoldDisplay.price
+      : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price
+      : tata1512GLPTDisplay ? tata1512GLPTDisplay.price
+      : tata1212LPTDisplay ? tata1212LPTDisplay.price
+      : tata609GDisplay ? tata609GDisplay.price
+      : tata709gLPTDisplay ? tata709gLPTDisplay.price
+      : tata1109gLPTDisplay ? tata1109gLPTDisplay.price
+      : eicherPro2110LDisplay ? eicherPro2110LDisplay.price
+      : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price
+      : eicher2059XPDisplay ? eicher2059XPDisplay.price
+      : eicher1075HSDDisplay ? eicher1075HSDDisplay.price
+      : ashokLeyland1415Display ? ashokLeyland1415Display.price
+      : mahindraBoleroDisplay ? mahindraBoleroDisplay.price
+      : smlIsuzuZT54Display ? smlIsuzuZT54Display.price
+      : truck.price
+    ) : truck?.price
     const shareText = `Check out this ${truck?.name} - ${displayPrice(sharePrice)} on Axlerator`
     
     const urls: Record<string, string> = {
@@ -2126,13 +2257,19 @@ export default function TruckDetailsPage() {
               ) : isSmlIsuzuTruck ? (
                 <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                   <span style={{ whiteSpace: 'nowrap' }}>SAMRAT4760GSNGTCCABCHASSIS21F</span>
-                  <span>{truck.horsepower} HP</span>
+                  <span>{truck.horsepower} HP • CNG • Manual</span>
+                </div>
+              ) : isSmlIsuzuZT54 && smlIsuzuZT54Display ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{smlIsuzuZT54Display.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{smlIsuzuZT54Display.model}</span>
+                  <span>{smlIsuzuZT54Display.powerDisplay} • Diesel • Manual</span>
                 </div>
               ) : isMahindraBoleroTruck ? (
                 <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                   <span>{truck.year}</span>
                   <span style={{ whiteSpace: 'nowrap' }}>Mahindra BMT PLUS CNG PS BSVI</span>
-                  <span>{truck.horsepower} HP</span>
+                  <span>{truck.horsepower} HP • CNG • Manual</span>
                 </div>
               ) : isTataAceGold7908 && tataAceGoldDisplay ? (
                 <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
@@ -2152,6 +2289,12 @@ export default function TruckDetailsPage() {
                   <span style={{ whiteSpace: 'nowrap' }}>{tata709gLPTDisplay.model}</span>
                   <span>{tata709gLPTDisplay.hp} HP • CNG • Manual</span>
                 </div>
+              ) : isTata1109gLPT && tata1109gLPTDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{tata1109gLPTDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{tata1109gLPTDisplay.model}</span>
+                  <span>{tata1109gLPTDisplay.hp} HP • CNG • Manual</span>
+                </div>
               ) : isTata609G && tata609GDisplay ? (
                 <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                   <span>{tata609GDisplay.yearMonth} (YOM)</span>
@@ -2170,6 +2313,24 @@ export default function TruckDetailsPage() {
                   <span style={{ whiteSpace: 'nowrap' }}>{tata1512GLPTDisplay.model}</span>
                   <span>{tata1512GLPTDisplay.hp} HP • CNG • Manual</span>
                 </div>
+              ) : isEicher2059XPTruck && eicher2059XPDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{eicher2059XPDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{eicher2059XPDisplay.model}</span>
+                  <span>{eicher2059XPDisplay.hp} HP • CNG • Manual</span>
+                </div>
+              ) : isEicher1075HSDTruck && eicher1075HSDDisplay ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{eicher1075HSDDisplay.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{eicher1075HSDDisplay.model}</span>
+                  <span>{eicher1075HSDDisplay.hp} HP • Diesel • Manual</span>
+                </div>
+              ) : isAshokLeylandTruck && ashokLeyland1415Display ? (
+                <div className="td-subtitle" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>{ashokLeyland1415Display.yearMonth} (YOM)</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>{ashokLeyland1415Display.model}</span>
+                  <span>{ashokLeyland1415Display.hp} HP • CNG • Manual</span>
+                </div>
               ) : (
               <p className="td-subtitle">{truck.year} {truck.manufacturer} {truck.model} • {truck.horsepower} HP</p>
               )}
@@ -2184,12 +2345,27 @@ export default function TruckDetailsPage() {
           {/* Quick Stats */}
           <div className="td-quick-stats">
             <div className="td-stat">
-              <span className="td-stat-value">{(tataAceGoldDisplay ? tataAceGoldDisplay.kms : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.kms : tata1512GLPTDisplay ? tata1512GLPTDisplay.kms : tata1212LPTDisplay ? tata1212LPTDisplay.kms : tata609GDisplay ? tata609GDisplay.kms : tata709gLPTDisplay ? tata709gLPTDisplay.kms : eicherPro2110LDisplay ? eicherPro2110LDisplay.kms : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.kms : truck.kilometers)?.toLocaleString('en-IN') || '0'} km</span>
+              <span className="td-stat-value">{(
+                tataAceGoldDisplay ? tataAceGoldDisplay.kms
+                : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.kms
+                : tata1512GLPTDisplay ? tata1512GLPTDisplay.kms
+                : tata1212LPTDisplay ? tata1212LPTDisplay.kms
+                : tata609GDisplay ? tata609GDisplay.kms
+                : tata709gLPTDisplay ? tata709gLPTDisplay.kms
+                : eicherPro2110LDisplay ? eicherPro2110LDisplay.kms
+                : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.kms
+                : ashokLeyland1415Display ? ashokLeyland1415Display.kms
+                : eicher2059XPDisplay ? eicher2059XPDisplay.kms
+                : eicher1075HSDDisplay ? eicher1075HSDDisplay.kms
+                : tata1109gLPTDisplay ? tata1109gLPTDisplay.kms
+                : smlIsuzuZT54Display ? smlIsuzuZT54Display.kms
+                : truck.kilometers
+              )?.toLocaleString('en-IN') || '0'} km</span>
               <span className="td-stat-label">Odometer</span>
             </div>
             <div className="td-stat-divider"></div>
             <div className="td-stat">
-              <span className="td-stat-value">{isTataAceGold7908 || isTataAceGoldPlain || isTata1212LPT ? 'Diesel' : isTata1512GLPT || isTata609G || isTata709gLPT || isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck ? 'CNG' : 'Diesel'}</span>
+              <span className="td-stat-value">{isTataAceGold7908 || isTataAceGoldPlain || isTata1212LPT || isEicher1075HSDTruck ? 'Diesel' : (isTata1512GLPT || isTata609G || isTata709gLPT || isTata1109gLPT || isAshokLeyland1615Truck || isAshokLeylandTruck || isTata1412Truck || isSmlIsuzuTruck || isEicher2059XPTruck || isMahindraBoleroTruck) ? 'CNG' : 'Diesel'}</span>
               <span className="td-stat-label">Fuel Type</span>
             </div>
             <div className="td-stat-divider"></div>
@@ -2208,10 +2384,40 @@ export default function TruckDetailsPage() {
           <div className="td-price-card">
             <div className="td-price-top">
               <div className="td-price-main">
-                <span className="td-price-current">{displayPrice(tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : truck.price)}</span>
-                <span className="td-price-original">{displayPrice(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 1.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 1.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 1.08) : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 1.08) : tata609GDisplay ? Math.round(tata609GDisplay.price * 1.08) : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 1.08) : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 1.08) : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 1.08) : listPrice)}</span>
+                <span className="td-price-current">{displayPrice(
+                  tataAceGoldDisplay ? tataAceGoldDisplay.price
+                  : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price
+                  : tata1512GLPTDisplay ? tata1512GLPTDisplay.price
+                  : tata1212LPTDisplay ? tata1212LPTDisplay.price
+                  : tata609GDisplay ? tata609GDisplay.price
+                  : tata709gLPTDisplay ? tata709gLPTDisplay.price
+                  : tata1109gLPTDisplay ? tata1109gLPTDisplay.price
+                  : eicherPro2110LDisplay ? eicherPro2110LDisplay.price
+                  : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price
+                  : eicher2059XPDisplay ? eicher2059XPDisplay.price
+                  : eicher1075HSDDisplay ? eicher1075HSDDisplay.price
+                  : mahindraBoleroDisplay ? mahindraBoleroDisplay.price
+                  : smlIsuzuZT54Display ? smlIsuzuZT54Display.price
+                  : truck.price
+                )}</span>
+                <span className="td-price-original">{displayPrice(
+                  tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 1.08)
+                  : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 1.08)
+                  : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 1.08)
+                  : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 1.08)
+                  : tata609GDisplay ? Math.round(tata609GDisplay.price * 1.08)
+                  : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 1.08)
+                  : tata1109gLPTDisplay ? Math.round(tata1109gLPTDisplay.price * 1.08)
+                  : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 1.08)
+                  : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 1.08)
+                  : eicher2059XPDisplay ? Math.round(eicher2059XPDisplay.price * 1.08)
+                  : eicher1075HSDDisplay ? Math.round(eicher1075HSDDisplay.price * 1.08)
+                  : mahindraBoleroDisplay ? Math.round(mahindraBoleroDisplay.price * 1.08)
+                  : smlIsuzuZT54Display ? Math.round(smlIsuzuZT54Display.price * 1.08)
+                  : listPrice
+                )}</span>
               </div>
-              <span className="td-savings-badge">Save ₹{(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 0.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 0.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 0.08) : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 0.08) : tata609GDisplay ? Math.round(tata609GDisplay.price * 0.08) : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 0.08) : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 0.08) : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 0.08) : savings).toLocaleString()}</span>
+              <span className="td-savings-badge">Save ₹{(tataAceGoldDisplay ? Math.round(tataAceGoldDisplay.price * 0.08) : tataAceGoldPlainDisplay ? Math.round(tataAceGoldPlainDisplay.price * 0.08) : tata1512GLPTDisplay ? Math.round(tata1512GLPTDisplay.price * 0.08) : tata1212LPTDisplay ? Math.round(tata1212LPTDisplay.price * 0.08) : tata609GDisplay ? Math.round(tata609GDisplay.price * 0.08) : tata709gLPTDisplay ? Math.round(tata709gLPTDisplay.price * 0.08) : tata1109gLPTDisplay ? Math.round(tata1109gLPTDisplay.price * 0.08) : eicherPro2110LDisplay ? Math.round(eicherPro2110LDisplay.price * 0.08) : bajajMaximaCNGDisplay ? Math.round(bajajMaximaCNGDisplay.price * 0.08) : eicher2059XPDisplay ? Math.round(eicher2059XPDisplay.price * 0.08) : eicher1075HSDDisplay ? Math.round(eicher1075HSDDisplay.price * 0.08) : mahindraBoleroDisplay ? Math.round(mahindraBoleroDisplay.price * 0.08) : smlIsuzuZT54Display ? Math.round(smlIsuzuZT54Display.price * 0.08) : savings).toLocaleString()}</span>
             </div>
             <div className="td-emi-bar">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -2317,14 +2523,15 @@ export default function TruckDetailsPage() {
                     }
                   }
                   
-                  // Special handling for ASHOK LEYLAND ECOMET STAR, Tata Ace Gold (7908), TATA 1512G LPT, Eicher Pro 2059 XP
+                  // Special handling for ASHOK LEYLAND ECOMET STAR, Tata Ace Gold (7908), TATA 1512G LPT, Eicher Pro 2059 XP, Eicher Pro 1075 F HSD
                   const isEicher2059XP = (truck.name || '').toLowerCase().includes('2059') && ((truck.name || '').toLowerCase().includes('eicher') || (truck.manufacturer === 'Eicher Motors' && truck.model?.toLowerCase().includes('2059')))
-                  const rtoValue = isAshokLeylandTruck ? 'GHAZIABAD' : isAshokLeyland1615Truck ? 'GHAZIABAD' : isTata1412Truck ? 'SONIPAT' : isSmlIsuzuTruck ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Pune' : isMahindraBoleroTruck ? 'RAJPUR ROAD' : isTataAceGold7908 || isTataAceGoldPlain ? 'Ghaziabad' : isTata1512GLPT ? 'Rajpur Road' : isTata1212LPT ? (tata1212LPTDisplay?.rto ?? 'Faridabad') : isTata609G ? (tata609GDisplay?.rto ?? 'Rajpur Road') : isTata709gLPT ? (tata709gLPTDisplay?.rto ?? 'Rajpur Road') : isEicher2059XP ? 'Pune' : isEicherPro2110L ? (eicherPro2110LDisplay?.rto ?? 'Bahadurgarh, Haryana') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.rto ?? 'RAJPUR ROAD') : (truck as any).rto || truck.location || truck.city || 'MH-14 (Pune)'
-                  const insuranceValue = isAshokLeylandTruck ? '01/01/27' : isAshokLeyland1615Truck ? '11/01/27' : isTata1412Truck ? '05/05/26' : isSmlIsuzuTruck ? '24/04/26' : isMahindraBoleroTruck ? '01/09/26' : isTataAceGold7908 ? '14.12.2023' : isTataAceGoldPlain ? '17.03.2026' : isTata1512GLPT ? '24.09.2026' : isTata1212LPT ? (tata1212LPTDisplay?.insurance ?? '30.12.2025') : isTata609G ? (tata609GDisplay?.insurance ?? '02.08.2026') : isTata709gLPT ? (tata709gLPTDisplay?.insurance ?? '20.02.2027') : isEicherPro2110L ? (eicherPro2110LDisplay?.insurance ?? '12.02.2026') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.insurance ?? '09/06/2026') : (truck as any).insurance_date || 'Valid till Dec 2025'
-                  const modelValue = isAshokLeyland1615Truck ? 'ASHOK LEYLAND ECOMET STAR 1615 HE' : isTataAceGold7908 ? (tataAceGoldDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTataAceGoldPlain ? (tataAceGoldPlainDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTata1512GLPT ? (tata1512GLPTDisplay?.model ?? '1512G LPT DCR48CBC 125B6M5') : isTata1212LPT ? (tata1212LPTDisplay?.model ?? '1212 LPT DCR48CBC 125B6M5') : isTata609G ? (tata609GDisplay?.model ?? 'SFC DCR33CBC 85B6M5') : isTata709gLPT ? (tata709gLPTDisplay?.model ?? '709G LPT DCR38CBC 85B6M5 TT') : isEicherPro2110L ? (eicherPro2110LDisplay?.model ?? 'PRO 2110L') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.model ?? 'BAJAJ MAXIMA CARGO CNG') : truck.model
+                  const isEicher1075HSD = (truck.name || '').toLowerCase().includes('1075') && ((truck.name || '').toLowerCase().includes('eicher') || (truck.manufacturer === 'Eicher Motors' && (truck.model || '').toLowerCase().includes('1075')))
+                  const rtoValue = isAshokLeylandTruck ? 'GHAZIABAD' : isAshokLeyland1615Truck ? 'GHAZIABAD' : isTata1412Truck ? 'SONIPAT' : isSmlIsuzuTruck ? 'RAJPUR ROAD' : isSmlIsuzuZT54 && smlIsuzuZT54Display ? smlIsuzuZT54Display.rto : isMahindraBoleroTruck ? 'RAJPUR ROAD' : isTataAceGold7908 || isTataAceGoldPlain ? 'Ghaziabad' : isTata1512GLPT ? 'Rajpur Road' : isTata1212LPT ? (tata1212LPTDisplay?.rto ?? 'Faridabad') : isTata609G ? (tata609GDisplay?.rto ?? 'Rajpur Road') : isTata709gLPT ? (tata709gLPTDisplay?.rto ?? 'Rajpur Road') : isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.rto : isEicher2059XP ? (eicher2059XPDisplay?.rto ?? 'Dwarka, Delhi') : isEicher1075HSD && eicher1075HSDDisplay ? eicher1075HSDDisplay.rto : isEicherPro2110L ? (eicherPro2110LDisplay?.rto ?? 'Bahadurgarh, Haryana') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.rto ?? 'RAJPUR ROAD') : (truck as any).rto || truck.location || truck.city || 'MH-14 (Pune)'
+                  const insuranceValue = isAshokLeylandTruck ? '01/01/27' : isAshokLeyland1615Truck ? '11/01/27' : isTata1412Truck ? '05/05/26' : isSmlIsuzuTruck ? '24/04/26' : isSmlIsuzuZT54 && smlIsuzuZT54Display ? smlIsuzuZT54Display.insurance : isMahindraBoleroTruck ? '01/09/26' : isTataAceGold7908 ? '14.12.2023' : isTataAceGoldPlain ? '17.03.2026' : isTata1512GLPT ? '24.09.2026' : isTata1212LPT ? (tata1212LPTDisplay?.insurance ?? '30.12.2025') : isTata609G ? (tata609GDisplay?.insurance ?? '02.08.2026') : isTata709gLPT ? (tata709gLPTDisplay?.insurance ?? '20.02.2027') : isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.insurance : isEicher2059XP && eicher2059XPDisplay ? eicher2059XPDisplay.insurance : isEicher1075HSD && eicher1075HSDDisplay ? eicher1075HSDDisplay.insurance : isEicherPro2110L ? (eicherPro2110LDisplay?.insurance ?? '12.02.2026') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.insurance ?? '09/06/2026') : (truck as any).insurance_date || 'Valid till Dec 2025'
+                  const modelValue = isAshokLeyland1615Truck ? 'ASHOK LEYLAND ECOMET STAR 1615 HE' : isTataAceGold7908 ? (tataAceGoldDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTataAceGoldPlain ? (tataAceGoldPlainDisplay?.model ?? 'TATA ACE GOLD BS-IV') : isTata1512GLPT ? (tata1512GLPTDisplay?.model ?? '1512G LPT DCR48CBC 125B6M5') : isTata1212LPT ? (tata1212LPTDisplay?.model ?? '1212 LPT DCR48CBC 125B6M5') : isTata609G ? (tata609GDisplay?.model ?? 'SFC DCR33CBC 85B6M5') : isTata709gLPT ? (tata709gLPTDisplay?.model ?? '709G LPT DCR38CBC 85B6M5 TT') : isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.model : isEicher2059XP && eicher2059XPDisplay ? eicher2059XPDisplay.model : isEicher1075HSD && eicher1075HSDDisplay ? eicher1075HSDDisplay.model : isSmlIsuzuZT54 && smlIsuzuZT54Display ? smlIsuzuZT54Display.model : isEicherPro2110L ? (eicherPro2110LDisplay?.model ?? 'PRO 2110L') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.model ?? 'BAJAJ MAXIMA CARGO CNG') : truck.model
                   
                   // Check for CNG fuel type for Tata 1412, SML Isuzu, TATA 1512G LPT, TATA 609G
-                  if ((isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT) && !emissionStandard.includes('CNG')) {
+                  if ((isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT || isTata1109gLPT) && !emissionStandard.includes('CNG')) {
                     emissionStandard = 'CNG'
                   }
                   // Tata Ace Gold (both variants) – diesel BS-IV
@@ -2337,17 +2544,116 @@ export default function TruckDetailsPage() {
                   if (isBajajMaximaCNG) {
                     emissionStandard = 'CNG'
                   }
+                  if (isEicher2059XP && eicher2059XPDisplay) {
+                    emissionStandard = 'CNG'
+                  }
+                  if (isEicher1075HSD && eicher1075HSDDisplay) {
+                    emissionStandard = 'Diesel'
+                  }
+                  if (isMahindraBoleroTruck) {
+                    emissionStandard = 'CNG'
+                  }
+                  if (isSmlIsuzuTruck) {
+                    emissionStandard = 'CNG'
+                  }
+                  if (isSmlIsuzuZT54 && smlIsuzuZT54Display) {
+                    emissionStandard = 'Diesel'
+                  }
                   // Use fuel_type from API/database for trucks without special-case overrides (e.g. Tata 609g)
-                  const hasSpecialFuel = isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT || isTataAceGold7908 || isTataAceGoldPlain || isEicherPro2110L || isTata1212LPT || isBajajMaximaCNG
+                  const hasSpecialFuel = isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT || isTata609G || isTata709gLPT || isTata1109gLPT || isTataAceGold7908 || isTataAceGoldPlain || isEicherPro2110L || isTata1212LPT || isBajajMaximaCNG || isEicher2059XP || isEicher1075HSD || isMahindraBoleroTruck || isSmlIsuzuZT54
                   if (!hasSpecialFuel && (truck as any).fuel_type && typeof (truck as any).fuel_type === 'string') {
                     emissionStandard = (truck as any).fuel_type
                   }
                   
-                  const gearboxValue = isEicherPro2110L ? (eicherPro2110LDisplay?.gearbox ?? '5 forward, 1 reverse') : isBajajMaximaCNG ? (bajajMaximaCNGDisplay?.gearbox ?? '4 forward, 1 reverse') : (isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT ? '5-Forward, 1-Reverse' : (truck as any).gearbox || '6-Speed Manual')
-                  const yearValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.yearMonth : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.yearMonth : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.yearMonth : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.yearMonth : isTata609G && tata609GDisplay ? tata609GDisplay.yearMonth : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.yearMonth : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.yearMonth : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.yearMonth : truck.year
-                  const odometerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.kms.toLocaleString('en-IN')} km` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.kms.toLocaleString('en-IN')} km` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.kms.toLocaleString('en-IN')} km` : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.kms.toLocaleString('en-IN')} km` : isTata609G && tata609GDisplay ? `${tata609GDisplay.kms.toLocaleString('en-IN')} km` : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.kms.toLocaleString('en-IN')} km` : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.kms.toLocaleString('en-IN')} km` : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.kms.toLocaleString('en-IN')} km` : `${truck.kilometers?.toLocaleString() || '0'} km`
-                  const powerValue = isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.hp} HP` : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.hp} HP` : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.hp} HP` : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.hp} HP` : isTata609G && tata609GDisplay ? `${tata609GDisplay.hp} HP` : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.hp} HP` : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.hp} HP` : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.hp} HP` : `${truck.horsepower} HP`
-                  const ownershipValue = isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.ownership : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.ownership : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.ownership : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.ownership : isTata609G && tata609GDisplay ? tata609GDisplay.ownership : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.ownership : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.ownership : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.ownership : ((truck as any).ownership_number != null && (truck as any).ownership_number !== undefined) ? `${(truck as any).ownership_number}${(truck as any).ownership_number === 1 ? 'st' : (truck as any).ownership_number === 2 ? 'nd' : (truck as any).ownership_number === 3 ? 'rd' : 'th'} Owner` : 'First Owner'
+                  const gearboxValue = isSmlIsuzuZT54 && smlIsuzuZT54Display
+                    ? smlIsuzuZT54Display.gearbox
+                    : isAshokLeylandTruck && ashokLeyland1415Display
+                    ? ashokLeyland1415Display.gearbox
+                    : isEicher2059XP && eicher2059XPDisplay
+                      ? eicher2059XPDisplay.gearbox
+                      : isEicher1075HSDTruck && eicher1075HSDDisplay
+                        ? eicher1075HSDDisplay.gearbox
+                        : isEicherPro2110L
+                      ? (eicherPro2110LDisplay?.gearbox ?? '5 forward, 1 reverse')
+                      : isBajajMaximaCNG
+                        ? (bajajMaximaCNGDisplay?.gearbox ?? '4 forward, 1 reverse')
+                        : (isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isTata1109gLPT)
+                          ? (isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.gearbox : '5-Forward, 1-Reverse')
+                          : (truck as any).gearbox || '6-Speed Manual'
+                  const yearValue = isSmlIsuzuZT54 && smlIsuzuZT54Display
+                    ? smlIsuzuZT54Display.yearMonth
+                    : isAshokLeylandTruck && ashokLeyland1415Display
+                    ? ashokLeyland1415Display.yearMonth
+                    : isEicher2059XP && eicher2059XPDisplay
+                    ? eicher2059XPDisplay.yearMonth
+                    : isEicher1075HSDTruck && eicher1075HSDDisplay
+                    ? eicher1075HSDDisplay.yearMonth
+                    : isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.yearMonth
+                    : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.yearMonth
+                    : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.yearMonth
+                    : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.yearMonth
+                    : isTata609G && tata609GDisplay ? tata609GDisplay.yearMonth
+                    : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.yearMonth
+                    : isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.yearMonth
+                    : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.yearMonth
+                    : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.yearMonth
+                    : truck.year
+                  const odometerValue = isSmlIsuzuZT54 && smlIsuzuZT54Display
+                    ? `${smlIsuzuZT54Display.kms.toLocaleString('en-IN')} km`
+                    : isAshokLeylandTruck && ashokLeyland1415Display
+                    ? `${ashokLeyland1415Display.kms.toLocaleString('en-IN')} km`
+                    : isEicher2059XP && eicher2059XPDisplay
+                    ? `${eicher2059XPDisplay.kms.toLocaleString('en-IN')} km`
+                    : isEicher1075HSDTruck && eicher1075HSDDisplay
+                    ? `${eicher1075HSDDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTata609G && tata609GDisplay ? `${tata609GDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.kms.toLocaleString('en-IN')} km`
+                    : isTata1109gLPT && tata1109gLPTDisplay ? `${tata1109gLPTDisplay.kms.toLocaleString('en-IN')} km`
+                    : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.kms.toLocaleString('en-IN')} km`
+                    : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.kms.toLocaleString('en-IN')} km`
+                    : `${truck.kilometers?.toLocaleString() || '0'} km`
+                  const powerValue = isSmlIsuzuZT54 && smlIsuzuZT54Display
+                    ? smlIsuzuZT54Display.powerDisplay
+                    : isAshokLeylandTruck && ashokLeyland1415Display
+                    ? `${ashokLeyland1415Display.hp} HP`
+                    : isEicher2059XP && eicher2059XPDisplay
+                    ? `${eicher2059XPDisplay.hp} HP`
+                    : isEicher1075HSDTruck && eicher1075HSDDisplay
+                    ? `${eicher1075HSDDisplay.hp} HP`
+                    : isTataAceGold7908 && tataAceGoldDisplay ? `${tataAceGoldDisplay.hp} HP`
+                    : isTataAceGoldPlain && tataAceGoldPlainDisplay ? `${tataAceGoldPlainDisplay.hp} HP`
+                    : isTata1512GLPT && tata1512GLPTDisplay ? `${tata1512GLPTDisplay.hp} HP`
+                    : isTata1212LPT && tata1212LPTDisplay ? `${tata1212LPTDisplay.hp} HP`
+                    : isTata609G && tata609GDisplay ? `${tata609GDisplay.hp} HP`
+                    : isTata709gLPT && tata709gLPTDisplay ? `${tata709gLPTDisplay.hp} HP`
+                    : isTata1109gLPT && tata1109gLPTDisplay ? `${tata1109gLPTDisplay.hp} HP`
+                    : isEicherPro2110L && eicherPro2110LDisplay ? `${eicherPro2110LDisplay.hp} HP`
+                    : isBajajMaximaCNG && bajajMaximaCNGDisplay ? `${bajajMaximaCNGDisplay.hp} HP`
+                    : `${truck.horsepower} HP`
+                  const ownershipValue = isSmlIsuzuZT54 && smlIsuzuZT54Display
+                    ? smlIsuzuZT54Display.ownership
+                    : isAshokLeylandTruck && ashokLeyland1415Display
+                    ? ashokLeyland1415Display.ownership
+                    : isEicher2059XP && eicher2059XPDisplay
+                    ? eicher2059XPDisplay.ownership
+                    : isEicher1075HSDTruck && eicher1075HSDDisplay
+                    ? eicher1075HSDDisplay.ownership
+                    : isTataAceGold7908 && tataAceGoldDisplay ? tataAceGoldDisplay.ownership
+                    : isTataAceGoldPlain && tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.ownership
+                    : isTata1512GLPT && tata1512GLPTDisplay ? tata1512GLPTDisplay.ownership
+                    : isTata1212LPT && tata1212LPTDisplay ? tata1212LPTDisplay.ownership
+                    : isTata609G && tata609GDisplay ? tata609GDisplay.ownership
+                    : isTata709gLPT && tata709gLPTDisplay ? tata709gLPTDisplay.ownership
+                    : isTata1109gLPT && tata1109gLPTDisplay ? tata1109gLPTDisplay.ownership
+                    : isEicherPro2110L && eicherPro2110LDisplay ? eicherPro2110LDisplay.ownership
+                    : isBajajMaximaCNG && bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.ownership
+                    : ((truck as any).ownership_number != null && (truck as any).ownership_number !== undefined)
+                      ? `${(truck as any).ownership_number}${(truck as any).ownership_number === 1 ? 'st' : (truck as any).ownership_number === 2 ? 'nd' : (truck as any).ownership_number === 3 ? 'rd' : 'th'} Owner`
+                      : 'First Owner'
                   const specRows = [
                     { label: 'Year', value: yearValue },
                     { label: 'Brand', value: truck.manufacturer },
@@ -2365,9 +2671,14 @@ export default function TruckDetailsPage() {
                     ...(isTata1212LPT && tata1212LPTDisplay ? [{ label: 'Tyres', value: String(tata1212LPTDisplay.tyres) }] : []),
                     ...(isTata609G && tata609GDisplay ? [{ label: 'Tyres', value: String(tata609GDisplay.tyres) }] : []),
                     ...(isTata709gLPT && tata709gLPTDisplay ? [{ label: 'Tyres', value: String(tata709gLPTDisplay.tyres) }] : []),
+                    ...(isTata1109gLPT && tata1109gLPTDisplay ? [{ label: 'Tyres', value: String(tata1109gLPTDisplay.tyres) }] : []),
                     ...(isEicherPro2110L && eicherPro2110LDisplay ? [{ label: 'Tyres', value: String(eicherPro2110LDisplay.tyres) }] : []),
                     ...(isBajajMaximaCNG && bajajMaximaCNGDisplay ? [{ label: 'Tyres', value: String(bajajMaximaCNGDisplay.tyres) }] : []),
-                    ...(((truck as any).tyres != null && (truck as any).tyres !== undefined) && !isTataAceGold7908 && !isTataAceGoldPlain && !isTata1512GLPT && !isTata1212LPT && !isTata609G && !isTata709gLPT && !isEicherPro2110L && !isBajajMaximaCNG ? [{ label: 'Tyres', value: String((truck as any).tyres) }] : []),
+                    ...(isAshokLeylandTruck && ashokLeyland1415Display ? [{ label: 'Tyres', value: String(ashokLeyland1415Display.tyres) }] : []),
+                    ...(isEicher2059XPTruck && eicher2059XPDisplay ? [{ label: 'Tyres', value: String(eicher2059XPDisplay.tyres) }] : []),
+                    ...(isEicher1075HSDTruck && eicher1075HSDDisplay ? [{ label: 'Tyres', value: String(eicher1075HSDDisplay.tyres) }] : []),
+                    ...(isSmlIsuzuZT54 && smlIsuzuZT54Display ? [{ label: 'Tyres', value: String(smlIsuzuZT54Display.tyres) }] : []),
+                    ...(((truck as any).tyres != null && (truck as any).tyres !== undefined) && !isTataAceGold7908 && !isTataAceGoldPlain && !isTata1512GLPT && !isTata1212LPT && !isTata609G && !isTata709gLPT && !isTata1109gLPT && !isEicherPro2110L && !isBajajMaximaCNG && !isAshokLeylandTruck && !isEicher2059XPTruck && !isEicher1075HSDTruck && !isSmlIsuzuZT54 ? [{ label: 'Tyres', value: String((truck as any).tyres) }] : []),
                   ]
                   return specRows.map((spec, idx) => (
                     <div key={idx} className="td-spec-row">
@@ -2382,19 +2693,96 @@ export default function TruckDetailsPage() {
               <div className="td-load-cards">
                 <div className="td-load-card">
                   <span className="td-load-value">
-                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.grossPayloadKg == null ? '–' : isTata709gLPT && tata709gLPTDisplay ? (tata709gLPTDisplay.grossPayloadKg / 1000).toFixed(2) : isTata1212LPT && tata1212LPTDisplay ? (tata1212LPTDisplay.grossPayloadKg / 1000).toFixed(2) : isEicherPro2110L && eicherPro2110LDisplay ? (eicherPro2110LDisplay.grossPayloadKg / 1000).toFixed(2) : isAshokLeylandTruck ? '14.25' : isAshokLeyland1615Truck ? '12' : isTata1412Truck ? '14.25' : isSmlIsuzuTruck ? '16.37' : isMahindraBoleroTruck ? '2.75' : isTataAceGold7908 || isTataAceGoldPlain ? '1.55' : isTata1512GLPT ? '16.02' : isTata609G && tata609GDisplay ? (tata609GDisplay.grossPayloadKg / 1000).toFixed(2) : '16.2'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.grossPayloadKg == null ? '' : <small>T</small>}
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.grossPayloadKg == null
+                      ? '–'
+                      : isTata709gLPT && tata709gLPTDisplay
+                        ? (tata709gLPTDisplay.grossPayloadKg / 1000).toFixed(2)
+                        : isTata1109gLPT && tata1109gLPTDisplay
+                          ? (tata1109gLPTDisplay.grossPayloadKg / 1000).toFixed(2)
+                          : isTata1212LPT && tata1212LPTDisplay
+                          ? (tata1212LPTDisplay.grossPayloadKg / 1000).toFixed(2)
+                          : isEicherPro2110L && eicherPro2110LDisplay
+                            ? (eicherPro2110LDisplay.grossPayloadKg / 1000).toFixed(2)
+                            : isEicher2059XPTruck && eicher2059XPDisplay
+                              ? (eicher2059XPDisplay.grossPayloadKg / 1000).toFixed(2)
+                              : isEicher1075HSDTruck && eicher1075HSDDisplay
+                                ? (eicher1075HSDDisplay.grossPayloadKg / 1000).toFixed(2)
+                                : isSmlIsuzuZT54 && smlIsuzuZT54Display
+                                  ? (smlIsuzuZT54Display.grossPayloadKg / 1000).toFixed(2)
+                                  : isAshokLeylandTruck
+                                ? '14.25'
+                                : isAshokLeyland1615Truck
+                                  ? '12'
+                                  : isTata1412Truck
+                                    ? '14.25'
+                                    : isSmlIsuzuTruck
+                                      ? '16.37'
+                                      : isMahindraBoleroTruck
+                                        ? '2.75'
+                                        : isTataAceGold7908 || isTataAceGoldPlain
+                                          ? '1.55'
+                                          : isTata1512GLPT
+                                            ? '16.02'
+                                            : isTata609G && tata609GDisplay
+                                              ? (tata609GDisplay.grossPayloadKg / 1000).toFixed(2)
+                                              : '16.2'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.grossPayloadKg == null ? '' : <small>T</small>}
                   </span>
-                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isEicherPro2110L || isBajajMaximaCNG ? 'Gross Payload' : 'Gross Weight'}</span>
+                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isTata1109gLPT || isEicherPro2110L || isBajajMaximaCNG || isEicher2059XPTruck || isEicher1075HSDTruck || isSmlIsuzuZT54 ? 'Gross Payload' : 'Gross Weight'}</span>
                 </div>
                 <div className="td-load-card highlight">
                   <span className="td-load-value">
-                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.netPayloadKg == null ? '–' : isTata709gLPT && tata709gLPTDisplay ? (tata709gLPTDisplay.netPayloadKg / 1000).toFixed(3) : isTata1212LPT && tata1212LPTDisplay ? (tata1212LPTDisplay.netPayloadKg / 1000).toFixed(3) : isEicherPro2110L && eicherPro2110LDisplay ? (eicherPro2110LDisplay.netPayloadKg / 1000).toFixed(3) : isAshokLeylandTruck ? '8.5' : isAshokLeyland1615Truck ? '6' : isTata1412Truck ? '8.5' : isSmlIsuzuTruck ? '12' : isMahindraBoleroTruck ? '1.6' : isTataAceGold7908 || isTataAceGoldPlain ? '0.71' : isTata1512GLPT ? '8.62' : isTata609G && tata609GDisplay ? (tata609GDisplay.netPayloadKg / 1000).toFixed(3) : '10'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.netPayloadKg == null ? '' : <small>T</small>}
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay && bajajMaximaCNGDisplay.netPayloadKg == null
+                      ? '–'
+                      : isTata709gLPT && tata709gLPTDisplay
+                        ? (tata709gLPTDisplay.netPayloadKg / 1000).toFixed(3)
+                          : isTata1109gLPT && tata1109gLPTDisplay
+                            ? (tata1109gLPTDisplay.netPayloadKg / 1000).toFixed(3)
+                          : isTata1212LPT && tata1212LPTDisplay
+                            ? (tata1212LPTDisplay.netPayloadKg / 1000).toFixed(3)
+                          : isEicherPro2110L && eicherPro2110LDisplay
+                            ? (eicherPro2110LDisplay.netPayloadKg / 1000).toFixed(3)
+                            : isEicher2059XPTruck && eicher2059XPDisplay
+                              ? (eicher2059XPDisplay.netPayloadKg / 1000).toFixed(3)
+                              : isEicher1075HSDTruck && eicher1075HSDDisplay
+                                ? (eicher1075HSDDisplay.netPayloadKg / 1000).toFixed(3)
+                                : isSmlIsuzuZT54 && smlIsuzuZT54Display
+                                  ? (smlIsuzuZT54Display.netPayloadKg / 1000).toFixed(3)
+                                  : isAshokLeylandTruck && ashokLeyland1415Display
+                                  ? (ashokLeyland1415Display.netPayloadKg / 1000).toFixed(3)
+                                  : isAshokLeyland1615Truck
+                                  ? '6'
+                                  : isTata1412Truck
+                                    ? '8.5'
+                                    : isSmlIsuzuTruck
+                                      ? '12'
+                                      : isMahindraBoleroTruck
+                                        ? '1.6'
+                                        : isTataAceGold7908 || isTataAceGoldPlain
+                                          ? '0.71'
+                                          : isTata1512GLPT
+                                            ? '8.62'
+                                            : isTata609G && tata609GDisplay
+                                              ? (tata609GDisplay.netPayloadKg / 1000).toFixed(3)
+                                              : '10'}{isBajajMaximaCNG && bajajMaximaCNGDisplay?.netPayloadKg == null ? '' : <small>T</small>}
                   </span>
-                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isEicherPro2110L || isBajajMaximaCNG ? 'Net Payload' : 'Payload'}</span>
+                  <span className="td-load-label">{isTataAceGold7908 || isTataAceGoldPlain || isTata1512GLPT || isTata1212LPT || isTata609G || isTata709gLPT || isTata1109gLPT || isEicherPro2110L || isBajajMaximaCNG || isEicher2059XPTruck || isEicher1075HSDTruck || isSmlIsuzuZT54 ? 'Net Payload' : 'Payload'}</span>
                 </div>
                 <div className="td-load-card">
                   <span className="td-load-value">
-                    {isBajajMaximaCNG && bajajMaximaCNGDisplay ? String(bajajMaximaCNGDisplay.bodyFt) : isEicherPro2110L && eicherPro2110LDisplay ? String(eicherPro2110LDisplay.bodyFt) : isTata1212LPT && tata1212LPTDisplay ? String(tata1212LPTDisplay.bodyFt) : isTata709gLPT && tata709gLPTDisplay ? String(tata709gLPTDisplay.bodyFt) : isTata609G && tata609GDisplay ? String(tata609GDisplay.bodyFt) : isAshokLeylandTruck ? '24' : isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT ? '22' : isMahindraBoleroTruck ? '08' : isTataAceGold7908 || isTataAceGoldPlain ? '7.2' : '20'}<small>ft</small>
+                    {isBajajMaximaCNG && bajajMaximaCNGDisplay ? String(bajajMaximaCNGDisplay.bodyFt)
+                      : isEicherPro2110L && eicherPro2110LDisplay ? String(eicherPro2110LDisplay.bodyFt)
+                      : isEicher2059XPTruck && eicher2059XPDisplay ? String(eicher2059XPDisplay.bodyFt)
+                      : isEicher1075HSDTruck && eicher1075HSDDisplay ? String(eicher1075HSDDisplay.bodyFt)
+                      : isSmlIsuzuZT54 && smlIsuzuZT54Display ? String(smlIsuzuZT54Display.bodyFt)
+                      : isTata1212LPT && tata1212LPTDisplay ? String(tata1212LPTDisplay.bodyFt)
+                      : isTata709gLPT && tata709gLPTDisplay ? String(tata709gLPTDisplay.bodyFt)
+                      : isTata1109gLPT && tata1109gLPTDisplay ? String(tata1109gLPTDisplay.bodyFt)
+                      : isTata609G && tata609GDisplay ? String(tata609GDisplay.bodyFt)
+                      : isAshokLeylandTruck ? '24'
+                      : isAshokLeyland1615Truck || isTata1412Truck || isSmlIsuzuTruck || isTata1512GLPT ? '22'
+                      : isMahindraBoleroTruck ? '08'
+                      : isTataAceGold7908 || isTataAceGoldPlain ? '7.2'
+                      : '20'}<small>ft</small>
                   </span>
                   <span className="td-load-label">Body Length</span>
                 </div>
@@ -2949,6 +3337,121 @@ export default function TruckDetailsPage() {
                 </div>
               )}
 
+              {/* PDF Reports Section - For ASHOK LEYLAND ECOMET STAR 1415 HE */}
+              {truck?.name === 'ASHOK LEYLAND ECOMET STAR 1415 HE' && (
+                <div className="td-pdf-reports-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #e5e7eb' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#111827' }}>Quality Reports & Documents</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/ASHOK_LEYLAND_ECOMET_STAR_1415_HE/REPORTS/VEHICLE%20INSPECTION%20REPORT%20UP14LT8731.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#dc2626',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Vehicle Inspection Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Comprehensive vehicle inspection report with detailed analysis</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/ASHOK_LEYLAND_ECOMET_STAR_1415_HE/REPORTS/Copy%20of%20Legal%20Report%20UP14LT8731.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#2563eb',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Legal Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Legal documentation including RC, permits, insurance, and challans</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              )}
+
               {/* PDF Reports Section - For Mahindra Bolero Maxitruck Plus */}
               {truck?.name === 'Mahindra Bolero Maxitruck Plus' && (
                 <div className="td-pdf-reports-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #e5e7eb' }}>
@@ -3124,6 +3627,121 @@ export default function TruckDetailsPage() {
                     </a>
                     <a
                       href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/SML_ISUZU_SAMRAT_4760GS/REPORTS/1771078660290-Copy%20of%20Legal%20Report%20DL1MA9541.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#2563eb',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Legal Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Legal documentation including RC, permits, insurance, and challans</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* PDF Reports Section - For SML Isuzu ZT54 */}
+              {isSmlIsuzuZT54 && smlIsuzuZT54Display && (
+                <div className="td-pdf-reports-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #e5e7eb' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#111827' }}>Quality Reports & Documents</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/SML%20Isuzu%20ZT54%20-20260310T094926Z-1-001/SML%20Isuzu%20ZT54/Copy%20of%20VEHICLE%20INSPECTION%20REPORT%20UP14GT0868.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#dc2626',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Vehicle Inspection Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Comprehensive vehicle inspection report UP14GT0868 with detailed analysis</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/SML%20Isuzu%20ZT54%20-20260310T094926Z-1-001/SML%20Isuzu%20ZT54/Copy%20of%20Legal%20Report%20UP14GT0868.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -3371,6 +3989,123 @@ export default function TruckDetailsPage() {
                         </a>
                       )
                     })}
+                  </div>
+                </div>
+              )}
+
+              {/* PDF Reports Section - For Tata 1109g LPT */}
+              {((truck?.name || '').toLowerCase().includes('1109') &&
+                (truck?.name || '').toLowerCase().includes('lpt') &&
+                ((truck?.name || '').toLowerCase().includes('tata') || truck?.manufacturer === 'Tata Motors')) && (
+                <div className="td-pdf-reports-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #e5e7eb' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#111827' }}>Quality Reports & Documents</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/TATA_1109G_LPT/REPORTS/1771271315383-VEHICLE%20INSPECTION%20REPORT%20HR55AP0795.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#dc2626',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Vehicle Inspection Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Comprehensive vehicle inspection report HR55AP0795 with detailed analysis</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images/TATA_1109G_LPT/REPORTS/1771271314357-Legal%20Report%20HR55AP0795.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #e5e7eb',
+                        textDecoration: 'none',
+                        color: '#111827',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f3f4f6'
+                        e.currentTarget.style.borderColor = '#d1d5db'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#f9fafb'
+                        e.currentTarget.style.borderColor = '#e5e7eb'
+                      }}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#2563eb',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>Legal Report</div>
+                        <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Legal documentation including RC, permits, insurance, and challans (HR55AP0795)</div>
+                      </div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
                   </div>
                 </div>
               )}
@@ -3649,7 +4384,7 @@ export default function TruckDetailsPage() {
                     <input
                       type="range"
                       min="100000"
-                      max={tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : parseFloat(truck.price)}
+                      max={tataAceGoldDisplay ? tataAceGoldDisplay.price : tataAceGoldPlainDisplay ? tataAceGoldPlainDisplay.price : tata1512GLPTDisplay ? tata1512GLPTDisplay.price : tata1212LPTDisplay ? tata1212LPTDisplay.price : tata609GDisplay ? tata609GDisplay.price : tata709gLPTDisplay ? tata709gLPTDisplay.price : tata1109gLPTDisplay ? tata1109gLPTDisplay.price : eicherPro2110LDisplay ? eicherPro2110LDisplay.price : bajajMaximaCNGDisplay ? bajajMaximaCNGDisplay.price : parseFloat(truck.price)}
                       step="50000"
                       value={financeAmount}
                       onChange={(e) => setFinanceAmount(parseInt(e.target.value))}

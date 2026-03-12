@@ -97,15 +97,24 @@ function BrowseTrucksContent() {
         const is1512GLPT = truck.name === 'TATA 1512G LPT' || truck.name === 'Tata 1512G LPT' || (truck.name?.includes?.('1512') && truck.name?.includes?.('LPT') && truck.name?.toLowerCase().includes?.('tata'))
         const is1212LPT = (truck.name || '').toLowerCase().includes('1212') && (truck.name || '').toLowerCase().includes('lpt') && (truck.name || '').toLowerCase().includes('tata')
         const is609G = (truck.name || '').toLowerCase().includes('609') && ((truck.name || '').toLowerCase().includes('609g') || (truck.name || '').toLowerCase().includes('609 g')) && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+        const is709gLPT = (truck.name || '').toLowerCase().includes('709') && ((truck.name || '').toLowerCase().includes('709g') || (truck.name || '').toLowerCase().includes('709 g')) && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+        const is1109gLPT = (truck.name || '').toLowerCase().includes('1109') && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
+        const isAshokLeyland1415 = (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1415 HE'
+        const isAshokLeyland1615 = (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1615 HE'
+        const isEicher2059XP = (truck.name || '').toLowerCase().includes('2059') && (truck.name || '').toLowerCase().includes('eicher')
+        const isEicher1075HSD = (truck.name || '').toLowerCase().includes('1075') && (truck.name || '').toLowerCase().includes('eicher')
+        const isMahindraBolero = truck.name === 'Mahindra Bolero Maxitruck Plus'
+        const isSmlIsuzu = truck.name === 'SML Isuzu Samrat 4760gs'
+        const isSmlIsuzuZT54 = (truck.name || '').toLowerCase().includes('zt54') && (truck.name || '').toLowerCase().includes('sml')
         return {
         id: truck.id,
         name: truck.name || `${truck.year} ${truck.manufacturer} ${truck.model}`,
         year: truck.year,
-        price: is1512GLPT ? '₹15,30,000' : is1212LPT ? '₹14,20,000' : is609G ? '₹10,00,000' : `₹${parseFloat(truck.price.toString()).toLocaleString('en-IN')}`,
-        mileage: is1512GLPT ? '2,09,311 km' : is1212LPT ? '1,52,804 km' : is609G ? '78,699 km' : `${truck.kilometers?.toLocaleString() || '0'} km`,
-        engine: is1512GLPT ? 'CNG' : is1212LPT ? 'Diesel' : is609G ? 'CNG' : 'Diesel', // Default, can be enhanced with fuelType field
+        price: is1512GLPT ? '₹15,30,000' : is1212LPT ? '₹14,20,000' : is609G ? '₹10,00,000' : is709gLPT ? '₹10,25,000' : is1109gLPT ? '₹13,50,000' : isAshokLeyland1415 ? '₹14,30,000' : isAshokLeyland1615 ? '₹15,40,000' : isEicher2059XP ? '₹9,20,000' : isEicher1075HSD ? '₹9,50,000' : isMahindraBolero || isSmlIsuzuZT54 ? '₹6,30,000' : `₹${parseFloat(truck.price.toString()).toLocaleString('en-IN')}`,
+        mileage: is1512GLPT ? '2,09,311 km' : is1212LPT ? '1,52,804 km' : is609G ? '78,699 km' : is709gLPT ? '1,29,420 km' : is1109gLPT ? '87,631 km' : isAshokLeyland1415 ? '2,36,133 km' : isEicher2059XP ? '1,83,889 km' : isEicher1075HSD ? '2,29,537 km' : isSmlIsuzuZT54 ? '2,29,537 km' : `${truck.kilometers?.toLocaleString() || '0'} km`,
+        engine: is1512GLPT ? 'CNG' : is1212LPT ? 'Diesel' : is609G || is709gLPT || is1109gLPT || isAshokLeyland1415 || isAshokLeyland1615 || isEicher2059XP || isMahindraBolero || isSmlIsuzu ? 'CNG' : isEicher1075HSD ? 'Diesel' : 'Diesel', // Default, can be enhanced with fuelType field
         transmission: 'Manual', // Default, can be enhanced with transmission field
-        location: (truck.name?.includes?.('Tata Ace Gold')) ? 'Ghaziabad' : (truck.name?.toLowerCase().includes('2110') && (truck.name?.toLowerCase().includes('2110l') || truck.model?.toUpperCase().includes('2110L'))) ? 'Bahadurgarh' : (truck.name?.toLowerCase().includes('zt54') && truck.name?.toLowerCase().includes('sml')) ? 'Pune' : (truck.name?.toLowerCase().includes('2059') && truck.name?.toLowerCase().includes('eicher') ? 'Pune' : (truck.name?.toLowerCase().includes('bajaj') && truck.name?.toLowerCase().includes('maxima') && truck.name?.toLowerCase().includes('cng') ? 'Rajpur Road' : is1512GLPT ? 'Rajpur Road' : is1212LPT ? 'Faridabad' : is609G ? 'Rajpur Road' : (truck.location || truck.city || 'Unknown'))),
+        location: (truck.name?.includes?.('Tata Ace Gold')) ? 'Ghaziabad' : (truck.name?.toLowerCase().includes('2110') && (truck.name?.toLowerCase().includes('2110l') || truck.model?.toUpperCase().includes('2110L'))) ? 'Bahadurgarh' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : (truck.name?.toLowerCase().includes('2059') && truck.name?.toLowerCase().includes('eicher') ? 'Dwarka, Delhi' : (truck.name?.toLowerCase().includes('bajaj') && truck.name?.toLowerCase().includes('maxima') && truck.name?.toLowerCase().includes('cng') ? 'Rajpur Road' : is1512GLPT ? 'Rajpur Road' : is1212LPT ? 'Faridabad' : is609G || is709gLPT || isAshokLeyland1415 || isAshokLeyland1615 ? 'Ghaziabad' : is1109gLPT ? 'Gurugram' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : (truck.location || truck.city || 'Unknown'))),
         image: truck.imageUrl,
         certified: truck.certified ?? true,
         manufacturer: truck.manufacturer,
