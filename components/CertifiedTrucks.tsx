@@ -208,7 +208,13 @@ export default function CertifiedTrucks() {
                   km: truck.kilometers?.toLocaleString() || '0',
                   hp: truck.horsepower != null ? String(truck.horsepower) : '–'
                 }}
-                price={`₹ ${truck.price ? parseFloat(truck.price).toLocaleString('en-IN') : '0'}`}
+                price={
+                  typeof truck.price === 'number'
+                    ? `₹ ${truck.price.toLocaleString('en-IN')}`
+                    : typeof truck.price === 'string'
+                      ? (truck.price.trim().startsWith('₹') ? truck.price.trim() : `₹ ${truck.price.trim()}`)
+                      : '₹ 0'
+                }
                 image={truck.image}
                 gradient="linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%)"
                 onInquire={() => handleInquire(truck.id)}
