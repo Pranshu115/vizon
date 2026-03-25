@@ -6,11 +6,8 @@ import Navbar from '@/components/Navbar'
 import TruckCard from '@/components/TruckCard'
 import BrowseFilters from '@/components/BrowseFilters'
 import Footer from '@/components/Footer'
-<<<<<<< HEAD
-=======
 import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
 import { formatTruckListingLocation } from '@/lib/utils'
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 interface Truck {
   id: number
@@ -119,13 +116,8 @@ function BrowseTrucksContent() {
         mileage: is1512GLPT ? '2,09,311 km' : is1212LPT ? '1,52,804 km' : is609G ? '78,699 km' : is709gLPT ? '1,29,420 km' : is1109gLPT ? '87,631 km' : isAshokLeyland1415 ? '2,36,133 km' : isEicher2059XP ? '1,83,889 km' : isEicher1075HSD ? '2,29,537 km' : isSmlIsuzuZT54 ? '2,29,537 km' : `${truck.kilometers?.toLocaleString() || '0'} km`,
         engine: is1512GLPT ? 'CNG' : is1212LPT ? 'Diesel' : is609G || is709gLPT || is1109gLPT || isAshokLeyland1415 || isAshokLeyland1615 || isEicher2059XP || isMahindraBolero || isSmlIsuzu ? 'CNG' : isEicher1075HSD ? 'Diesel' : 'Diesel', // Default, can be enhanced with fuelType field
         transmission: 'Manual', // Default, can be enhanced with transmission field
-<<<<<<< HEAD
-        location: (truck.name?.includes?.('Tata Ace Gold')) ? 'Ghaziabad' : (truck.name?.toLowerCase().includes('2110') && (truck.name?.toLowerCase().includes('2110l') || truck.model?.toUpperCase().includes('2110L'))) ? 'Bahadurgarh' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : (truck.name?.toLowerCase().includes('2059') && truck.name?.toLowerCase().includes('eicher') ? 'Dwarka, Delhi' : (truck.name?.toLowerCase().includes('bajaj') && truck.name?.toLowerCase().includes('maxima') && truck.name?.toLowerCase().includes('cng') ? 'Rajpur Road' : is1512GLPT ? 'Rajpur Road' : is1212LPT ? 'Faridabad' : is609G || is709gLPT || isAshokLeyland1415 || isAshokLeyland1615 ? 'Ghaziabad' : is1109gLPT ? 'Gurugram' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : (truck.location || truck.city || 'Unknown'))),
-        image: truck.imageUrl,
-=======
         location: (truck.name?.includes?.('Tata Ace Gold')) ? 'Ghaziabad' : (truck.name?.toLowerCase().includes('2110') && (truck.name?.toLowerCase().includes('2110l') || truck.model?.toUpperCase().includes('2110L'))) ? 'Bahadurgarh' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : (truck.name?.toLowerCase().includes('2059') && truck.name?.toLowerCase().includes('eicher') ? 'Dwarka, Delhi' : (truck.name?.toLowerCase().includes('bajaj') && truck.name?.toLowerCase().includes('maxima') && truck.name?.toLowerCase().includes('cng') ? 'Rajpur Road' : is1512GLPT ? 'Rajpur Road' : is1212LPT ? 'Faridabad' : is609G || is709gLPT || isAshokLeyland1415 || isAshokLeyland1615 ? 'Ghaziabad' : is1109gLPT ? 'Gurugram' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : formatTruckListingLocation(truck))),
         image: resolveTruckListImageUrl(truck),
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
         certified: truck.certified ?? true,
         manufacturer: truck.manufacturer,
         model: truck.model,

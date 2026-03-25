@@ -5,8 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-<<<<<<< HEAD
-=======
 /** Build a single location line for browse cards when DB fields are partial or missing. */
 export function formatTruckListingLocation(truck: {
   location?: string | null
@@ -25,7 +23,5 @@ export function formatTruckListingLocation(truck: {
   if (rto) return rto
   return 'Unknown'
 }
-
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 

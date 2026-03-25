@@ -2,10 +2,7 @@ import { NextResponse } from 'next/server'
 import { safeSupabaseQuery, Truck } from '@/lib/supabase'
 import { searchQuerySchema, paginationSchema } from '@/lib/validation'
 import { validateRequest, formatValidationError, createErrorResponse, createSuccessResponse } from '@/lib/api-helpers'
-<<<<<<< HEAD
-=======
 import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 export async function GET(request: Request) {
   try {
@@ -72,20 +69,13 @@ export async function GET(request: Request) {
           kilometers: truck.kilometers,
           horsepower: truck.horsepower,
           price: Number(truck.price),
-<<<<<<< HEAD
-          imageUrl: truck.image_url,
-=======
           imageUrl: resolveTruckListImageUrl(truck),
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: truck.subtitle ?? null,
           certified: truck.certified,
           state: truck.state ?? null,
           location: truck.location ?? null,
           city: truck.city ?? null,
-<<<<<<< HEAD
-=======
           rto: truck.rto ?? null,
->>>>>>> 46cedea (Update listing hero images and gallery filtering)
           createdAt: new Date(truck.created_at),
           updatedAt: new Date(truck.updated_at),
         }))
