@@ -87,19 +87,6 @@ export default function CertifiedTrucks() {
 
       const formatTrucks = (rawTrucks: any[]) => {
         return (rawTrucks || []).map((truck: any) => {
-          const isAshokLeyland1415 =
-            (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1415 HE'
-          const isAshokLeyland1615 =
-            (truck.name || '').toUpperCase() === 'ASHOK LEYLAND ECOMET STAR 1615 HE'
-          const isEicher2059XP =
-            (truck.name || '').toLowerCase().includes('2059') && (truck.name || '').toLowerCase().includes('eicher')
-          const isEicher1075HSD =
-            (truck.name || '').toLowerCase().includes('1075') && (truck.name || '').toLowerCase().includes('eicher')
-          const isMahindraBolero = truck.name === 'Mahindra Bolero Maxitruck Plus'
-          const isSmlIsuzu = truck.name === 'SML Isuzu Samrat 4760gs'
-          const isSmlIsuzuZT54 = (truck.name || '').toLowerCase().includes('zt54') && (truck.name || '').toLowerCase().includes('sml')
-          const isTata1109gLPT = (truck.name || '').toLowerCase().includes('1109') && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
-
           const formattedFallbackPrice = (() => {
             if (typeof truck.price === 'number' && Number.isFinite(truck.price)) {
               return `₹${truck.price.toLocaleString('en-IN')}`
@@ -113,50 +100,22 @@ export default function CertifiedTrucks() {
             return `₹${num.toLocaleString('en-IN')}`
           })()
 
-          const price =
-            isAshokLeyland1415
-              ? '₹14,30,000'
-              : isAshokLeyland1615
-                ? '₹15,40,000'
-                : isEicher2059XP
-                  ? '₹9,20,000'
-                  : isEicher1075HSD
-                    ? '₹9,50,000'
-                    : isTata1109gLPT
-                      ? '₹13,50,000'
-                    : isMahindraBolero || isSmlIsuzuZT54
-                      ? '₹6,30,000'
-              : formattedFallbackPrice
-
-          const mileage =
-            isAshokLeyland1415
-              ? '2,36,133 km'
-              : isEicher2059XP
-                ? '1,83,889 km'
-                : isEicher1075HSD || isSmlIsuzuZT54
-                  ? '2,29,537 km'
-                  : isTata1109gLPT
-                    ? '1,62,134 km'
-              : `${truck.kilometers?.toLocaleString('en-IN') || '0'} km`
-
-          const engine =
-            isAshokLeyland1415 || isAshokLeyland1615 || isEicher2059XP || isMahindraBolero || isSmlIsuzu || isTata1109gLPT
-              ? 'CNG'
-              : isEicher1075HSD || isSmlIsuzuZT54
-                ? 'Diesel'
-              : (truck.fuel_type as string) || 'Diesel'
+          const kilometers = typeof truck.kilometers === 'number' ? truck.kilometers : null
+          const horsepower = typeof truck.horsepower === 'number' ? truck.horsepower : null
+          const fuelType = (truck.fuel_type as string | null | undefined) || null
+          const transmission = (truck.transmission as string | null | undefined) || null
 
           return {
             id: truck.id,
             name: truck.name || `${truck.year} ${truck.manufacturer} ${truck.model}`,
             year: truck.year,
-            price,
-            mileage,
-            engine,
-            kilometers: typeof truck.kilometers === 'number' ? truck.kilometers : null,
-            horsepower: typeof truck.horsepower === 'number' ? truck.horsepower : null,
-            transmission: 'Manual',
-            location: isAshokLeyland1415 || isAshokLeyland1615 ? 'GHAZIABAD' : isEicher2059XP ? 'Dwarka, Delhi' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : isTata1109gLPT ? 'Gurugram' : formatTruckListingLocation(truck),
+            price: formattedFallbackPrice,
+            mileage: `${(kilometers ?? 0).toLocaleString('en-IN')} km`,
+            engine: fuelType ?? 'Diesel',
+            kilometers,
+            horsepower,
+            transmission: transmission ?? 'Manual',
+            location: formatTruckListingLocation(truck),
             image: resolveTruckListImageUrl(truck),
             certified: truck.certified ?? true,
             manufacturer: truck.manufacturer,
