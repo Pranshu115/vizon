@@ -109,8 +109,23 @@ class FileChangeLoggerPlugin {
 const nextConfig = {
   // Set the workspace root to silence the lockfile warning
   outputFileTracingRoot: path.join(__dirname),
-  
-  
+
+  // Listing hero images live under /trucks/*. Avoid long-lived CDN/browser cache on
+  // the deployed host so new hero PNGs/WebPs show up right after a redeploy.
+  async headers() {
+    return [
+      {
+        source: '/trucks/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+    ]
+  },
+
   images: {
     remotePatterns: [
       {
