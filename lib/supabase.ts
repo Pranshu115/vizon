@@ -46,6 +46,10 @@ export interface Truck {
   state: string | null
   location: string | null
   city: string | null
+<<<<<<< HEAD
+=======
+  rto?: string | null
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
   created_at: string
   updated_at: string
 }

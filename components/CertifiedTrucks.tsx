@@ -3,6 +3,11 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+<<<<<<< HEAD
+=======
+import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
+import { formatTruckListingLocation } from '@/lib/utils'
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 interface TruckSpec {
   year: string
@@ -139,8 +144,13 @@ export default function CertifiedTrucks() {
             mileage,
             engine,
             transmission: 'Manual',
+<<<<<<< HEAD
             location: isAshokLeyland1415 || isAshokLeyland1615 ? 'GHAZIABAD' : isEicher2059XP ? 'Dwarka, Delhi' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : isTata1109gLPT ? 'Gurugram' : (truck.location || truck.city || 'Unknown'),
             image: truck.imageUrl,
+=======
+            location: isAshokLeyland1415 || isAshokLeyland1615 ? 'GHAZIABAD' : isEicher2059XP ? 'Dwarka, Delhi' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : isTata1109gLPT ? 'Gurugram' : formatTruckListingLocation(truck),
+            image: resolveTruckListImageUrl(truck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
             certified: truck.certified ?? true,
             manufacturer: truck.manufacturer,
             model: truck.model,
@@ -207,7 +217,11 @@ export default function CertifiedTrucks() {
                   hp: truck.horsepower != null ? String(truck.horsepower) : '–'
                 }}
                 price={`₹ ${truck.price ? parseFloat(truck.price).toLocaleString('en-IN') : '0'}`}
+<<<<<<< HEAD
                 image={truck.imageUrl}
+=======
+                image={truck.image}
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
                 gradient="linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%)"
                 onInquire={() => handleInquire(truck.id)}
               />

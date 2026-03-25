@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { safeSupabaseQuery } from '@/lib/supabase'
 import { seedTrucks } from '@/lib/seed-data'
+<<<<<<< HEAD
+=======
+import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 type TruckWithNumberPrice = {
   id: number
@@ -17,6 +21,10 @@ type TruckWithNumberPrice = {
   state: string | null
   location: string | null
   city: string | null
+<<<<<<< HEAD
+=======
+  rto: string | null
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
   createdAt: Date
   updatedAt: Date
 }
@@ -59,12 +67,20 @@ export async function GET(
           kilometers: result.kilometers,
           horsepower: result.horsepower,
           price: Number(result.price),
+<<<<<<< HEAD
           imageUrl: result.image_url,
+=======
+          imageUrl: resolveTruckListImageUrl(result),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: result.subtitle ?? null,
           certified: result.certified,
           state: result.state ?? null,
           location: result.location ?? null,
           city: result.city ?? null,
+<<<<<<< HEAD
+=======
+          rto: result.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           createdAt: new Date(result.created_at),
           updatedAt: new Date(result.updated_at),
         }
@@ -75,10 +91,18 @@ export async function GET(
         if (!seedTruck) return null
         return {
           ...seedTruck,
+<<<<<<< HEAD
+=======
+          imageUrl: resolveTruckListImageUrl(seedTruck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: seedTruck.subtitle ?? null,
           state: null,
           location: null,
           city: null,
+<<<<<<< HEAD
+=======
+          rto: null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
         } as TruckWithNumberPrice
       })()
     )
@@ -135,12 +159,20 @@ export async function GET(
           kilometers: truck.kilometers,
           horsepower: truck.horsepower,
           price: Number(truck.price),
+<<<<<<< HEAD
           imageUrl: truck.image_url,
+=======
+          imageUrl: resolveTruckListImageUrl(truck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: truck.subtitle ?? null,
           certified: truck.certified,
           state: truck.state ?? null,
           location: truck.location ?? null,
           city: truck.city ?? null,
+<<<<<<< HEAD
+=======
+          rto: truck.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           createdAt: new Date(truck.created_at),
           updatedAt: new Date(truck.updated_at),
         }))
@@ -156,10 +188,18 @@ export async function GET(
           .slice(0, 4)
           .map(truck => ({
             ...truck,
+<<<<<<< HEAD
+=======
+            imageUrl: resolveTruckListImageUrl(truck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
             subtitle: truck.subtitle ?? null,
             state: null,
             location: null,
             city: null,
+<<<<<<< HEAD
+=======
+            rto: null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           })) as TruckWithNumberPrice[]
       })()
     )

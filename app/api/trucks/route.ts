@@ -3,6 +3,10 @@ import { safeSupabaseQuery, type Truck } from '@/lib/supabase'
 import { truckCreateSchema, paginationSchema } from '@/lib/validation'
 import { validateRequest, formatValidationError, createErrorResponse, createSuccessResponse } from '@/lib/api-helpers'
 import { seedTrucks } from '@/lib/seed-data'
+<<<<<<< HEAD
+=======
+import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 type TruckWithNumberPrice = {
   id: number
@@ -19,6 +23,10 @@ type TruckWithNumberPrice = {
   state: string | null
   location: string | null
   city: string | null
+<<<<<<< HEAD
+=======
+  rto: string | null
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
   createdAt: Date
   updatedAt: Date
 }
@@ -73,12 +81,20 @@ export async function GET(request: Request) {
           kilometers: truck.kilometers,
           horsepower: truck.horsepower,
           price: Number(truck.price),
+<<<<<<< HEAD
           imageUrl: truck.image_url,
+=======
+          imageUrl: resolveTruckListImageUrl(truck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: truck.subtitle ?? null,
           certified: truck.certified,
           state: truck.state ?? null,
           location: truck.location ?? null,
           city: truck.city ?? null,
+<<<<<<< HEAD
+=======
+          rto: truck.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           createdAt: new Date(truck.created_at),
           updatedAt: new Date(truck.updated_at),
         }))
@@ -104,12 +120,20 @@ export async function GET(request: Request) {
               kilometers: extra.kilometers,
               horsepower: extra.horsepower,
               price: Number(extra.price),
+<<<<<<< HEAD
               imageUrl: extra.image_url,
+=======
+              imageUrl: resolveTruckListImageUrl(extra),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
               subtitle: extra.subtitle ?? null,
               certified: true,
               state: extra.state ?? null,
               location: extra.location ?? null,
               city: extra.city ?? null,
+<<<<<<< HEAD
+=======
+              rto: extra.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
               createdAt: new Date(extra.created_at),
               updatedAt: new Date(extra.updated_at),
             } as TruckWithNumberPrice
@@ -150,12 +174,20 @@ export async function GET(request: Request) {
               kilometers: extra.kilometers,
               horsepower: extra.horsepower,
               price: Number(extra.price),
+<<<<<<< HEAD
               imageUrl: extra.image_url,
+=======
+              imageUrl: resolveTruckListImageUrl(extra),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
               subtitle: extra.subtitle ?? null,
               certified: true,
               state: extra.state ?? null,
               location: extra.location ?? null,
               city: extra.city ?? null,
+<<<<<<< HEAD
+=======
+              rto: extra.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
               createdAt: new Date(extra.created_at),
               updatedAt: new Date(extra.updated_at),
             } as TruckWithNumberPrice
@@ -175,12 +207,20 @@ export async function GET(request: Request) {
                 kilometers: seed1109.kilometers,
                 horsepower: seed1109.horsepower,
                 price: Number(seed1109.price),
+<<<<<<< HEAD
                 imageUrl: seed1109.imageUrl,
+=======
+                imageUrl: resolveTruckListImageUrl(seed1109),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
                 subtitle: seed1109.subtitle ?? null,
                 certified: true,
                 state: null,
                 location: null,
                 city: null,
+<<<<<<< HEAD
+=======
+                rto: null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
                 createdAt: seed1109.createdAt,
                 updatedAt: seed1109.updatedAt,
               } as TruckWithNumberPrice
@@ -199,10 +239,18 @@ export async function GET(request: Request) {
         const certifiedTrucks = seedTrucks.filter(t => t.certified)
         const paginatedTrucks = certifiedTrucks.slice(skip, skip + limit).map(truck => ({
           ...truck,
+<<<<<<< HEAD
+=======
+          imageUrl: resolveTruckListImageUrl(truck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: truck.subtitle ?? null,
           state: null,
           location: null,
           city: null,
+<<<<<<< HEAD
+=======
+          rto: null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
         })) as TruckWithNumberPrice[]
         return {
           trucks: paginatedTrucks,
@@ -290,6 +338,10 @@ export async function POST(request: Request) {
           state: result.state ?? null,
           location: result.location ?? null,
           city: result.city ?? null,
+<<<<<<< HEAD
+=======
+          rto: result.rto ?? null,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           createdAt: new Date(result.created_at),
           updatedAt: new Date(result.updated_at),
         }

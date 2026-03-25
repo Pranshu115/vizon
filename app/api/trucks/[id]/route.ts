@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { safeSupabaseQuery } from '@/lib/supabase'
 import { seedTrucks } from '@/lib/seed-data'
+<<<<<<< HEAD
+=======
+import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 type TruckWithNumberPrice = {
   id: number
@@ -71,7 +75,11 @@ export async function GET(
           kilometers: result.kilometers,
           horsepower: result.horsepower,
           price: Number(result.price),
+<<<<<<< HEAD
           imageUrl: result.image_url,
+=======
+          imageUrl: resolveTruckListImageUrl(result),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: result.subtitle ?? null,
           certified: result.certified,
           state: result.state ?? null,
@@ -110,7 +118,11 @@ export async function GET(
           kilometers: seedTruck.kilometers,
           horsepower: seedTruck.horsepower,
           price: Number(seedTruck.price),
+<<<<<<< HEAD
           imageUrl: seedTruck.imageUrl,
+=======
+          imageUrl: resolveTruckListImageUrl(seedTruck),
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
           subtitle: seedTruck.subtitle ?? null,
           certified: seedTruck.certified,
           state: null,

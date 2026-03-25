@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
+<<<<<<< HEAD
+=======
+import {
+  filterEicherPro2110LDocumentScreenshotsFromUrls,
+  isEicherPro2110LTruckName,
+  isLikelyRegistrationOrPermitUpload,
+} from '@/lib/truck-listing-images'
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
 
 const BUCKET_NAME = 'truck-images'
 
@@ -611,6 +619,19 @@ export async function GET(request: Request) {
         }
         return isMedia
       })
+<<<<<<< HEAD
+=======
+      .filter((file) => {
+        if (
+          isEicherPro2110LTruckName(decodedTruckName) &&
+          isLikelyRegistrationOrPermitUpload(file.name)
+        ) {
+          console.log(`[API] Skipping likely RC/document file for Pro 2110L: ${file.name}`)
+          return false
+        }
+        return true
+      })
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
       .map(file => {
         const filePath = `${folderName}/${file.name}`
         const { data } = supabase.storage
@@ -640,15 +661,34 @@ export async function GET(request: Request) {
       })
     }
 
+<<<<<<< HEAD
     console.log(`[API] ✅ Successfully returning ${imageUrls.length} images from Supabase`)
     const body: Record<string, unknown> = { 
       images: imageUrls,
       count: imageUrls.length,
+=======
+    const imagesForResponse = isEicherPro2110LTruckName(decodedTruckName)
+      ? filterEicherPro2110LDocumentScreenshotsFromUrls(imageUrls)
+      : imageUrls
+
+    console.log(`[API] ✅ Successfully returning ${imagesForResponse.length} images from Supabase`)
+    const body: Record<string, unknown> = { 
+      images: imagesForResponse,
+      count: imagesForResponse.length,
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
       folder: folderName,
       source: 'supabase-storage'
     }
     if (debug) {
+<<<<<<< HEAD
       body.debug = { folder: folderName, availableFoldersCount: availableFolders.length, firstImage: imageUrls[0] }
+=======
+      body.debug = {
+        folder: folderName,
+        availableFoldersCount: availableFolders.length,
+        firstImage: imagesForResponse[0],
+      }
+>>>>>>> 46cedea (Update listing hero images and gallery filtering)
     }
     return NextResponse.json(body)
   } catch (error: any) {
