@@ -153,6 +153,8 @@ export default function CertifiedTrucks() {
             price,
             mileage,
             engine,
+            kilometers: typeof truck.kilometers === 'number' ? truck.kilometers : null,
+            horsepower: typeof truck.horsepower === 'number' ? truck.horsepower : null,
             transmission: 'Manual',
             location: isAshokLeyland1415 || isAshokLeyland1615 ? 'GHAZIABAD' : isEicher2059XP ? 'Dwarka, Delhi' : isEicher1075HSD ? 'Uttam Nagar' : isMahindraBolero || isSmlIsuzu ? 'RAJPUR ROAD' : isSmlIsuzuZT54 ? 'Ghaziabad, UP' : isTata1109gLPT ? 'Gurugram' : formatTruckListingLocation(truck),
             image: resolveTruckListImageUrl(truck),
@@ -218,8 +220,8 @@ export default function CertifiedTrucks() {
                 subtitle={truck.year?.toString() || truck.subtitle || 'Premium quality truck'}
                 specs={{
                   year: truck.year?.toString() ?? '–',
-                  km: truck.kilometers?.toLocaleString() || '0',
-                  hp: truck.horsepower != null ? String(truck.horsepower) : '–'
+                  km: typeof truck.kilometers === 'number' ? truck.kilometers.toLocaleString('en-IN') : '–',
+                  hp: typeof truck.horsepower === 'number' ? String(truck.horsepower) : '–'
                 }}
                 price={typeof truck.price === 'string' ? truck.price : `₹${Number(truck.price || 0).toLocaleString('en-IN')}`}
                 image={truck.image}
