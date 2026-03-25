@@ -100,6 +100,19 @@ export default function CertifiedTrucks() {
           const isSmlIsuzuZT54 = (truck.name || '').toLowerCase().includes('zt54') && (truck.name || '').toLowerCase().includes('sml')
           const isTata1109gLPT = (truck.name || '').toLowerCase().includes('1109') && (truck.name || '').toLowerCase().includes('lpt') && ((truck.name || '').toLowerCase().includes('tata') || truck.manufacturer === 'Tata Motors')
 
+          const formattedFallbackPrice = (() => {
+            if (typeof truck.price === 'number' && Number.isFinite(truck.price)) {
+              return `₹${truck.price.toLocaleString('en-IN')}`
+            }
+            const raw = (truck.price ?? '').toString().trim()
+            if (!raw) return '₹0'
+            if (raw.startsWith('₹')) return raw.replace(/\s+/g, ' ').trim()
+            const numeric = raw.replace(/[^\d.]/g, '')
+            const num = Number(numeric)
+            if (!Number.isFinite(num) || num <= 0) return raw
+            return `₹${num.toLocaleString('en-IN')}`
+          })()
+
           const price =
             isAshokLeyland1415
               ? '₹14,30,000'
@@ -113,7 +126,7 @@ export default function CertifiedTrucks() {
                       ? '₹13,50,000'
                     : isMahindraBolero || isSmlIsuzuZT54
                       ? '₹6,30,000'
-              : `₹${parseFloat(truck.price?.toString() || '0').toLocaleString('en-IN')}`
+              : formattedFallbackPrice
 
           const mileage =
             isAshokLeyland1415
@@ -208,13 +221,7 @@ export default function CertifiedTrucks() {
                   km: truck.kilometers?.toLocaleString() || '0',
                   hp: truck.horsepower != null ? String(truck.horsepower) : '–'
                 }}
-                price={
-                  typeof truck.price === 'number'
-                    ? `₹ ${truck.price.toLocaleString('en-IN')}`
-                    : typeof truck.price === 'string'
-                      ? (truck.price.trim().startsWith('₹') ? truck.price.trim() : `₹ ${truck.price.trim()}`)
-                      : '₹ 0'
-                }
+                price={typeof truck.price === 'string' ? truck.price : `₹${Number(truck.price || 0).toLocaleString('en-IN')}`}
                 image={truck.image}
                 gradient="linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%)"
                 onInquire={() => handleInquire(truck.id)}
