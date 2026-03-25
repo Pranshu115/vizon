@@ -56,7 +56,7 @@ function BrowseTrucksContent() {
       // Fetch all certified trucks from database (increase limit to get all trucks)
       let certifiedTrucks: any[] = []
       try {
-        const certifiedResponse = await fetch('/api/trucks?limit=500')
+        const certifiedResponse = await fetch('/api/trucks?limit=500', { cache: 'no-store' })
         if (!certifiedResponse.ok) {
           console.error('Failed to fetch trucks:', certifiedResponse.status, certifiedResponse.statusText)
         } else {
@@ -71,7 +71,9 @@ function BrowseTrucksContent() {
       // Fetch approved truck submissions
       let submissions: any[] = []
       try {
-        const submissionsResponse = await fetch('/api/truck-submissions?status=approved')
+        const submissionsResponse = await fetch('/api/truck-submissions?status=approved', {
+          cache: 'no-store',
+        })
         if (!submissionsResponse.ok) {
           console.error('Failed to fetch submissions:', submissionsResponse.status, submissionsResponse.statusText)
         } else {

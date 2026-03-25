@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { safeSupabaseQuery } from '@/lib/supabase'
 import { seedTrucks } from '@/lib/seed-data'
 import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
+import { noStoreJsonHeaders } from '@/lib/api-helpers'
+
+export const dynamic = 'force-dynamic'
 
 type TruckWithNumberPrice = {
   id: number
@@ -46,7 +49,7 @@ export async function GET(
     if (isNaN(truckId)) {
       return NextResponse.json(
         { error: 'Invalid truck ID' },
-        { status: 400 }
+        { status: 400, headers: noStoreJsonHeaders }
       )
     }
 
@@ -126,16 +129,16 @@ export async function GET(
     if (!truck) {
       return NextResponse.json(
         { error: 'Truck not found' },
-        { status: 404 }
+        { status: 404, headers: noStoreJsonHeaders }
       )
     }
 
-    return NextResponse.json(truck)
+    return NextResponse.json(truck, { headers: noStoreJsonHeaders })
   } catch (error) {
     console.error('Error fetching truck:', error)
     return NextResponse.json(
       { error: 'Failed to fetch truck details' },
-      { status: 500 }
+      { status: 500, headers: noStoreJsonHeaders }
     )
   }
 }

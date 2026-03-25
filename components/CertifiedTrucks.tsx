@@ -83,7 +83,7 @@ export default function CertifiedTrucks() {
 
   const fetchTrucks = async () => {
     try {
-      const response = await fetch('/api/trucks')
+      const response = await fetch('/api/trucks', { cache: 'no-store' })
       const data = await response.json()
 
       const formatTrucks = (rawTrucks: any[]) => {

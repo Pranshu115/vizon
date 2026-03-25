@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server'
 import { safeSupabaseQuery, type Truck } from '@/lib/supabase'
 import { truckCreateSchema, paginationSchema } from '@/lib/validation'
-import { validateRequest, formatValidationError, createErrorResponse, createSuccessResponse } from '@/lib/api-helpers'
+import {
+  validateRequest,
+  formatValidationError,
+  createErrorResponse,
+  createSuccessResponse,
+  noStoreJsonHeaders,
+} from '@/lib/api-helpers'
+
+export const dynamic = 'force-dynamic'
 import { seedTrucks } from '@/lib/seed-data'
 import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
 
@@ -234,7 +242,7 @@ export async function GET(request: Request) {
       })()
     )
     
-    return NextResponse.json(result)
+    return NextResponse.json(result, { headers: noStoreJsonHeaders })
   } catch (error) {
     console.error('Error fetching trucks:', error)
     return createErrorResponse(
@@ -311,6 +319,8 @@ export async function POST(request: Request) {
           location: result.location ?? null,
           city: result.city ?? null,
           rto: result.rto ?? null,
+          fuel_type: result.fuel_type ?? null,
+          transmission: result.transmission ?? null,
           createdAt: new Date(result.created_at),
           updatedAt: new Date(result.updated_at),
         }

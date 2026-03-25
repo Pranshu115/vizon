@@ -665,7 +665,7 @@ export default function TruckDetailsPage() {
 
   const loadTruckData = useCallback(async () => {
     try {
-      const res = await fetch(`/api/trucks/${params.id}`)
+      const res = await fetch(`/api/trucks/${params.id}`, { cache: 'no-store' })
       if (res.ok) {
         const data = await res.json()
         if (data && !data.error) {
@@ -691,7 +691,7 @@ export default function TruckDetailsPage() {
 
   const loadSimilarTrucks = useCallback(async () => {
     try {
-      const res = await fetch(`/api/trucks/${params.id}/similar`)
+      const res = await fetch(`/api/trucks/${params.id}/similar`, { cache: 'no-store' })
       if (res.ok) {
         const data = await res.json()
         if (Array.isArray(data)) setSimilarTrucks(data)
@@ -765,7 +765,9 @@ export default function TruckDetailsPage() {
       if (truckName) {
         console.log(`[Truck Details] 🚀 Fetching images for truck: "${truckName}"`)
         console.log(`[Truck Details] API URL: /api/truck-images?truckName=${encodeURIComponent(truckName)}`)
-        fetch(`/api/truck-images?truckName=${encodeURIComponent(truckName)}`)
+        fetch(`/api/truck-images?truckName=${encodeURIComponent(truckName)}`, {
+          cache: 'no-store',
+        })
           .then(res => {
             if (!res.ok) {
               console.error(`[Truck Details] API response not OK: ${res.status}`)

@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server'
 import { ZodError } from 'zod'
 
+/** Prevents stale inventory/listing JSON behind CDNs, browsers, and Next caching */
+export const noStoreJsonHeaders = {
+  'Cache-Control': 'private, no-cache, no-store, must-revalidate',
+} as const
+
 /**
  * Helper function to validate request body with Zod schema
  */
@@ -60,7 +65,7 @@ export function createErrorResponse(
   if (details) {
     response.details = details
   }
-  return NextResponse.json(response, { status })
+  return NextResponse.json(response, { status, headers: noStoreJsonHeaders })
 }
 
 /**
@@ -76,7 +81,7 @@ export function createSuccessResponse<T>(
       ...(message && { message }),
       data,
     },
-    { status }
+    { status, headers: noStoreJsonHeaders }
   )
 }
 
