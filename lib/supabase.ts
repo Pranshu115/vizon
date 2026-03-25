@@ -47,6 +47,8 @@ export interface Truck {
   location: string | null
   city: string | null
   rto?: string | null
+  fuel_type?: string | null
+  transmission?: string | null
   created_at: string
   updated_at: string
 }

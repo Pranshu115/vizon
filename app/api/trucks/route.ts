@@ -21,6 +21,8 @@ type TruckWithNumberPrice = {
   location: string | null
   city: string | null
   rto: string | null
+  fuel_type: string | null
+  transmission: string | null
   createdAt: Date
   updatedAt: Date
 }
@@ -82,6 +84,8 @@ export async function GET(request: Request) {
           location: truck.location ?? null,
           city: truck.city ?? null,
           rto: truck.rto ?? null,
+          fuel_type: truck.fuel_type ?? null,
+          transmission: truck.transmission ?? null,
           createdAt: new Date(truck.created_at),
           updatedAt: new Date(truck.updated_at),
         }))
@@ -114,6 +118,8 @@ export async function GET(request: Request) {
               location: extra.location ?? null,
               city: extra.city ?? null,
               rto: extra.rto ?? null,
+              fuel_type: (extra as any).fuel_type ?? null,
+              transmission: (extra as any).transmission ?? null,
               createdAt: new Date(extra.created_at),
               updatedAt: new Date(extra.updated_at),
             } as TruckWithNumberPrice
@@ -161,6 +167,8 @@ export async function GET(request: Request) {
               location: extra.location ?? null,
               city: extra.city ?? null,
               rto: extra.rto ?? null,
+              fuel_type: (extra as any).fuel_type ?? null,
+              transmission: (extra as any).transmission ?? null,
               createdAt: new Date(extra.created_at),
               updatedAt: new Date(extra.updated_at),
             } as TruckWithNumberPrice
@@ -187,6 +195,8 @@ export async function GET(request: Request) {
                 location: null,
                 city: null,
                 rto: null,
+                fuel_type: null,
+                transmission: null,
                 createdAt: seed1109.createdAt,
                 updatedAt: seed1109.updatedAt,
               } as TruckWithNumberPrice
@@ -211,6 +221,8 @@ export async function GET(request: Request) {
           location: null,
           city: null,
           rto: null,
+          fuel_type: null,
+          transmission: null,
         })) as TruckWithNumberPrice[]
         return {
           trucks: paginatedTrucks,
