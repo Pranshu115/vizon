@@ -107,13 +107,8 @@ export const searchQuerySchema = z.object({
 // Pagination schema
 export const paginationSchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
-  limit: z.coerce.number().int().min(1).max(100).default(20),
-})
-
-/** For /api/trucks: browse page may request a high limit to list the full certified inventory. */
-export const trucksListPaginationSchema = z.object({
-  page: z.coerce.number().int().min(1).default(1),
-  limit: z.coerce.number().int().min(1).max(1000).default(20),
+  // Browse page requests 500; must allow or validation fails and API falls back to 20
+  limit: z.coerce.number().int().min(1).max(500).default(20),
 })
 
 // OTP request validation
