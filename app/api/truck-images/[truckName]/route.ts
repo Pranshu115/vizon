@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
+import { collectPublicTruckMediaUrls } from '@/lib/truck-images-collect'
+import { rewriteTruckImagesStorageUrls } from '@/lib/supabase-storage'
 
 const BUCKET_NAME = 'truck-images'
 
@@ -96,7 +98,9 @@ async function loadImagesFromMapping(truckName: string): Promise<string[]> {
         const mapping = JSON.parse(fileContent)
         
         if (Array.isArray(mapping)) {
-          return mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+          return rewriteTruckImagesStorageUrls(
+            mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+          )
         }
         
         return []
@@ -119,7 +123,9 @@ async function loadImagesFromMapping(truckName: string): Promise<string[]> {
     if (response.ok) {
       const mapping = await response.json()
       if (Array.isArray(mapping)) {
-        const urls = mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+        const urls = rewriteTruckImagesStorageUrls(
+          mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+        )
         console.log(`[API] Successfully loaded ${urls.length} URLs from public URL`)
         return urls
       }
@@ -322,58 +328,56 @@ export async function GET(
 
     console.log(`[API] Listing files in folder: ${folderName}`)
 
-    // List all files in the truck's folder
-    const { data: files, error } = await supabase.storage
-      .from(BUCKET_NAME)
-      .list(folderName, {
+    let imageUrls = rewriteTruckImagesStorageUrls(await collectPublicTruckMediaUrls(supabase, folderName))
+
+    if (imageUrls.length === 0) {
+      const { data: files, error } = await supabase.storage.from(BUCKET_NAME).list(folderName, {
         limit: 100,
         offset: 0,
-        sortBy: { column: 'name', order: 'asc' }
+        sortBy: { column: 'name', order: 'asc' },
       })
-
-    if (error) {
-      console.error('[API] Error listing files:', error)
-      console.error('[API] Error details:', JSON.stringify(error, null, 2))
-      return NextResponse.json(
-        { error: 'Failed to fetch images: ' + error.message, details: error },
-        { status: 500 }
-      )
+      if (error) {
+        console.error('[API] Error listing files:', error)
+        return NextResponse.json(
+          { error: 'Failed to fetch images: ' + error.message, details: error },
+          { status: 500 }
+        )
+      }
+      if (files?.length) {
+        imageUrls = rewriteTruckImagesStorageUrls(
+          files
+            .filter((file) => {
+              const ext = file.name.toLowerCase()
+              return (
+                ext.endsWith('.jpg') ||
+                ext.endsWith('.jpeg') ||
+                ext.endsWith('.png') ||
+                ext.endsWith('.webp') ||
+                ext.endsWith('.gif') ||
+                ext.endsWith('.mp4') ||
+                ext.endsWith('.mov')
+              )
+            })
+            .map((file) => {
+              const filePath = `${folderName}/${file.name}`
+              const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath)
+              return data.publicUrl
+            })
+        )
+      }
     }
 
-    if (!files || files.length === 0) {
-      console.warn(`[API] No files found in folder: ${folderName}`)
+    if (imageUrls.length === 0) {
+      console.warn(`[API] No images in folder: ${folderName}`)
       return NextResponse.json({ images: [], message: 'No files found in folder' })
     }
 
-    console.log(`[API] Found ${files.length} files in folder`)
-
-    // Filter to only image and video files, and generate public URLs
-    const imageUrls = files
-      .filter(file => {
-        const ext = file.name.toLowerCase()
-        const isMedia = ext.endsWith('.jpg') || 
-               ext.endsWith('.jpeg') || 
-               ext.endsWith('.png') || 
-               ext.endsWith('.webp') || 
-               ext.endsWith('.gif') ||
-               ext.endsWith('.mp4') ||
-               ext.endsWith('.mov')
-        return isMedia
-      })
-      .map(file => {
-        const filePath = `${folderName}/${file.name}`
-        const { data } = supabase.storage
-          .from(BUCKET_NAME)
-          .getPublicUrl(filePath)
-        return data.publicUrl
-      })
-
     console.log(`[API] Generated ${imageUrls.length} image URLs`)
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       images: imageUrls,
       count: imageUrls.length,
-      folder: folderName
+      folder: folderName,
     })
   } catch (error: any) {
     console.error('[API] Unexpected error:', error)

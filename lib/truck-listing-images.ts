@@ -1,4 +1,4 @@
-import { publicTruckImagesRoot } from '@/lib/supabase-storage'
+import { publicTruckImagesRoot, rewriteTruckImagesStorageUrlToCurrentProject } from '@/lib/supabase-storage'
 
 const TATA_709G_LPT_LISTING_HERO_URL = '/trucks/tata-709g-lpt-hero.png'
 const SML_ISUZU_ZT54_LISTING_HERO_URL = '/trucks/sml-isuzu-zt54-hero.png'
@@ -107,7 +107,8 @@ export function resolveTruckListImageUrl(truck: {
     return HR_55_X_0253_LISTING_HERO_URL
   }
 
-  return raw
+  // DB / API may still store the full URL from a previous Supabase project
+  return rewriteTruckImagesStorageUrlToCurrentProject(raw)
 }
 
 function shouldUseTata709gLptListingSecondHero(truck: {

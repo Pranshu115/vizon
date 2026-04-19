@@ -7,6 +7,8 @@ import {
   isEicherPro2110LTruckName,
   isLikelyRegistrationOrPermitUpload,
 } from '@/lib/truck-listing-images'
+import { collectPublicTruckMediaUrls } from '@/lib/truck-images-collect'
+import { rewriteTruckImagesStorageUrls } from '@/lib/supabase-storage'
 
 const BUCKET_NAME = 'truck-images'
 
@@ -129,7 +131,9 @@ async function loadImagesFromMapping(truckName: string, baseUrl?: string): Promi
       if (response.ok) {
         const mapping = await response.json()
         if (Array.isArray(mapping)) {
-          const urls = mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+          const urls = rewriteTruckImagesStorageUrls(
+            mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+          )
           console.log(`[API] Successfully loaded ${urls.length} URLs from public URL`)
           return urls
         } else {
@@ -163,7 +167,9 @@ async function loadImagesFromMapping(truckName: string, baseUrl?: string): Promi
           const mapping = JSON.parse(fileContent)
           
           if (Array.isArray(mapping)) {
-            const urls = mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+            const urls = rewriteTruckImagesStorageUrls(
+              mapping.map((item: any) => item.supabaseUrl || item.url).filter(Boolean)
+            )
           console.log(`[API] Successfully loaded ${urls.length} URLs from file system`)
             return urls
           }
@@ -334,6 +340,10 @@ export async function GET(request: Request) {
     }
 
     const decodedTruckName = decodeURIComponent(truckName).trim()
+    const siteBaseUrl =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '') ||
+      ''
     console.log(`[API] Fetching images for truck: "${decodedTruckName}"`)
     
     // PRIMARY: Fetch directly from Supabase Storage (where images are actually stored)
@@ -468,7 +478,23 @@ export async function GET(request: Request) {
     if (!folderName) {
       console.error(`[API] Could not find folder for truck: ${decodedTruckName}`)
       console.log(`[API] Available folders (${availableFolders.length}):`, availableFolders.join(', '))
-      
+
+      const mappingOnly = rewriteTruckImagesStorageUrls(
+        await loadImagesFromMapping(decodedTruckName, siteBaseUrl || undefined)
+      )
+      if (mappingOnly.length > 0) {
+        const imagesForResponse = isEicherPro2110LTruckName(decodedTruckName)
+          ? filterEicherPro2110LDocumentScreenshotsFromUrls(mappingOnly)
+          : mappingOnly
+        return NextResponse.json({
+          images: imagesForResponse,
+          count: imagesForResponse.length,
+          folder: null,
+          source: 'mapping-no-storage-folder',
+          truckName: decodedTruckName,
+        })
+      }
+
       return NextResponse.json(
         { 
           error: 'Truck folder not found in Supabase Storage', 
@@ -483,175 +509,87 @@ export async function GET(request: Request) {
 
     console.log(`[API] Using folder: ${folderName}`)
 
-    // List all files in the truck's folder
-    const { data: files, error } = await supabase.storage
-      .from(BUCKET_NAME)
-      .list(folderName, {
+    let effectiveFolder = folderName
+    let imageSource: 'supabase-storage' | 'supabase-alternative-folder' | 'mapping-fallback' =
+      'supabase-storage'
+
+    let imageUrls = rewriteTruckImagesStorageUrls(await collectPublicTruckMediaUrls(supabase, folderName))
+
+    const flatListMediaUrls = async (storagePrefix: string): Promise<string[]> => {
+      const { data: files, error } = await supabase.storage.from(BUCKET_NAME).list(storagePrefix, {
         limit: 100,
         offset: 0,
-        sortBy: { column: 'name', order: 'asc' }
+        sortBy: { column: 'name', order: 'asc' },
       })
-
-    if (error) {
-      console.error('[API] Error listing files in folder:', error)
-      console.error('[API] Error details:', JSON.stringify(error, null, 2))
-      console.error('[API] Attempted folder:', folderName)
-      
-      // Check if it's a permission error
-      if (error.message?.includes('not found') || error.message?.includes('does not exist')) {
-        console.warn(`[API] Folder ${folderName} does not exist, trying other folders...`)
-        
-        // Try to find any folder that might contain images for this truck
-        for (const folder of availableFolders) {
-          if (folder.toLowerCase().includes(decodedTruckName.toLowerCase().substring(0, 5))) {
-            console.log(`[API] Trying alternative folder: ${folder}`)
-            const { data: altFiles, error: altError } = await supabase.storage
-              .from(BUCKET_NAME)
-              .list(folder, { limit: 100 })
-            
-            if (!altError && altFiles && altFiles.length > 0) {
-              const imageUrls = altFiles
-                .filter(file => {
-                  const ext = file.name.toLowerCase()
-                  return ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.png') || 
-                         ext.endsWith('.webp') || ext.endsWith('.gif') || ext.endsWith('.mp4') || ext.endsWith('.mov')
-                })
-                .map(file => {
-                  const filePath = `${folder}/${file.name}`
-                  const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath)
-                  return data.publicUrl
-                })
-              
-              if (imageUrls.length > 0) {
-                console.log(`[API] Found ${imageUrls.length} images in alternative folder: ${folder}`)
-        return NextResponse.json({ 
-                  images: imageUrls,
-                  count: imageUrls.length,
-                  folder: folder,
-                  source: 'supabase-alternative-folder'
-                })
-              }
+      if (error || !files?.length) return []
+      return rewriteTruckImagesStorageUrls(
+        files
+          .filter((file) => {
+            const ext = file.name.toLowerCase()
+            return (
+              ext.endsWith('.jpg') ||
+              ext.endsWith('.jpeg') ||
+              ext.endsWith('.png') ||
+              ext.endsWith('.webp') ||
+              ext.endsWith('.gif') ||
+              ext.endsWith('.mp4') ||
+              ext.endsWith('.mov')
+            )
+          })
+          .filter((file) => {
+            if (
+              isEicherPro2110LTruckName(decodedTruckName) &&
+              isLikelyRegistrationOrPermitUpload(file.name)
+            ) {
+              return false
             }
-          }
-        }
-      }
-      
-      const errWithCode = error as { statusCode?: number }
-      return NextResponse.json(
-        { 
-          error: 'Failed to fetch images from Supabase Storage', 
-          details: error.message,
-          errorCode: errWithCode.statusCode,
-          attemptedFolder: folderName,
-          availableFolders: availableFolders.slice(0, 20),
-          hint: 'Check if the folder exists and has proper permissions. Verify bucket is public.'
-        },
-        { status: 500 }
+            return true
+          })
+          .map((file) => {
+            const filePath = `${storagePrefix}/${file.name}`
+            const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath)
+            return data.publicUrl
+          })
       )
     }
 
-    if (!files || files.length === 0) {
-      console.warn(`[API] No files found in folder: ${folderName}`)
-      
-      // Try other folders that might match
-      console.log(`[API] Trying to find images in other folders...`)
-      for (const folder of availableFolders) {
-        if (folder !== folderName && folder.toLowerCase().includes(decodedTruckName.toLowerCase().substring(0, 5))) {
-          console.log(`[API] Checking alternative folder: ${folder}`)
-          const { data: altFiles } = await supabase.storage
-            .from(BUCKET_NAME)
-            .list(folder, { limit: 100 })
-          
-          if (altFiles && altFiles.length > 0) {
-            const imageUrls = altFiles
-              .filter(file => {
-                const ext = file.name.toLowerCase()
-                return ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.png') || 
-                       ext.endsWith('.webp') || ext.endsWith('.gif') || ext.endsWith('.mp4') || ext.endsWith('.mov')
-              })
-              .map(file => {
-                const filePath = `${folder}/${file.name}`
-                const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath)
-                return data.publicUrl
-              })
-            
-            if (imageUrls.length > 0) {
-              console.log(`[API] Found ${imageUrls.length} images in alternative folder: ${folder}`)
-        return NextResponse.json({ 
-                images: imageUrls,
-                count: imageUrls.length,
-                folder: folder,
-                source: 'supabase-alternative-folder'
-              })
-            }
-          }
-        }
-      }
-      
-      return NextResponse.json({ 
-        images: [], 
-        message: 'No files found in Supabase Storage folder',
-        folder: folderName,
-        availableFolders: availableFolders.slice(0, 20),
-        hint: 'Check if images are uploaded to the correct folder in Supabase Storage. Verify the folder name matches exactly.'
-      })
+    if (imageUrls.length === 0) {
+      imageUrls = await flatListMediaUrls(folderName)
     }
 
-    console.log(`[API] Found ${files.length} files in folder: ${folderName}`)
-    console.log(`[API] Sample file names:`, files.slice(0, 5).map(f => f.name))
-
-    // Filter to only image and video files, and generate public URLs
-    const imageUrls = files
-      .filter(file => {
-        const ext = file.name.toLowerCase()
-        const isMedia = ext.endsWith('.jpg') || 
-               ext.endsWith('.jpeg') || 
-               ext.endsWith('.png') || 
-               ext.endsWith('.webp') || 
-               ext.endsWith('.gif') ||
-               ext.endsWith('.mp4') ||
-               ext.endsWith('.mov')
-        if (!isMedia) {
-          console.log(`[API] Skipping non-media file: ${file.name}`)
-        }
-        return isMedia
-      })
-      .filter((file) => {
-        if (
-          isEicherPro2110LTruckName(decodedTruckName) &&
-          isLikelyRegistrationOrPermitUpload(file.name)
-        ) {
-          console.log(`[API] Skipping likely RC/document file for Pro 2110L: ${file.name}`)
-          return false
-        }
-        return true
-      })
-      .map(file => {
-        const filePath = `${folderName}/${file.name}`
-        const { data } = supabase.storage
-          .from(BUCKET_NAME)
-          .getPublicUrl(filePath)
-        const publicUrl = data.publicUrl
-        console.log(`[API] Generated URL for ${file.name}: ${publicUrl}`)
-        return publicUrl
-      })
-
-    console.log(`[API] ✅ Generated ${imageUrls.length} image URLs from Supabase Storage`)
-    
     if (imageUrls.length === 0) {
-      console.error(`[API] ⚠️ WARNING: No image URLs generated!`)
-      console.error(`[API] Files found: ${files.length}`)
-      console.error(`[API] File extensions:`, files.map(f => {
-        const ext = f.name.toLowerCase().split('.').pop()
-        return ext
-      }).filter(Boolean))
-      return NextResponse.json({ 
+      const prefix = decodedTruckName.toLowerCase().substring(0, 5)
+      for (const folder of availableFolders) {
+        if (folder === folderName) continue
+        if (!folder.toLowerCase().includes(prefix)) continue
+        const alt = rewriteTruckImagesStorageUrls(await collectPublicTruckMediaUrls(supabase, folder))
+        const urls = alt.length > 0 ? alt : await flatListMediaUrls(folder)
+        if (urls.length > 0) {
+          imageUrls = urls
+          effectiveFolder = folder
+          imageSource = 'supabase-alternative-folder'
+          console.log(`[API] Found ${urls.length} images in alternative folder: ${folder}`)
+          break
+        }
+      }
+    }
+
+    if (imageUrls.length === 0) {
+      imageUrls = rewriteTruckImagesStorageUrls(
+        await loadImagesFromMapping(decodedTruckName, siteBaseUrl || undefined)
+      )
+      if (imageUrls.length > 0) {
+        imageSource = 'mapping-fallback'
+      }
+    }
+
+    if (imageUrls.length === 0) {
+      return NextResponse.json({
         images: [],
-        error: 'No image files found',
+        message: 'No image files found in Storage or mapping files',
         folder: folderName,
-        filesFound: files.length,
-        fileExtensions: [...new Set(files.map(f => f.name.toLowerCase().split('.').pop()).filter(Boolean))],
-        hint: 'Check if files in Supabase have correct extensions (.jpg, .jpeg, .png, etc.)'
+        availableFolders: availableFolders.slice(0, 20),
+        hint: 'Upload images to the truck-images bucket or add mapping JSON. URLs in mappings are rewritten to your NEXT_PUBLIC_SUPABASE_URL.',
       })
     }
 
@@ -659,16 +597,16 @@ export async function GET(request: Request) {
       ? filterEicherPro2110LDocumentScreenshotsFromUrls(imageUrls)
       : imageUrls
 
-    console.log(`[API] ✅ Successfully returning ${imagesForResponse.length} images from Supabase`)
+    console.log(`[API] ✅ Successfully returning ${imagesForResponse.length} images (${imageSource})`)
     const body: Record<string, unknown> = { 
       images: imagesForResponse,
       count: imagesForResponse.length,
-      folder: folderName,
-      source: 'supabase-storage'
+      folder: effectiveFolder,
+      source: imageSource
     }
     if (debug) {
       body.debug = {
-        folder: folderName,
+        folder: effectiveFolder,
         availableFoldersCount: availableFolders.length,
         firstImage: imagesForResponse[0],
       }
