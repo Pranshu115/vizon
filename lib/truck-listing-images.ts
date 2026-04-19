@@ -1,5 +1,4 @@
-const SUPABASE_TRUCK_IMAGES =
-  'https://ccmlkidiwxmqxzexoeji.supabase.co/storage/v1/object/public/truck-images'
+import { publicTruckImagesRoot } from '@/lib/supabase-storage'
 
 const TATA_709G_LPT_LISTING_HERO_URL = '/trucks/tata-709g-lpt-hero.png'
 const SML_ISUZU_ZT54_LISTING_HERO_URL = '/trucks/sml-isuzu-zt54-hero.png'
@@ -17,7 +16,7 @@ const HR_55_X_4498_LISTING_HERO_URL = '/trucks/hr-55-x-4498-hero.png'
 const HR_55_X_0253_LISTING_HERO_URL = '/trucks/hr-55-x-0253-hero.png'
 
 /** Hero image for Eicher Pro 2110 / 2110L listings (vehicle photo, not RC/document). */
-export const EICHER_PRO_2110_TRUCK_PHOTO_URL = `${SUPABASE_TRUCK_IMAGES}/1765093748367-Eicher_PRO_2110_WB_3900-5252-250807115200267.webp`
+export const EICHER_PRO_2110_TRUCK_PHOTO_URL = `${publicTruckImagesRoot()}/1765093748367-Eicher_PRO_2110_WB_3900-5252-250807115200267.webp`
 
 export function shouldUseEicherPro2110TruckPhotos(truck: {
   name?: string | null

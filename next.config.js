@@ -137,11 +137,6 @@ const nextConfig = {
         hostname: '*.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'ccmlkidiwxmqxzexoeji.supabase.co',
-        pathname: '/storage/v1/object/public/**',
-      },
     ],
     // Allow unoptimized images for external sources to avoid production issues
     unoptimized: false,
