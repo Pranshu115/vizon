@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { resolveTruckListImageUrl } from '@/lib/truck-listing-images'
 import { formatTruckListingLocation } from '@/lib/utils'
-import { getTruckSpecOverrideForCards } from '@/lib/truck-spec-overrides'
 
 interface TruckSpec {
   year: string
@@ -88,13 +87,9 @@ export default function CertifiedTrucks() {
 
       const formatTrucks = (rawTrucks: any[]) => {
         return (rawTrucks || []).map((truck: any) => {
-          const override = getTruckSpecOverrideForCards(truck)
-
-          const formattedFallbackPrice = (() => {
-            const basePrice =
-              typeof override?.price === 'number' ? override.price : (typeof truck.price === 'number' ? truck.price : null)
-            if (typeof basePrice === 'number' && Number.isFinite(basePrice)) {
-              return `₹${basePrice.toLocaleString('en-IN')}`
+          const formattedPrice = (() => {
+            if (typeof truck.price === 'number' && Number.isFinite(truck.price)) {
+              return `₹${truck.price.toLocaleString('en-IN')}`
             }
             const raw = (truck.price ?? '').toString().trim()
             if (!raw) return '₹0'
@@ -105,24 +100,16 @@ export default function CertifiedTrucks() {
             return `₹${num.toLocaleString('en-IN')}`
           })()
 
-          const kilometers =
-            typeof override?.kms === 'number'
-              ? override.kms
-              : (typeof truck.kilometers === 'number' ? truck.kilometers : null)
-
-          const horsepower =
-            typeof override?.hp === 'number'
-              ? override.hp
-              : (typeof truck.horsepower === 'number' ? truck.horsepower : null)
-
+          const kilometers = typeof truck.kilometers === 'number' ? truck.kilometers : null
+          const horsepower = typeof truck.horsepower === 'number' ? truck.horsepower : null
           const fuelType = (truck.fuel_type as string | null | undefined) || null
           const transmission = (truck.transmission as string | null | undefined) || null
 
           return {
             id: truck.id,
             name: truck.name || `${truck.year} ${truck.manufacturer} ${truck.model}`,
-            year: (typeof override?.year === 'number' ? override.year : truck.year),
-            price: formattedFallbackPrice,
+            year: truck.year,
+            price: formattedPrice,
             mileage: `${(kilometers ?? 0).toLocaleString('en-IN')} km`,
             engine: fuelType ?? 'Diesel',
             kilometers,
