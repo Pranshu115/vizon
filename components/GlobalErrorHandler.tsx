@@ -1,19 +1,23 @@
 'use client'
 
 import { useEffect } from 'react'
+import { isLikelyBrowserEventRejection } from '@/lib/rejection-reason'
 
 /**
- * Prevents "[object Event]" from appearing when an Event is accidentally
- * thrown or rejected (e.g. from form handlers or unhandled promise rejections).
+ * Swallows promise rejections whose reason is a native browser Event — common when
+ * an image/tile/script fails to load and something mis-wires the rejection chain.
+ * Prevents Next dev overlay from showing "[object Event]" as a runtime error.
  */
 export default function GlobalErrorHandler() {
   useEffect(() => {
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      const reason = event.reason
-      if (reason && typeof reason === 'object' && reason.constructor?.name === 'Event') {
-        event.preventDefault()
-        console.error('Unhandled promise rejection: received Event object. This may be caused by passing an event handler incorrectly.')
-        return true
+      if (!isLikelyBrowserEventRejection(event.reason)) return
+      event.preventDefault()
+      event.stopImmediatePropagation?.()
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(
+          '[GlobalErrorHandler] Suppressed unhandled rejection with an Event reason (often failed image/map tile or script load).'
+        )
       }
     }
 

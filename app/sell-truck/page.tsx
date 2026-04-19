@@ -5,6 +5,7 @@ import type { ChangeEvent, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
+import { rejectionReasonToMessage } from '@/lib/rejection-reason'
 import Footer from '@/components/Footer'
 import Stepper, { Step, StepperRef } from '@/components/Stepper'
 import CustomSelect from '@/components/CustomSelect'
@@ -1120,16 +1121,17 @@ export default function SellTruckPage() {
                   )
                 })
               })
-              .catch(error => {
-                console.error('Upload error:', error)
+              .catch((reason: unknown) => {
+                const msg = rejectionReasonToMessage(reason)
+                console.error('Upload error:', reason)
                 setPhotoPreviews(prevPreviews => {
                   return prevPreviews.map(p => 
                     p.file === file 
-                      ? { ...p, uploading: false, uploadError: error.message }
+                      ? { ...p, uploading: false, uploadError: msg }
                       : p
                   )
                 })
-                alert(`Failed to upload ${file.name}: ${error.message}`)
+                alert(`Failed to upload ${file.name}: ${msg}`)
               })
           }
         }
