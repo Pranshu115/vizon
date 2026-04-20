@@ -901,14 +901,15 @@ export default function TruckDetailsPage() {
   const isEicher1075HSDTruck = (truck?.name || '').toLowerCase().includes('1075') &&
     ((truck?.name || '').toLowerCase().includes('eicher') || (truck?.manufacturer === 'Eicher Motors' && (truck?.model || '').toLowerCase().includes('1075')))
   const isBajajMaximaCNG = (truck?.name || '').toLowerCase().includes('bajaj') && (truck?.name || '').toLowerCase().includes('maxima') && (truck?.name || '').toLowerCase().includes('cng')
+  const useHardcodedDisplayOverrides = false
   // Tata Ace Gold (7908) – display values from Web Report UP14HT7908
-  const tataAceGoldDisplay = isTataAceGold7908 ? { price: 250000, year: 2019, yearMonth: '04/2019', kms: 116509, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '14.12.2023', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '1st Owner' } : null
+  const tataAceGoldDisplay = useHardcodedDisplayOverrides && isTataAceGold7908 ? { price: 250000, year: 2019, yearMonth: '04/2019', kms: 116509, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '14.12.2023', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '1st Owner' } : null
   // Eicher Pro 2110L – display values from provided specs
-  const eicherPro2110LDisplay = isEicherPro2110L ? { price: 1475000, yearMonth: '11/2022', kms: 240551, hp: 160, model: 'PRO 2110L', rto: 'Bahadurgarh, Haryana', insurance: '12.02.2026', gearbox: '5 forward, 1 reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7317, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  const eicherPro2110LDisplay = useHardcodedDisplayOverrides && isEicherPro2110L ? { price: 1475000, yearMonth: '11/2022', kms: 240551, hp: 160, model: 'PRO 2110L', rto: 'Bahadurgarh, Haryana', insurance: '12.02.2026', gearbox: '5 forward, 1 reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7317, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
   // Bajaj Maxima CNG – display values from provided specs (Net/Gross Payload: –)
-  const bajajMaximaCNGDisplay = isBajajMaximaCNG ? { price: 260000, yearMonth: '–', kms: 7136, hp: 10, model: 'BAJAJ MAXIMA CARGO CNG', rto: 'RAJPUR ROAD', insurance: '09/06/2026', gearbox: '4 forward, 1 reverse', fuel: 'CNG', grossPayloadKg: null as number | null, netPayloadKg: null as number | null, bodyFt: 6, tyres: 3, ownership: '1st Owner' } : null
+  const bajajMaximaCNGDisplay = useHardcodedDisplayOverrides && isBajajMaximaCNG ? { price: 260000, yearMonth: '–', kms: 7136, hp: 10, model: 'BAJAJ MAXIMA CARGO CNG', rto: 'RAJPUR ROAD', insurance: '09/06/2026', gearbox: '4 forward, 1 reverse', fuel: 'CNG', grossPayloadKg: null as number | null, netPayloadKg: null as number | null, bodyFt: 6, tyres: 3, ownership: '1st Owner' } : null
   // ASHOK LEYLAND ECOMET STAR 1415 HE – display values from provided specs
-  const ashokLeyland1415Display = isAshokLeylandTruck ? {
+  const ashokLeyland1415Display = useHardcodedDisplayOverrides && isAshokLeylandTruck ? {
     price: 1430000,
     yearMonth: '03/2022',
     kms: 236133,
@@ -925,7 +926,7 @@ export default function TruckDetailsPage() {
     ownership: '1st Owner',
   } : null
   // Eicher 2059XP – display values from provided specs
-  const eicher2059XPDisplay = isEicher2059XPTruck ? {
+  const eicher2059XPDisplay = useHardcodedDisplayOverrides && isEicher2059XPTruck ? {
     price: 920000,
     yearMonth: '09/2020',
     kms: 183889,
@@ -942,7 +943,7 @@ export default function TruckDetailsPage() {
     ownership: '1st Owner',
   } : null
   // Eicher Pro 1075 F HSD – display values from provided specs
-  const eicher1075HSDDisplay = isEicher1075HSDTruck ? {
+  const eicher1075HSDDisplay = useHardcodedDisplayOverrides && isEicher1075HSDTruck ? {
     price: 950000,
     yearMonth: '11/2018',
     kms: 229537,
@@ -959,9 +960,9 @@ export default function TruckDetailsPage() {
     ownership: '1st Owner',
   } : null
   // Mahindra Bolero Maxitruck Plus – display price
-  const mahindraBoleroDisplay = isMahindraBoleroTruck ? { price: 630000 } : null
+  const mahindraBoleroDisplay = useHardcodedDisplayOverrides && isMahindraBoleroTruck ? { price: 630000 } : null
   // SML Isuzu ZT54 – display values from provided specs
-  const smlIsuzuZT54Display = isSmlIsuzuZT54 ? {
+  const smlIsuzuZT54Display = useHardcodedDisplayOverrides && isSmlIsuzuZT54 ? {
     price: 630000,
     yearMonth: '04/2017',
     kms: 229537,
@@ -978,17 +979,17 @@ export default function TruckDetailsPage() {
     ownership: '1st Owner',
   } : null
   // Tata Ace Gold (no 7908) – folder Tata Ace Gold-20260307T052504Z-1-001
-  const tataAceGoldPlainDisplay = isTataAceGoldPlain ? { price: 240000, yearMonth: '12/2018', kms: 82185, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '17.03.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '2nd Owner' } : null
+  const tataAceGoldPlainDisplay = useHardcodedDisplayOverrides && isTataAceGoldPlain ? { price: 240000, yearMonth: '12/2018', kms: 82185, hp: 15.54, model: 'TATA ACE GOLD BS-IV', rto: 'Ghaziabad', insurance: '17.03.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel (BS-IV)', grossPayloadKg: 1550, netPayloadKg: 710, bodyFt: 7.2, tyres: 4, ownership: '2nd Owner' } : null
   // TATA 1512G LPT – display values from inspection/legal report
-  const tata1512GLPTDisplay = isTata1512GLPT ? { price: 1530000, yearMonth: '10/2021', kms: 209311, hp: 123.28, model: '1512G LPT DCR48CBC 125B6M5', rto: 'Rajpur Road', insurance: '24.09.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 16020, netPayloadKg: 8620, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  const tata1512GLPTDisplay = useHardcodedDisplayOverrides && isTata1512GLPT ? { price: 1530000, yearMonth: '10/2021', kms: 209311, hp: 123.28, model: '1512G LPT DCR48CBC 125B6M5', rto: 'Rajpur Road', insurance: '24.09.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 16020, netPayloadKg: 8620, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
   // Tata 1212 LPT – display values from provided specs
-  const tata1212LPTDisplay = isTata1212LPT ? { price: 1420000, yearMonth: '11/2022', kms: 152804, hp: 123.28, model: '1212 LPT DCR48CBC 125B6M5', rto: 'Faridabad', insurance: '30.12.2025', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7930, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  const tata1212LPTDisplay = useHardcodedDisplayOverrides && isTata1212LPT ? { price: 1420000, yearMonth: '11/2022', kms: 152804, hp: 123.28, model: '1212 LPT DCR48CBC 125B6M5', rto: 'Faridabad', insurance: '30.12.2025', gearbox: '5-Forward, 1-Reverse', fuel: 'Diesel', grossPayloadKg: 11990, netPayloadKg: 7930, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
   // TATA MOTORS 609G – display values from provided specs
-  const tata609GDisplay = isTata609G ? { price: 1000000, yearMonth: '07/2022', kms: 78699, hp: 83.08, model: 'SFC DCR33CBC 85B6M5', rto: 'Rajpur Road', insurance: '02.08.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 5950, netPayloadKg: 3480, bodyFt: 10, tyres: 4, ownership: '1st Owner' } : null
+  const tata609GDisplay = useHardcodedDisplayOverrides && isTata609G ? { price: 1000000, yearMonth: '07/2022', kms: 78699, hp: 83.08, model: 'SFC DCR33CBC 85B6M5', rto: 'Rajpur Road', insurance: '02.08.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 5950, netPayloadKg: 3480, bodyFt: 10, tyres: 4, ownership: '1st Owner' } : null
   // TATA MOTORS 709G LPT – display values from provided specs
-  const tata709gLPTDisplay = isTata709gLPT ? { price: 1025000, yearMonth: '11/2021', kms: 129420, hp: 83.08, model: '709G LPT DCR38CBC 85B6M5 TT', rto: 'Rajpur Road', insurance: '20.02.2027', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 7490, netPayloadKg: 4500, bodyFt: 17, tyres: 6, ownership: '2nd Owner' } : null
+  const tata709gLPTDisplay = useHardcodedDisplayOverrides && isTata709gLPT ? { price: 1025000, yearMonth: '11/2021', kms: 129420, hp: 83.08, model: '709G LPT DCR38CBC 85B6M5 TT', rto: 'Rajpur Road', insurance: '20.02.2027', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 7490, netPayloadKg: 4500, bodyFt: 17, tyres: 6, ownership: '2nd Owner' } : null
   // Tata 1109g LPT – display values from provided specs
-  const tata1109gLPTDisplay = isTata1109gLPT ? { price: 1350000, yearMonth: '03/2023', kms: 162134, hp: 85, model: '1109G LPT DCR49CBC 85B6M5XD', rto: 'Gurugram', insurance: '06.04.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 11250, netPayloadKg: 7500, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
+  const tata1109gLPTDisplay = useHardcodedDisplayOverrides && isTata1109gLPT ? { price: 1350000, yearMonth: '03/2023', kms: 162134, hp: 85, model: '1109G LPT DCR49CBC 85B6M5XD', rto: 'Gurugram', insurance: '06.04.2026', gearbox: '5-Forward, 1-Reverse', fuel: 'CNG', grossPayloadKg: 11250, netPayloadKg: 7500, bodyFt: 22, tyres: 6, ownership: '1st Owner' } : null
 
   const getGalleryImages = () => {
     if (!truck?.imageUrl) return []
