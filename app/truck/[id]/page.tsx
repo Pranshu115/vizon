@@ -2371,7 +2371,7 @@ export default function TruckDetailsPage() {
             </div>
             <div className="td-stat-divider"></div>
             <div className="td-stat">
-              <span className="td-stat-value">{isTataAceGold7908 || isTataAceGoldPlain || isTata1212LPT || isEicher1075HSDTruck ? 'Diesel' : (isTata1512GLPT || isTata609G || isTata709gLPT || isTata1109gLPT || isAshokLeyland1615Truck || isAshokLeylandTruck || isTata1412Truck || isSmlIsuzuTruck || isEicher2059XPTruck || isMahindraBoleroTruck) ? 'CNG' : 'Diesel'}</span>
+              <span className="td-stat-value">{truck.fuel_type || (isTataAceGold7908 || isTataAceGoldPlain || isTata1212LPT || isEicher1075HSDTruck ? 'Diesel' : (isTata1512GLPT || isTata609G || isTata709gLPT || isTata1109gLPT || isAshokLeyland1615Truck || isAshokLeylandTruck || isTata1412Truck || isSmlIsuzuTruck || isEicher2059XPTruck || isMahindraBoleroTruck) ? 'CNG' : 'Diesel')}</span>
               <span className="td-stat-label">Fuel Type</span>
             </div>
             <div className="td-stat-divider"></div>
