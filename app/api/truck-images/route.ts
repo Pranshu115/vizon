@@ -364,23 +364,33 @@ export async function GET(request: Request) {
       const err = listError as { statusCode?: number; message: string }
       console.error('[API] Error code:', err.statusCode)
       console.error('[API] Error message:', err.message)
-      
-      return NextResponse.json(
-        { 
-          error: 'Failed to access Supabase Storage', 
-          details: err.message,
-          errorCode: err.statusCode,
-          hint: 'Check if the bucket "truck-images" exists and is public. Also verify environment variables are set correctly.',
-          troubleshooting: [
-            '1. Go to Supabase Dashboard → Storage',
-            '2. Check if "truck-images" bucket exists',
-            '3. Make sure the bucket is set to "Public"',
-            '4. Verify NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set in Vercel',
-            '5. Test at: /api/test-supabase'
-          ]
-        },
-        { status: 500 }
+
+      // Fallback path: when Supabase DNS/network is temporarily unavailable in local env,
+      // still return mapping-based URLs instead of hard failing truck details.
+      const mappingFallback = rewriteTruckImagesStorageUrls(
+        await loadImagesFromMapping(decodedTruckName, siteBaseUrl || undefined)
       )
+      if (mappingFallback.length > 0) {
+        const imagesForResponse = isEicherPro2110LTruckName(decodedTruckName)
+          ? filterEicherPro2110LDocumentScreenshotsFromUrls(mappingFallback)
+          : mappingFallback
+        return NextResponse.json({
+          images: imagesForResponse,
+          count: imagesForResponse.length,
+          folder: null,
+          source: 'mapping-dns-fallback',
+          warning: 'Supabase Storage unreachable; served mapping fallback',
+        })
+      }
+
+      return NextResponse.json({
+        images: [],
+        count: 0,
+        folder: null,
+        source: 'supabase-unreachable',
+        warning: 'Failed to access Supabase Storage and no mapping fallback found',
+        details: err.message,
+      })
     }
 
     // Supabase list('') returns both files and folder-like prefixes; treat as folder if no file extension
